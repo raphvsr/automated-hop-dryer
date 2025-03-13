@@ -2,6 +2,12 @@ web:sechoir-houblon/
 │
 ├── backend/ # Code backend (PHP, Python, etc.)
 │ ├── php/ # Code PHP pour l'interface web et la logique métier
+| |
+| ├── api/
+| | ├── shutdown.php
+| | ├── start_drying.php
+| | ├── stop_drying.php
+| |
 │ │ ├── classes/ # Classes PHP (ex: TimeManager, DryingControl, etc.)
 │ │ │ ├── TimeManager.php
 │ │ │ ├── DryingControl.php
