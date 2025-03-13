@@ -9,13 +9,13 @@ class DryingControl {
     public function startDrying() {
         $scriptPath = $this->pythonScriptPath . "drying_control.py";
         exec("sudo python3 $scriptPath start");
-        return "Séchage démarré.";
+        return "Drying started.";
     }
 
     public function stopDrying() {
         $scriptPath = $this->pythonScriptPath . "drying_control.py";
         exec("sudo python3 $scriptPath stop");
-        return "Séchage arrêté.";
+        return "Drying stopped.";
     }
 }
 ?>
