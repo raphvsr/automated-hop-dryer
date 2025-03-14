@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-import time
 
 RELAY_PIN = 17 
 
@@ -9,14 +8,14 @@ GPIO.setup(RELAY_PIN, GPIO.OUT)
 def start_drying():
     try:
         GPIO.output(RELAY_PIN, GPIO.HIGH)
-        print("Séchage démarré : Brûleur allumé")
+        print("Drying started: Burner on")
         
     except KeyboardInterrupt:
         GPIO.output(RELAY_PIN, GPIO.LOW)
-        print("Séchage arrêté : Brûleur éteint")
+        print("Drying Stopped: Burner Off")
         GPIO.cleanup()
 
 def stop_drying():
     GPIO.output(RELAY_PIN, GPIO.LOW)
-    print("Séchage arrêté : Brûleur éteint")
+    print("Drying Stopped: Burner Off")
     GPIO.cleanup()
