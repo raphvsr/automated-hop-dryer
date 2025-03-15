@@ -8,7 +8,7 @@ $('document').ready(function() {
       alert('Please enter your password');
       return;
     }
-    $.post('backend/php/login-process.php', { // Updated path
+    $.post('backend/php/login-process.php', {
       username: $('#username').val(),
       password: $('#password').val()
     }, function(data) {

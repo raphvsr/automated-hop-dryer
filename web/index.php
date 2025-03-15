@@ -1,5 +1,4 @@
 <?php
-// check session
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: login.php');
@@ -11,20 +10,60 @@ if (!isset($_SESSION['username'])) {
 
 <head>
   <meta charset="UTF-8">
-  <title>Main page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page - Drying Control</title>
   <link rel="stylesheet" href="src/css/styles.css">
+  <!-- TODO install this in local instead of cdn (j'ai la flemme de le faire mtn) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
   <div class="dashboard-container">
-    <h2>main page</h2>
-    <div id="temperatureReadings"></div>
-    <button id="startDrying">Start Drying</button>
-    <button id="stopDrying">Stop Drying</button>
+    <h2>Drying Control System</h2>
+    <p>Welcome, <?php echo $_SESSION['username']; ?>!</p>
+    <div class="section">
+      <h3>Real-Time Temperature Readings</h3>
+      <div id="temperatureReadings">
+        <p>Loading temperatures...</p>
+      </div>
+    </div>
+    <div class="section">
+      <h3>Drying Control</h3>
+      <button id="startDrying">Start Drying</button>
+      <button id="stopDrying">Stop Drying</button>
+      <p id="dryingStatus">Status: Idle</p>
+    </div>
+    <div class="section">
+      <h3>Configure Temperature max temperature</h3>
+      <form id="maxTemp">
+        <label for="maxTemp">Max Temperature (°C):</label>
+        <input type="number" id="maxTemp" name="maxTemp" min="0" max="80" required>
+        <button type="submit">Set</button>
+      </form>
+      <p id="maxTempStatus"></p>
+    </div>
+    <div class="section">
+      <h3>Drying Data Visualization</h3>
+      <canvas id="temperatureChart"></canvas>
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Temperature (°C)</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <div class="section">
+      <h3>System Control</h3>
+      <button id="shutdownSystem">Shutdown System</button>
+      <p id="shutdownStatus"></p>
+    </div>
   </div>
-
-  <script src="src/js/dashboard.js"></script>
+  <script src="src/js/index.js"></script>
 </body>
 
 </html>

@@ -28,7 +28,6 @@ class DryingConfig
       throw new RuntimeException("Failed to prepare SQL statement: " . $errorInfo[2]);
     }
 
-    // Bind parameters
     $stmt->bindValue(':key', $key, PDO::PARAM_STR);
     $stmt->bindValue(':value', $value, PDO::PARAM_STR);
 
