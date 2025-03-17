@@ -5,16 +5,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ($action === 'manual') {
     $dateTime = $_POST['datetime'];
 
-    if (DateTime::createFromFormat('Y-m-d H:i:s', $dateTime) !== false) {
-      $output = null;
-      $return_var = null;
-      exec("sudo date -s '$dateTime'", $output, $return_var);
+    $date = DateTime::createFromFormat('Y-m-d H:i:s', $dateTime);
+    if ($date !== false) {
+      $formattedDate = $date->format('Y-m-d H:i:s');
 
-      if ($return_var === 0) {
-        echo "Time set successfully: $dateTime";
+      if (preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $formattedDate)) {
+        $safeDateTime = escapeshellarg($formattedDate);
+        $output = [];
+        $return_var = null;
+
+        exec("sudo date -s {$safeDateTime}", $output, $return_var);
+
+        if ($return_var === 0) {
+          echo "Time set successfully: " . htmlspecialchars($dateTime, ENT_QUOTES, 'UTF-8');
+        } else {
+          echo "Error: Failed to set the date and time.";
+          echo "Command output: " . htmlspecialchars(implode("\n", $output), ENT_QUOTES, 'UTF-8');
+        }
       } else {
-        echo "Error: Failed to set the date and time.";
-        echo "Command output: " . implode("\n", $output);
+        echo "Invalid date and time format. Use YYYY-MM-DD HH:MM:SS.";
       }
     } else {
       echo "Invalid date and time format. Use YYYY-MM-DD HH:MM:SS.";
@@ -27,4 +36,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Unrecognized action.";
   }
 }
-?>
