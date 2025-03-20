@@ -89,13 +89,21 @@ class sensorData {
 
         $sql = "
             INSERT INTO sensor_data (temperature, humidity, timestamp)
-            VALUES ($temperature, $humidity, '$timestamp')
+            VALUES (?, ?, ?)
         ";
-        $result = $this->conn->query($sql);
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Error preparing the query: " . $this->conn->error);
+        }
 
-        if (!$result) {
-            throw new Exception("Error executing the query: " . $this->conn->error);
-        } 
+        $stmt->bind_param("dds", $temperature, $humidity, $timestamp);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return $stmt->insert_id;
+        } else {
+            throw new Exception("Error adding the sensor_data: " . $stmt->error);
+        }
     }
 
     /**
@@ -114,13 +122,21 @@ class sensorData {
 
         $sql = "
             UPDATE sensor_data
-            SET temperature = $temperature, humidity = $humidity, timestamp = '$timestamp'
-            WHERE id = $id
+            SET temperature = ?, humidity = ?, timestamp = ?
+            WHERE id = ?
         ";
-        $result = $this->conn->query($sql);
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Error preparing the query: " . $this->conn->error);
+        }
 
-        if (!$result) {
-            throw new Exception("Error executing the query: " . $this->conn->error);
+        $stmt->bind_param("ddsi", $temperature, $humidity, $timestamp, $id);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            throw new Exception("Error updating the sensor_data: " . $stmt->error);
         }
     }
 
@@ -130,14 +146,20 @@ class sensorData {
      * @throws Exception - If an SQL error occurs.
      */
     public function deleteSensorData($id) {
-        $sql = "
-            DELETE FROM sensor_data
-            WHERE id = $id
-        ";
-        $result = $this->conn->query($sql);
+        $sql = "DELETE sensor_data WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
 
-        if (!$result) {
-            throw new Exception("Error executing the query: " . $this->conn->error);
+        if (!$stmt) {
+            throw new Exception("Error preparing the query: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            throw new Exception("Error deleting the sensor_data: " . $stmt->error);
         }
     }
 }

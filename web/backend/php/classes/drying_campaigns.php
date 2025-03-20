@@ -149,10 +149,19 @@ class DryingCampaigns {
     public function deleteDryingCampaign($id) {
         $sql = "DELETE FROM drying_campaigns WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            throw new Exception("Error preparing the query: " . $this->conn->error);
+        }
+
         $stmt->bind_param("i", $id);
         $stmt->execute();
 
-        return $stmt->affected_rows > 0;
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            throw new Exception("Error deleting the drying_campaign: " . $stmt->error);
+        }
     }
 }
 ?>
