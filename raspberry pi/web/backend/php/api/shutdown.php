@@ -4,4 +4,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     echo "The Raspberry Pi is going to shut down...";
 }
-
+?>

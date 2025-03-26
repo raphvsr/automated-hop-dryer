@@ -32,7 +32,6 @@ web:sechoir-houblon/
 │ ├── js/ # Scripts JavaScript
 │ │ └── main.js
 │ ├── assets/ # Images, icônes, etc.
-│ └── index.html # Page d'accueil de l'interface web
 │
 ├── config/ # Fichiers de configuration
 │ ├── config.php # Configuration PHP (accès à la base de données, etc.)

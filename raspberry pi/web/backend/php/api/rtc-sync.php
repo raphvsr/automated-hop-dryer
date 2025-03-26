@@ -20,6 +20,12 @@ function execCommand($cmd) {
 
 // Get the action from the GET request
 $action = $_GET['action'] ?? '';
+$allowedActions = ['sync_system', 'sync_rtc', 'get_time'];
+
+if (!in_array($action, $allowedActions)) {
+    echo json_encode(['error' => 'Action not allowed']);
+    exit;
+}
 
 // Check if the RTC module is detected
 $rtcCheck = execCommand('sudo hwclock -r');
