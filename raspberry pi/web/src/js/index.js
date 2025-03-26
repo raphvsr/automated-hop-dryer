@@ -64,18 +64,7 @@ $(document).ready(function () {
       $('#dryingStatus').text('Error stopping drying process.');
     });
   });
-  $('#maxTemp').submit(function (e) {
-    e.preventDefault();
-    const maxTemp = $('#maxTemp').val();
-    $.post('backend/php/api/set_maxtemp.php',
-      { maxTemp: maxTemp },
-      function () {
-        $('#maxTempStatus').text(`max temp is set to ${maxTemp}°C.`);
-      }
-    ).fail(function () {
-      $('#maxTempStatus').text('Error setting max temperature.');
-    });
-  });
+
   $('#shutdownSystem').click(function () {
     $.post('backend/php/api/shutdown.php',
       {  },
