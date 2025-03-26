@@ -35,15 +35,6 @@ if (!isset($_SESSION['username'])) {
       <p id="dryingStatus">Status: Idle</p>
     </div>
     <div class="section">
-      <h3>Configure Temperature max temperature</h3>
-      <form id="maxTemp">
-        <label for="maxTemp">Max Temperature (°C):</label>
-        <input type="number" id="maxTemp" name="maxTemp" min="0" max="80" required>
-        <button type="submit">Set</button>
-      </form>
-      <p id="maxTempStatus"></p>
-    </div>
-    <div class="section">
       <h3>Drying Data Visualization</h3>
       <canvas id="temperatureChart"></canvas>
       <table id="dataTable">
