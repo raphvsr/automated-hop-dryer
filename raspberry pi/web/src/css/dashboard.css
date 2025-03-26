@@ -1,0 +1,128 @@
+/* Basics */
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: 'Inter', 'Lato', sans-serif;
+	line-height: 1;
+}
+
+body {
+	background-color: #f8fafc;
+	overflow: hidden;
+}
+
+/* Color Variables */
+:root {
+	--sidebar-background-color: #1e293b;
+	--active-sidebar-link-color: #0f172a;
+	--hover-sidebar-link-color: #334155;
+	--active-link-color: #38bdf8;
+	--tooltip-background-color: #1e293b;
+	--card-background: #ffffff;
+	--card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.sidebar-navigation {
+	display: inline-block;
+	min-height: 100vh;
+	width: 80px;
+	background-color: var(--sidebar-background-color);
+	float: left;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-navigation ul {
+	text-align: center;
+	color: white;
+}
+
+.sidebar-navigation ul li {
+	padding: 28px 0;
+	cursor: pointer;
+	transition: all ease-out 120ms;
+	position: relative;
+}
+
+.sidebar-navigation ul li i {
+	display: block;
+	font-size: 24px;
+	transition: all ease 450ms;
+}
+
+.sidebar-navigation ul li .tooltip {
+	display: inline-block;
+	position: absolute;
+	background-color: var(--tooltip-background-color);
+	padding: 8px 15px;
+	border-radius: 6px;
+	margin-top: -26px;
+	left: 90px;
+	opacity: 0;
+	visibility: hidden;
+	font-size: 13px;
+	letter-spacing: .5px;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-navigation ul li .tooltip:before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: -4px;
+	top: 10px;
+	transform: rotate(45deg);
+	width: 10px;
+	height: 10px;
+	background-color: inherit;
+}
+
+.sidebar-navigation ul li:hover {
+	background-color: var(--hover-sidebar-link-color);
+}
+
+.sidebar-navigation ul li:hover .tooltip {
+	visibility: visible;
+	opacity: 1;
+}
+
+.sidebar-navigation ul li.active {
+	background-color: var(--active-sidebar-link-color);
+}
+
+.sidebar-navigation ul li.active i {
+	color: var(--active-link-color);
+}
+
+.dashboard-content {
+	padding: 2rem;
+	margin-left: 80px;
+}
+
+.dashboard-content h1 {
+	color: #1e293b;
+	margin-bottom: 2rem;
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+.graphs {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 24px;
+	padding: 20px;
+}
+
+.graph-container {
+	background: var(--card-background);
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: var(--card-shadow);
+}
+
+canvas {
+	width: 100% !important;
+	height: 300px !important;
+	margin: 0 auto;
+}
+

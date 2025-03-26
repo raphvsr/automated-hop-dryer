@@ -21,7 +21,13 @@ if (!isset($_SESSION['username'])) {
 <body>
   <div class="dashboard-container">
     <h2>Drying Control System</h2>
-    <p>Welcome, <?php echo $_SESSION['username']; ?>!</p>
+    <div id="dashboardHeader">
+      <p>Welcome, <?php echo $_SESSION['username']; ?>!</p>
+      <!-- check if user admin -->
+      <?php if ($_SESSION['admin'] == 1): ?>
+        <button id="dashboard"><a href="dashboard.php">dashboard</a></button>
+      <?php endif; ?>
+    </div>
     <div class="section">
       <h3>Real-Time Temperature Readings</h3>
       <div id="temperatureReadings">

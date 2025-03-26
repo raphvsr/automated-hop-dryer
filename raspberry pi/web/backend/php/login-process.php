@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $result->fetch_assoc();
     if (password_verify($password, $user['password_hash'])) {
       $_SESSION['username'] = $username;
+      $_SESSION['admin'] = $user['role'];
       echo "success";
     } else {
       echo "Invalid password!";
