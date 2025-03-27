@@ -12,14 +12,35 @@ $(document).ready(function () {
   $("#syncRtcTime").on("click", function () {
     syncTime("rtc");
   });
-  -(
-    // Fonctions
-    function refreshTime() {
-      $.get("api/rtc_sync.php?action=get_time")
-        .done(updateTimeDisplay)
-        .fail(showError);
+
+  // Fonctions
+  function refreshTime() {
+    $.get("api/rtc_sync.php?action=get_time")
+      .done(updateTimeDisplay)
+      .fail(showError);
+  }
+
+  $("#setManualTime").on("click", function () {
+    let manualTime = $("#manual-time-input").val();
+    if (!manualTime) {
+      alert("Veuillez entrer une heure valide.");
+      return;
     }
-  );
+
+    $.post(
+      "set_time.php",
+      { manualTime: manualTime },
+      function (response) {
+        if (response.error) {
+          showError(response);
+        } else {
+          showStatus(response.message, "success");
+          refreshTime();
+        }
+      },
+      "json"
+    ).fail(showError);
+  });
 
   function syncTime(direction) {
     const action = direction === "system" ? "sync_system" : "sync_rtc";

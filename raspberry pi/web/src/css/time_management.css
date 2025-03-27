@@ -19,6 +19,15 @@ body {
   max-width: 800px;
   width: 100%;
 }
+.manual-time {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.btn-manual {
+  background-color: #ff9800;
+}
 .time-display {
   background: #f5f5f5;
   padding: 15px;

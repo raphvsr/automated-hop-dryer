@@ -18,8 +18,7 @@ function execCommand($cmd) {
     ];
 }
 
-// Get the action from the GET request
-$action = $_GET['action'] ?? '';
+$action = $_POST['action'] ?? '';
 $allowedActions = ['sync_system', 'sync_rtc', 'get_time'];
 
 if (!in_array($action, $allowedActions)) {

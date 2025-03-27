@@ -26,6 +26,12 @@ if (!isset($_SESSION['username'])) {
         <p><strong>RTC:</strong> <span id="rtc-time">Chargement...</span></p>
       </div>
 
+      <div class="manual-time">
+        <h3>Mettre à jour l'heure manuellement</h3>
+        <input type="datetime-local" id="manual-time-input">
+        <button class="btn btn-manual" id="setManualTime">Mettre à jour</button>
+      </div>
+
       <button class="btn btn-sync" id="syncSystemTime">
         Synchroniser système avec RTC
       </button>
