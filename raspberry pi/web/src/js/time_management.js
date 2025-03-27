@@ -13,6 +13,23 @@ $(document).ready(function () {
     syncTime("rtc");
   });
 
+  $("#setManualTime").on("click", function () {
+    let manualTime = $("#manual-time-input").val();
+
+    if (!manualTime || manualTime.length === 0) {
+      showStatus("Veuillez entrer une date et une heure", "error");
+      return;
+    }
+
+    let dateregex = /^\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}$/; // JJ-MM-AAAA HH:MM:SS
+    if (!dateregex.test(manualTime)) {
+      showStatus("Format de date invalide", "error");
+      return;
+    }
+
+    syncTime("manual", manualTime);
+  });
+
   // Fonctions
   function refreshTime() {
     $.get("api/rtc_sync.php?action=get_time")
@@ -20,38 +37,23 @@ $(document).ready(function () {
       .fail(showError);
   }
 
-  $("#setManualTime").on("click", function () {
-    let manualTime = $("#manual-time-input").val().trim();
-    let dateRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/; // Format: YYYY-MM-DD HH:MM:SS
+  function syncTime(direction, manualTime = null) {
+    let action;
+    let postData = {};
 
-    if (!dateRegex.test(manualTime)) {
-      alert("Veuillez entrer une date et heure valides (AAAA-MM-JJ HH:MM:SS).");
+    if (direction === "system") {
+      action = "sync_system";
+    } else if (direction === "rtc") {
+      action = "sync_rtc";
+    } else if (direction === "manual" && manualTime) {
+      action = "set_manual";
+      postData.datetime = manualTime;
+    } else {
+      console.error("Direction invalide ou date manquante");
       return;
     }
 
-    if (
-      !confirm("Voulez-vous vraiment mettre à jour l'heure avec cette valeur ?")
-    )
-      return;
-
-    $.post(
-      "set_time.php",
-      { manualTime: manualTime },
-      function (response) {
-        if (response.error) {
-          showError(response);
-        } else {
-          showStatus(response.message, "success");
-          refreshTime();
-        }
-      },
-      "json"
-    ).fail(showError);
-  });
-
-  function syncTime(direction) {
-    const action = direction === "system" ? "sync_system" : "sync_rtc";
-    $.post(`api/rtc_sync.php?action=${action}`)
+    $.post(`api/rtc_sync.php?action=${action}`, postData)
       .done(function (data) {
         if (data.error) showError(data);
         else {

@@ -19,7 +19,7 @@ function execCommand($cmd) {
 }
 
 $action = $_POST['action'] ?? '';
-$allowedActions = ['sync_system', 'sync_rtc', 'get_time'];
+$allowedActions = ['sync_system', 'sync_rtc', 'get_time', 'set_manual'];
 
 if (!in_array($action, $allowedActions)) {
     echo json_encode(['error' => 'Action not allowed']);
@@ -67,6 +67,44 @@ switch ($action) {
             ]);
         }
         break;
+
+    case 'set_manual':
+        $manualTime = $_POST['datetime'] ?? '';
+        
+        if (empty($manualTime)) {
+            echo json_encode(['error' => 'Manual time is required']);
+            exit;
+        }
+        
+        $dateRegex = '/^\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}$/';
+        if (!preg_match($dateRegex, $manualTime)) {
+            echo json_encode(['error' => 'Invalid date format. Expected JJ-MM-AAAA HH:MM:SS']);
+            exit;
+        }
+        
+        $manualTimeFormatted = DateTime::createFromFormat('d-m-Y H:i:s', $manualTime);
+        if ($manualTimeFormatted === false) {
+            echo json_encode(['error' => 'Error parsing manual time']);
+            exit;
+        }
+        
+        $manualTimeFormatted = $manualTimeFormatted->format('Y-m-d H:i:s');
+        $result = execCommand("sudo date --set=\"$manualTimeFormatted\"");
+        
+        if ($result['success']) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Manual time set successfully',
+                'new_time' => $manualTimeFormatted
+            ]);
+        } else {
+            echo json_encode([
+                'error' => 'Failed to set manual time',
+                'details' => $result['output']
+            ]);
+        }
+        break;
+        
     case 'get_time':
         $systemTime = execCommand('date');
         $rtcTime = execCommand('sudo hwclock -r');
@@ -75,7 +113,8 @@ switch ($action) {
             'system_time' => $systemTime['output'],
             'rtc_time' => $rtcTime['success'] ? $rtcTime['output'] : 'Error reading RTC time'
         ]);
-        break;        
+        break;
+        
     default:
         $systemTime = execCommand('date');
         echo json_encode([

@@ -1,9 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
-  header('Location: login.php');
-  exit();
-}
+// session_start();
+// if (!isset($_SESSION['username'])) {
+//   header('Location: login.php');
+//   exit();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +28,10 @@ if (!isset($_SESSION['username'])) {
 
       <div class="manual-time">
         <h3>Mettre à jour l'heure manuellement</h3>
-        <input type="text" id="manual-time-input" placeholder="AAAA-MM-JJ HH:MM:SS">
-        <button class="btn btn-manual" id="setManualTime">Mettre à jour</button>
+        <div class="manual-time-input-container">
+          <input type="text" id="manual-time-input" placeholder="JJ-MM-AAAA HH:MM:SS">
+          <button class="btn" id="setManualTime">Mettre à jour</button>
+        </div>
       </div>
 
       <button class="btn btn-sync" id="syncSystemTime">
