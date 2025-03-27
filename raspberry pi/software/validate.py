@@ -17,10 +17,8 @@ def swLed(ev=None):
     Led_status = not Led_status
     GPIO.output(LedPin, Led_status)
     if Led_status == 1:
-        print ("led off...")
-    else:
-        print ("...led on")
-
+        # valider et ajouter dans la base de donner et dans le ficher csv
+        print('test')
 def loop():
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=swLed, bouncetime=200)
     while True:
