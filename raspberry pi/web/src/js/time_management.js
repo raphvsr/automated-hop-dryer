@@ -21,11 +21,18 @@ $(document).ready(function () {
   }
 
   $("#setManualTime").on("click", function () {
-    let manualTime = $("#manual-time-input").val();
-    if (!manualTime) {
-      alert("Veuillez entrer une heure valide.");
+    let manualTime = $("#manual-time-input").val().trim();
+    let dateRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/; // Format: YYYY-MM-DD HH:MM:SS
+
+    if (!dateRegex.test(manualTime)) {
+      alert("Veuillez entrer une date et heure valides (AAAA-MM-JJ HH:MM:SS).");
       return;
     }
+
+    if (
+      !confirm("Voulez-vous vraiment mettre à jour l'heure avec cette valeur ?")
+    )
+      return;
 
     $.post(
       "set_time.php",

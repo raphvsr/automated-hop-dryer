@@ -28,7 +28,7 @@ if (!isset($_SESSION['username'])) {
 
       <div class="manual-time">
         <h3>Mettre à jour l'heure manuellement</h3>
-        <input type="datetime-local" id="manual-time-input">
+        <input type="text" id="manual-time-input" placeholder="AAAA-MM-JJ HH:MM:SS">
         <button class="btn btn-manual" id="setManualTime">Mettre à jour</button>
       </div>
 
