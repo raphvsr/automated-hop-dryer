@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Main Page - Drying Control</title>
+  <title>Page Principale - Contrôle du Séchage</title>
   <link rel="stylesheet" href="src/css/styles.css">
   <!-- TODO install this in local instead of cdn (j'ai la flemme de le faire mtn) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -20,34 +20,34 @@ if (!isset($_SESSION['username'])) {
 
 <body>
   <div class="dashboard-container">
-    <h2>Drying Control System</h2>
+    <h2>Système de Contrôle du Séchage</h2>
     <div id="dashboardHeader">
-      <p>Welcome, <?php echo $_SESSION['username']; ?>!</p>
+      <p>Bienvenue, <?php echo $_SESSION['username']; ?>!</p>
       <!-- check if user admin -->
       <?php if ($_SESSION['admin'] == 1): ?>
-        <button id="dashboard"><a href="dashboard.php">dashboard</a></button>
+        <button id="dashboard"><a href="dashboard.php">Dashboard</a></button>
       <?php endif; ?>
     </div>
     <div class="section">
-      <h3>Real-Time Temperature Readings</h3>
+      <h3>Températures en Temps Réel</h3>
       <div id="temperatureReadings">
-        <p>Loading temperatures...</p>
+        <p>Chargement des températures...</p>
       </div>
     </div>
     <div class="section">
-      <h3>Drying Control</h3>
-      <button id="startDrying">Start Drying</button>
-      <button id="stopDrying">Stop Drying</button>
-      <p id="dryingStatus">Status: Idle</p>
+      <h3>Contrôle du Séchage</h3>
+      <button id="startDrying">Démarrer le Séchage</button>
+      <button id="stopDrying">Arrêter le Séchage</button>
+      <p id="dryingStatus">État : En attente</p>
     </div>
     <div class="section">
-      <h3>Drying Data Visualization</h3>
+      <h3>Visualisation des Données de Séchage</h3>
       <canvas id="temperatureChart"></canvas>
       <table id="dataTable">
         <thead>
           <tr>
-            <th>Time</th>
-            <th>Temperature (°C)</th>
+            <th>Heure</th>
+            <th>Température (°C)</th>
           </tr>
         </thead>
         <tbody>
@@ -55,8 +55,8 @@ if (!isset($_SESSION['username'])) {
       </table>
     </div>
     <div class="section">
-      <h3>System Control</h3>
-      <button id="shutdownSystem">Shutdown System</button>
+      <h3>Contrôle du Système</h3>
+      <button id="shutdownSystem">Arrêter le Système</button>
       <p id="shutdownStatus"></p>
     </div>
   </div>
