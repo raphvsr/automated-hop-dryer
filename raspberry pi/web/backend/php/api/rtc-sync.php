@@ -68,8 +68,15 @@ switch ($action) {
             ]);
         }
         break;
-        
     case 'get_time':
+        $systemTime = execCommand('date');
+        $rtcTime = execCommand('sudo hwclock -r');
+        
+        echo json_encode([
+            'system_time' => $systemTime['output'],
+            'rtc_time' => $rtcTime['success'] ? $rtcTime['output'] : 'RTC non disponible'
+        ]);
+        break;        
     default:
         $systemTime = execCommand('date');
         echo json_encode([

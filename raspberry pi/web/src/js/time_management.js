@@ -12,13 +12,14 @@ $(document).ready(function () {
   $("#syncRtcTime").on("click", function () {
     syncTime("rtc");
   });
-
-  // Fonctions
-  function refreshTime() {
-    $.get("api/rtc_sync.php?action=get_time")
-      .done(updateTimeDisplay)
-      .fail(showError);
-  }
+  -(
+    // Fonctions
+    function refreshTime() {
+      $.get("api/rtc_sync.php?action=get_time")
+        .done(updateTimeDisplay)
+        .fail(showError);
+    }
+  );
 
   function syncTime(direction) {
     const action = direction === "system" ? "sync_system" : "sync_rtc";
