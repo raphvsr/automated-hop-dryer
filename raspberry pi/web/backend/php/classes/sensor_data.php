@@ -18,15 +18,8 @@ class sensorData {
      * @throws Exception - If an SQL error occurs.
      */
     public function getSensorDatas() {
-        $sql = "
-            SELECT 
-                sd.id AS sensor_id, 
-                sd.temperature, 
-                sd.humidity, 
-                sd.timestamp
-            FROM 
-                sensor_data sd
-        ";
+        $sql = "SELECT id, temperature, timestamp
+            FROM sensor_data";
         $result = $this->conn->query($sql);
 
         if (!$result) {
@@ -50,12 +43,12 @@ class sensorData {
      */
     public function getSensorData($id) {
         $sql = "
-            SELECT 
-                sd.id AS sensor_id, 
-                sd.temperature, 
-                sd.humidity, 
+            SELECT
+                sd.id AS sensor_id,
+                sd.temperature,
+                sd.humidity,
                 sd.timestamp
-            FROM 
+            FROM
                 sensor_data sd
             WHERE
                 sd.id = $id
@@ -72,31 +65,29 @@ class sensorData {
             return null;
         }
     }
-
+    
     /**
      * Adds a new sensor data entry.
      * @param array $data - An associative array containing sensor data.
      *   - 'temperature' (float): The temperature value.
-     *   - 'humidity' (float): The humidity value.
      *   - 'timestamp' (string): The timestamp value.
      * @return int - The ID of the newly created sensor data entry.
      * @throws Exception - If an SQL error occurs.
      */
     public function addSensorData($data) {
         $temperature = $data['temperature'];
-        $humidity = $data['humidity'];
         $timestamp = $data['timestamp'];
 
         $sql = "
-            INSERT INTO sensor_data (temperature, humidity, timestamp)
-            VALUES (?, ?, ?)
+            INSERT INTO sensor_data (temperature, timestamp)
+            VALUES (?, ?)
         ";
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             throw new Exception("Error preparing the query: " . $this->conn->error);
         }
 
-        $stmt->bind_param("dds", $temperature, $humidity, $timestamp);
+        $stmt->bind_param("dd", $temperature, $humidity, $timestamp);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
