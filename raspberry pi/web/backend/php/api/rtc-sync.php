@@ -74,7 +74,7 @@ switch ($action) {
         
         echo json_encode([
             'system_time' => $systemTime['output'],
-            'rtc_time' => $rtcTime['success'] ? $rtcTime['output'] : 'RTC non disponible'
+            'rtc_time' => $rtcTime['success'] ? $rtcTime['output'] : 'Error reading RTC time'
         ]);
         break;        
     default:

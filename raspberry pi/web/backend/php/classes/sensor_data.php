@@ -87,7 +87,7 @@ class sensorData {
             throw new Exception("Error preparing the query: " . $this->conn->error);
         }
 
-        $stmt->bind_param("dd", $temperature, $humidity, $timestamp);
+        $stmt->bind_param("ds", $temperature, $timestamp);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
