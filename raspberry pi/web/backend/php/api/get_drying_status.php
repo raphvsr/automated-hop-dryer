@@ -1,9 +1,10 @@
 <?php
-include './classes/dryingControl.php';
+header('Content-Type: application/json');
+include '../classes/dryingControl.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $dryingControl = new DryingControl();
-    $response = $dryingControl->stopDrying();
+    $response = $dryingControl->getDryingStatus();
 
     echo json_encode(["status" => "success", "message" => $response]);
 }

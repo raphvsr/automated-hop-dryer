@@ -18,3 +18,6 @@ def start_drying():
 def stop_drying():
     GPIO.output(RELAY_PIN, GPIO.LOW)
     print("Drying Stopped: Burner Off")
+
+def get_status():
+    return GPIO.input(RELAY_PIN) == GPIO.HIGH

@@ -6,5 +6,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $dryingControl = new DryingControl();
     $response = $dryingControl->startDrying();
 
-    echo json_encode(["status" => "success", "message" => $response, "timestamp" => date("Y-m-d H:i:s")]);
+    echo json_encode(["status" => "success", "message" => $response]);
 }
