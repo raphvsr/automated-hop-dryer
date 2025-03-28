@@ -26,3 +26,4 @@ def get_status():
 
 def seve_status():
     status = get_status()
+    requests.post(API + '/get_drying_status', json={'status': status})
