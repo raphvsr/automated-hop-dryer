@@ -1,7 +1,4 @@
-sensor,temperature,exceed
-sensor1,56,
-sensor2,50,
-sensor3,60,
-sensor4,60,
-sensor5,58,
-sensor6,60,
+date,heure,etage4,etage3,etage2,etage1,temps_bruleur,etat_bruleur
+2025-03-28,08:56:06,,,,,,False
+2025-03-28,08:56:09,,,,,,False
+2025-03-28,08:56:12,,,,,,False

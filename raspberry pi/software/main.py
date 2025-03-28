@@ -14,30 +14,33 @@ def write_data(date="", heure="", etage4="", etage3="", etage2="", etage1="", te
         writer = csv.writer(file)
         writer.writerow([date, heure, etage4, etage3, etage2, etage1, temps_bruleur, etat_bruleur])
 
+
+
+def drying_status():
+    resp = requests.post(f"{api}get_drying_status.php")
+    data = resp.json()
+    date, heure = date_hour()
+
+    write_data(date=date, heure=heure, etat_bruleur=data.get("message"))
+
+
 def date_hour():
-    resp = requests.post(f"{api}start_drying.php")
-    data = resp.json()
-    timestamp = data.get("timestamp", "N/A N/A")
-    return timestamp.split()
-
-def drying_status(date, heure):
-    resp = requests.get(f"{api}get_temperatures.php")
-    data = resp.json()
-
-    max_temp, max_sensor = 0, "None"
-
-    temp = data.get(x, 0)
-    exceed = "DEPASSEMENT" if temp > 60 else ""
-    write_data(date, heure, "", x, temp, exceed, "")
-
-    if temp > max_temp:
-        max_temp, max_sensor = temp, x
-
-    print(f"Max Temp: {max_temp}°C | Sensor: {max_sensor}")
-
-
+    import time
+    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+    date, heure = current_time.split()
+    return date, heure
 
 while True:
-    date, heure = date_hour()
-    sensors(date, heure)
-    time.sleep(300)
+    drying_status()
+    time.sleep(3)
+
+
+# TEMP :
+# data = resp.json()
+# max_temp, max_sensor = 0, "None"
+# temp = data.get(x, 0)
+# exceed = "DEPASSEMENT" if temp > 60 else ""
+# write_data(date, heure, "", x, temp, exceed, "")
+
+# if temp > max_temp:
+#     max_temp, max_sensor = temp, x
