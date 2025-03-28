@@ -1,2 +1,1 @@
-# code here
-API = 'http://localhost/skl-project/raspberry%20pi/web/backend/api'
+API = 'http://localhost:80/skl-project/raspberry%20pi/web/backend/api'
