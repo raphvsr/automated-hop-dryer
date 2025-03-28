@@ -31,5 +31,10 @@ class DryingControl
         exec("sudo python3 -c 'from drying_control import get_status; print(get_status())'", $output, $return_var);
         return trim(end($output)) === 'True';
     }
+
+    public function saveDryingStatus($status)
+    {
+       // code here 
+    }
 }
 ?>

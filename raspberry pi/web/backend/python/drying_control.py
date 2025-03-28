@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import requests
 
 RELAY_PIN = 17 
 
@@ -21,3 +22,6 @@ def stop_drying():
 
 def get_status():
     return GPIO.input(RELAY_PIN) == GPIO.HIGH
+
+def seve_status():
+    status = get_status()
