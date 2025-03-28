@@ -4,34 +4,40 @@ import csv
 
 api = "http://127.0.0.1/raspberry pi/web/backend/php/api/"
 
-def sensors():
-    resp = requests.get(f"{api}get_temperatures.php")
-    data = resp.json()
-    sensors = ["sensor1", "sensor2", "sensor3", "sensor4", "sensor5", "sensor6"]
+with open('data.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    field = ["date", "heure", "etage4", "etage3", "etage2", "etage1", "temps_bruleur", "etat_bruleur"]
+    writer.writerow(field)
 
-    with open('data.csv', 'w', newline='') as file:
+def write_data(date="", heure="", etage4="", etage3="", etage2="", etage1="", temps_bruleur="", etat_bruleur=""):
+    with open('data.csv', 'a', newline='') as file:
         writer = csv.writer(file)
-        field = ["sensor", "temperature", "exceed"]
-        writer.writerow(field)
-
-        for x in sensors:
-            temp = data.get(x)
-            exceed = "DEPASSEMENT" if temp > 60 else ""
-            writer.writerow([x, temp, exceed])
+        writer.writerow([date, heure, etage4, etage3, etage2, etage1, temps_bruleur, etat_bruleur])
 
 def date_hour():
     resp = requests.post(f"{api}start_drying.php")
     data = resp.json()
-    print(data)
+    timestamp = data.get("timestamp", "N/A N/A")
+    return timestamp.split()
 
-    with open('data.csv', 'a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(["date"])
-        writer.writerow([data.get("timestamp", "N/A")])  # Save timestamp in CSV
+def drying_status(date, heure):
+    resp = requests.get(f"{api}get_temperatures.php")
+    data = resp.json()
 
-date_hour()
+    max_temp, max_sensor = 0, "None"
 
-while(True):
-    time.sleep(2)
+    temp = data.get(x, 0)
+    exceed = "DEPASSEMENT" if temp > 60 else ""
+    write_data(date, heure, "", x, temp, exceed, "")
 
-    sensors()
+    if temp > max_temp:
+        max_temp, max_sensor = temp, x
+
+    print(f"Max Temp: {max_temp}°C | Sensor: {max_sensor}")
+
+
+
+while True:
+    date, heure = date_hour()
+    sensors(date, heure)
+    time.sleep(300)
