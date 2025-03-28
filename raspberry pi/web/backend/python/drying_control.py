@@ -1,8 +1,9 @@
 import RPi.GPIO as GPIO
 import requests
-
-RELAY_PIN = 17 
-
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../config")))
+from config import API
+RELAY_PIN = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(RELAY_PIN, GPIO.OUT)
 
@@ -10,7 +11,7 @@ def start_drying():
     try:
         GPIO.output(RELAY_PIN, GPIO.HIGH)
         print("Drying started: Burner on")
-        
+
     except KeyboardInterrupt:
         GPIO.output(RELAY_PIN, GPIO.LOW)
         print("Drying Stopped: Burner Off")
