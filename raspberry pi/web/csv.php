@@ -4,13 +4,25 @@ if (!isset($_SESSION['username'])) {
   header('Location: login.php');
   exit();
 }
+function sortFile($files)
+{
+
+  usort($files, function ($a, $b) {
+    return filemtime($b) - filemtime($a); 
+  });
+
+  return $files;
+}
+
+
 
 function getCSVFiles()
 {
   $csvDir = 'data/';
   $files = glob($csvDir . "*.csv");
-  return $files;
+  return sortFile($files);
 }
+
 
 if (isset($_POST['download']) && !empty($_POST['file'])) {
   $file = 'data/' . basename($_POST['file']);
