@@ -8,7 +8,7 @@ function sortFile($files)
 {
 
   usort($files, function ($a, $b) {
-    return filemtime($b) - filemtime($a); 
+    return filemtime($b) - filemtime($a);
   });
 
   return $files;

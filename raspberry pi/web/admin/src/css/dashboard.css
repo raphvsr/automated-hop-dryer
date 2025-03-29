@@ -15,8 +15,8 @@ body {
 :root {
 	--sidebar-background-color: #1e293b;
 	--active-sidebar-link-color: #0f172a;
-	--hover-sidebar-link-color: #334155;
-	--active-link-color: #38bdf8;
+	--hover-sidebar-link-color: #0f172a;
+	--active-link-color: #ffffff;
 	--tooltip-background-color: #1e293b;
 	--card-background: #ffffff;
 	--card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -42,11 +42,18 @@ body {
 	transition: all ease-out 120ms;
 	position: relative;
 }
-
+.sidebar-navigation ul li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .sidebar-navigation ul li i {
 	display: block;
 	font-size: 24px;
 	transition: all ease 450ms;
+  color: #ffffff;
 }
 
 .sidebar-navigation ul li .tooltip {
@@ -56,6 +63,7 @@ body {
 	padding: 8px 15px;
 	border-radius: 6px;
 	margin-top: -26px;
+  color: white;
 	left: 90px;
 	opacity: 0;
 	visibility: hidden;
