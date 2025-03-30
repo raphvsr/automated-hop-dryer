@@ -12,7 +12,7 @@
 
 <body>
   <?php include 'components/sidebar.php'; ?>
-  
+
   <div class="main-content">
     <div class="header">
       <h1>Création de Compte</h1>
@@ -21,7 +21,7 @@
     <div class="card">
       <div class="card-title">Informations d'identification</div>
 
-      <form id="account-form">
+      <div id="account-form">
         <div class="form-group">
           <label for="username">Nom d'utilisateur</label>
           <input type="text" id="username" name="username" required>
@@ -31,8 +31,8 @@
           <label for="role">Rôle</label>
           <select id="role" name="role" required>
             <option value="" disabled selected>Sélectionnez un rôle</option>
-            <option value="admin">Admin</option>
-            <option value="operateur">Opérateur</option>
+            <option value="1">Admin</option>
+            <option value="0">Opérateur</option>
           </select>
         </div>
 
@@ -61,13 +61,13 @@
               <i class="fas fa-key"></i>
               <span>Générer un mot de passe</span>
             </button>
-            <button type="submit" class="btn btn-primary">
+            <button id="new_user" class="btn btn-primary">
               <i class="fas fa-user-plus"></i>
               <span>Créer le compte</span>
             </button>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 

@@ -30,3 +30,47 @@ $('.toggle-password').click(function () {
     $(this).removeClass('fa-eye').addClass('fa-eye-slash');
   }
 });
+
+$('#new_user').click(function (){
+  if($('#password').val() !== $('#confirm-password').val()) {
+    alert('Passwords do not match!');
+    return;
+  }
+  if($('#username').val() === '' || $('#password').val() === '' || $('#confirm-password').val() === '' || $('#role').val() === '') {
+    alert('All fields must be filled!');
+    return;
+  }
+
+  $.ajax({
+    url: '../backend/php/register-process.php',
+    method: 'POST',
+    data: {
+      username: $('#username').val(),
+      password: $('#password').val(),
+      role: $('#role').val()
+    },
+    dataType: 'json',
+    success: function(response) {
+      if (response.status === 'success') {
+        alert(response.message);
+        $('#username').val('');
+        $('#password').val('');
+        $('#confirm-password').val('');
+        $('#role').val('');
+        window.location.href = 'users.php';
+      } else {
+        alert('Error: ' + response.message);
+      }
+    },
+    error: function(xhr, status, error) {
+      let errorMessage = 'An error occurred while creating the user.';
+      try {
+        const response = JSON.parse(xhr.responseText);
+        errorMessage = response.message || errorMessage;
+      } catch (e) {
+        console.error('Error parsing response:', e);
+      }
+      alert(errorMessage);
+    }
+  });
+});
