@@ -24,34 +24,7 @@ if ($_SESSION['admin'] != 1) {
 </head>
 
 <body>
-  <nav class="sidebar-navigation">
-    <ul>
-      <li>
-        <a href="dashboard.php">
-          <i class="fa fa-home"></i>
-          <span class="tooltip">Accueil</span>
-        </a>
-      </li>
-      <li>
-        <a href="csv.php">
-          <i class="fa fa-file-o"></i>
-          <span class="tooltip">Csv</span>
-        </a>
-      </li>
-      <li class="active">
-        <a href="users.php">
-          <i class="fa fa-user-o"></i>
-          <span class="tooltip">Utilisateur</span>
-        </a>
-      </li>
-      <li>
-        <a href="settings.php">
-          <i class="fa fa-sliders"></i>
-          <span class="tooltip">Paramètres</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <?php include 'components/sidebar.php'; ?>
 
   <div class="users-container">
     <h1>Gestion des Utilisateurs</h1>
@@ -59,10 +32,8 @@ if ($_SESSION['admin'] != 1) {
     <div class="users-card">
       <div class="card-header">
         <h2 class="section-title">Liste des Utilisateurs</h2>
-        <a href="new_user.php">
-          <button class="btn btn-add">
-            <i class="fas fa-plus"></i> Ajouter un utilisateur
-          </button>
+        <a href="new_user.php" class="btn btn-add">
+          <i class="fas fa-plus"></i> Ajouter un utilisateur
         </a>
       </div>
 
