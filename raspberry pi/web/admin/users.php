@@ -21,6 +21,8 @@ if ($_SESSION['admin'] != 1) {
   <link rel="stylesheet" href="src/css/users.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -58,21 +60,21 @@ if ($_SESSION['admin'] != 1) {
               $role = $row['role'] == 1 ? 'Administrateur' : 'Operateur';
               $created_at = date('d/m/Y', strtotime($row['created_at']));
               ?>
-              <tr>
-                <td><?php echo htmlspecialchars($row['username']); ?></td>
-                <td>
-                  <span class="role-badge <?php echo $row['role'] == 1 ? 'admin' : 'Opt'; ?>"><?php echo $role; ?></span>
-                </td>
-                <td><?php echo $created_at; ?></td>
-                <td class="actions">
-                  <button class="btn btn-edit" onclick="editUser(<?php echo $row['id']; ?>)">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button class="btn btn-delete" onclick="deleteUser(<?php echo $row['id']; ?>)">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
+                        <tr id="user-<?php echo $row['id']; ?>">
+                          <td><?php echo htmlspecialchars($row['username']); ?></td>
+                          <td>
+                            <span class="role-badge <?php echo $row['role'] == 1 ? 'admin' : 'Opt'; ?>"><?php echo $role; ?></span>
+                          </td>
+                          <td><?php echo $created_at; ?></td>
+                          <td class="actions">
+                            <button class="btn btn-edit" onclick="editUser(<?php echo $row['id']; ?>)">
+                              <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-delete" onclick="deleteUser(<?php echo $row['id']; ?>)">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </td>
+                        </tr>
             <?php } ?>
           </tbody>
         </table>
@@ -110,7 +112,7 @@ if ($_SESSION['admin'] != 1) {
     </div>
   </div>
 
-  <script src="../js/users.js"></script>
+  <script src="src/js/users.js"></script>
   <script src="https://kit.fontawesome.com/0e4bc9cea5.js" crossorigin="anonymous"></script>
 </body>
 
