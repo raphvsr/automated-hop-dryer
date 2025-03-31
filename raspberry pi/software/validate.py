@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+from main import validate
 
 LedPin = 17
 BtnPin = 18
@@ -17,8 +18,9 @@ def swLed(ev=None):
     Led_status = not Led_status
     GPIO.output(LedPin, Led_status)
     if Led_status == 1:
-        # valider et ajouter dans la base de donner et dans le ficher csv
-        print('test')
+        validate()
+
+
 def loop():
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=swLed, bouncetime=200)
     while True:
