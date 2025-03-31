@@ -25,7 +25,7 @@ if (!isset($_SESSION['username'])) {
       <p>Bienvenue, <?php echo $_SESSION['username']; ?>!</p>
       <!-- check if user admin -->
       <?php if ($_SESSION['admin'] == 1): ?>
-        <button id="dashboard"><a href="dashboard.php">Dashboard</a></button>
+        <a href="admin/csv.php"><button id="dashboard">Dashboard</button></a>
       <?php endif; ?>
     </div>
     <div class="section">
