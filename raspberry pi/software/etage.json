@@ -1,6 +1,6 @@
 {
-    "etage4":true,
-    "etage3":true,
-    "etage2":true,
-    "etage1":false
+    "etage4": true,
+    "etage3": false,
+    "etage2": false,
+    "etage1": false
 }
