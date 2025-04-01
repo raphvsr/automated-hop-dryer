@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from main import validate
+from etage_update import update_etage
 
 LedPin = 17
 BtnPin = 18
@@ -18,8 +18,8 @@ def swLed(ev=None):
     Led_status = not Led_status
     GPIO.output(LedPin, Led_status)
     if Led_status == 1:
-        validate()
-
+        update_etage()
+        Led_status = 0
 
 def loop():
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=swLed, bouncetime=200)
