@@ -1,7 +1,7 @@
 <?php
 
 $host = '127.0.0.1:3306';
-$db = 'rpsklproject';
+$db = 'db_raspberry';
 $user = 'root';
 $pass = '123123Fatih';
 

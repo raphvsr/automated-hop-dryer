@@ -1,0 +1,119 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+  header('Location: ../../login.php');
+  exit();
+}
+if ($_SESSION['admin'] != 1) {
+  header('Location: ../../index.php');
+  exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Variétés de Houblon</title>
+  <link rel="stylesheet" href="src/css/dashboard.css">
+  <link rel="stylesheet" href="src/css/users.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <?php include 'components/sidebar.php'; ?>
+
+  <div class="users-container">
+    <h1>Gestion des Variétés de Houblon</h1>
+
+    <div class="users-card">
+      <div class="card-header">
+        <h2 class="section-title">Liste des Variétés</h2>
+        <a href="new_variety.php" class="btn btn-add">
+          <i class="fas fa-plus"></i> Ajouter une variété
+        </a>
+      </div>
+
+      <div class="table-container">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Nom de la variété</th>
+              <th>Température maximale</th>
+              <th>Température minimale</th>
+              <th>Durée de séchage</th>
+              <th>Date de création</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            require_once '../backend/database.php';
+
+            $sql = "SELECT * FROM hop_varieties ORDER BY created_at DESC";
+            $result = $conn->query($sql);
+
+            while ($row = $result->fetch_assoc()) {
+              $created_at = date('d/m/Y', strtotime($row['created_at']));
+              ?>
+              <tr id="variety-<?php echo $row['id']; ?>">
+                <td><?php echo htmlspecialchars($row['name']); ?></td>
+                <td><?php echo htmlspecialchars($row['max_temperature']); ?>°C</td>
+                <td><?php echo htmlspecialchars($row['min_temperature']); ?>°C</td>
+                <td><?php echo htmlspecialchars($row['duree_de_sechage']); ?></td>
+                <td><?php echo $created_at; ?></td>
+                <td class="actions">
+                  <button class="btn btn-edit" data-id="<?php echo $row['id']; ?>">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-delete" onclick="deleteVariety(<?php echo $row['id']; ?>)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="varietyModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle">Modifier une variété</h2>
+      <div id="varietyForm">
+        <input type="hidden" id="varietyId" name="varietyId">
+        <div class="form-group">
+          <label for="name">Nom de la variété</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="max_temperature">Température maximale (°C)</label>
+          <input type="number" step="0.01" id="max_temperature" name="max_temperature" required>
+        </div>
+        <div class="form-group">
+          <label for="min_temperature">Température minimale (°C)</label>
+          <input type="number" step="0.01" id="min_temperature" name="min_temperature" required>
+        </div>
+        <div class="form-group">
+          <label for="duree_de_sechage">Durée de séchage</label>
+          <input type="text" id="duree_de_sechage" name="duree_de_sechage" required>
+        </div>
+        <div class="form-actions">
+          <button id="save" class="btn btn-save">Enregistrer</button>
+          <button id="cancel" class="btn btn-cancel">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/js/varieties.js"></script>
+  <script src="https://kit.fontawesome.com/0e4bc9cea5.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

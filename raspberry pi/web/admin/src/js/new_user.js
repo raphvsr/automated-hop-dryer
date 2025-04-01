@@ -31,24 +31,34 @@ $('.toggle-password').click(function () {
   }
 });
 
-$('#new_user').click(function (){
-  if($('#password').val() !== $('#confirm-password').val()) {
-    alert('Passwords do not match!');
-    return;
-  }
-  if($('#username').val() === '' || $('#password').val() === '' || $('#confirm-password').val() === '' || $('#role').val() === '') {
+$('#new_user').click(function (e) {
+  e.preventDefault();
+  
+  const username = $('#username').val().trim();
+  const password = $('#password').val();
+  const confirmPassword = $('#confirm-password').val();
+  const role = $('#role').val();
+
+  if (!username || !password || !confirmPassword || !role) {
     alert('All fields must be filled!');
     return;
   }
 
+  if (password !== confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  const formData = {
+    username: username,
+    password: password,
+    role: role
+  };
+
   $.ajax({
     url: '../backend/php/register-process.php',
     method: 'POST',
-    data: {
-      username: $('#username').val(),
-      password: $('#password').val(),
-      role: $('#role').val()
-    },
+    data: formData,
     dataType: 'json',
     success: function(response) {
       if (response.status === 'success') {
