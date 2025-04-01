@@ -64,7 +64,14 @@ if ($_SESSION['admin'] != 1) {
                 <td><?php echo htmlspecialchars($row['name']); ?></td>
                 <td><?php echo htmlspecialchars($row['max_temperature']); ?>°C</td>
                 <td><?php echo htmlspecialchars($row['min_temperature']); ?>°C</td>
-                <td><?php echo htmlspecialchars($row['duree_de_sechage']); ?></td>
+                <td>
+                  <?php
+                  $hours = floor($row['duree_de_sechage'] / 60);
+                  $minutes = $row['duree_de_sechage'] % 60;
+                  echo htmlspecialchars($row['duree_de_sechage']); ?> (ou <?php echo $hours . ':' . str_pad($minutes, 2, '0', STR_PAD_LEFT);
+                     ?>h)
+                </td>
+                </td>
                 <td><?php echo $created_at; ?></td>
                 <td class="actions">
                   <button class="btn btn-edit" data-id="<?php echo $row['id']; ?>">
@@ -94,15 +101,15 @@ if ($_SESSION['admin'] != 1) {
         </div>
         <div class="form-group">
           <label for="max_temperature">Température maximale (°C)</label>
-          <input type="number" step="0.01" id="max_temperature" name="max_temperature" required>
+          <input type="number" step="1" id="max_temperature" name="max_temperature" required>
         </div>
         <div class="form-group">
           <label for="min_temperature">Température minimale (°C)</label>
-          <input type="number" step="0.01" id="min_temperature" name="min_temperature" required>
+          <input type="number" step="1" id="min_temperature" name="min_temperature" required>
         </div>
         <div class="form-group">
           <label for="duree_de_sechage">Durée de séchage</label>
-          <input type="text" id="duree_de_sechage" name="duree_de_sechage" required>
+          <input type="number" step="1" id="duree_de_sechage" name="duree_de_sechage" required>
         </div>
         <div class="form-actions">
           <button id="save" class="btn btn-save">Enregistrer</button>
