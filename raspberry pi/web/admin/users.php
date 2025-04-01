@@ -60,21 +60,21 @@ if ($_SESSION['admin'] != 1) {
               $role = $row['role'] == 1 ? 'Administrateur' : 'Operateur';
               $created_at = date('d/m/Y', strtotime($row['created_at']));
               ?>
-                        <tr id="user-<?php echo $row['id']; ?>">
-                          <td><?php echo htmlspecialchars($row['username']); ?></td>
-                          <td>
-                            <span class="role-badge <?php echo $row['role'] == 1 ? 'admin' : 'Opt'; ?>"><?php echo $role; ?></span>
-                          </td>
-                          <td><?php echo $created_at; ?></td>
-                          <td class="actions">
-                            <button class="btn btn-edit" onclick="editUser(<?php echo $row['id']; ?>)">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-delete" onclick="deleteUser(<?php echo $row['id']; ?>)">
-                              <i class="fas fa-trash"></i>
-                            </button>
-                          </td>
-                        </tr>
+              <tr id="user-<?php echo $row['id']; ?>">
+                <td><?php echo htmlspecialchars($row['username']); ?></td>
+                <td>
+                  <span class="role-badge <?php echo $row['role'] == 1 ? 'admin' : 'Opt'; ?>"><?php echo $role; ?></span>
+                </td>
+                <td><?php echo $created_at; ?></td>
+                <td class="actions">
+                  <button class="btn btn-edit" data-id="<?php echo $row['id']; ?>">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-delete" onclick="deleteUser(<?php echo $row['id']; ?>)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
             <?php } ?>
           </tbody>
         </table>
@@ -85,8 +85,8 @@ if ($_SESSION['admin'] != 1) {
   <div id="userModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2 id="modalTitle">Ajouter un utilisateur</h2>
-      <form id="userForm">
+      <h2 id="modalTitle">Modifier un utilisateur</h2>
+      <div id="userForm">
         <input type="hidden" id="userId" name="userId">
         <div class="form-group">
           <label for="username">Nom d'utilisateur</label>
@@ -100,15 +100,15 @@ if ($_SESSION['admin'] != 1) {
         <div class="form-group">
           <label for="role">Rôle</label>
           <select id="role" name="role">
-            <option value="0">Utilisateur</option>
+            <option value="0">operateur</option>
             <option value="1">Administrateur</option>
           </select>
         </div>
         <div class="form-actions">
-          <button type="submit" class="btn btn-save">Enregistrer</button>
-          <button type="button" class="btn btn-cancel" onclick="closeModal()">Annuler</button>
+          <button id="save" class="btn btn-save">Enregistrer</button>
+          <button id="cancel" class="btn btn-cancel">Annuler</button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 
