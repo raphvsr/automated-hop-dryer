@@ -2,9 +2,9 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-  header('Location: raspberry pi/web/login.php');
+  header('Location: raspberry_pi/web/login.php');
   exit();
 } else {
-  header('Location: raspberry pi/web/index.php');
+  header('Location: raspberry_pi/web/index.php');
   exit();
 }
