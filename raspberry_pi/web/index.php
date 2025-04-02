@@ -56,6 +56,7 @@ if (!isset($_SESSION['username'])) {
     </div>
     <div class="section">
       <h3>Contrôle du Système</h3>
+      <a href="time_management.php"><button id="timeManagement">Gérer l'heure Système</button></a>
       <button id="shutdownSystem">Arrêter le Système</button>
       <p id="shutdownStatus"></p>
     </div>

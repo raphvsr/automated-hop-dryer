@@ -3,6 +3,10 @@ $(document).ready(function () {
   refreshTime();
 
   // Événements
+  $("#back").on("click", function () {
+    window.history.back();
+  });
+
   $("#refreshTime").on("click", refreshTime);
 
   $("#syncSystemTime").on("click", function () {
