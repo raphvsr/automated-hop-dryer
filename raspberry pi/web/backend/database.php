@@ -1,9 +1,9 @@
 <?php
-
-$host = '127.0.0.1:3306';
-$db = 'db_raspberry';
-$user = 'root';
-$pass = '123123Fatih';
+$dotenv = parse_ini_file(__DIR__ . '/.env', true);
+$host = $dotenv['DB_HOST'];
+$db = $dotenv['DB_DATABASE'];
+$user = $dotenv['DB_USERNAME'];
+$pass = $dotenv['DB_PASSWORD'];
 
 $conn = new mysqli($host, $user, $pass, $db);
 
