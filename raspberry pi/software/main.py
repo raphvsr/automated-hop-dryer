@@ -62,12 +62,11 @@ def load_etage_data():
             etage = ["false"] * 4
             for i, value in enumerate(etages.values()):
                 etage[i] = "true" if value else "false"
-            print(etage)
             drying_status(etage1=etage[3], etage2=etage[2], etage3=etage[1], etage4=etage[0])
 
 
     except json.JSONDecodeError:
-        print("etage.json e")
+        print("etage.json e") 
         return ["false"] * 4
     except Exception as e:
         print(f"{json_file}: {e}")
