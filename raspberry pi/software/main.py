@@ -20,7 +20,6 @@ def init_csv():
         writer = csv.writer(file)
         field = ["date", "heure", "etage4", "etage3", "etage2", "etage1", "temps_bruleur", "etat_bruleur"]
         writer.writerow(field)
-        file.close()
     with open(json_file, 'w', newline='') as file:
         json.dump(default_json, file, indent=4)
 
@@ -63,7 +62,9 @@ def load_etage_data():
             etage = ["false"] * 4
             for i, value in enumerate(etages.values()):
                 etage[i] = "true" if value else "false"
-            return etage
+            print(etage)
+            drying_status(etage1=etage[3], etage2=etage[2], etage3=etage[1], etage4=etage[0])
+
 
     except json.JSONDecodeError:
         print("etage.json e")
@@ -72,14 +73,9 @@ def load_etage_data():
         print(f"{json_file}: {e}")
         return ["false"] * 4
 
-def validate_etage():
-    etage = load_etage_data()  # Load data once
-    print(etage)
-    drying_status(etage1=etage[3], etage2=etage[2], etage3=etage[1], etage4=etage[0])
-
 
 init_csv()
 
 while True:
-    validate_etage()
+    load_etage_data()
     time.sleep(3)
