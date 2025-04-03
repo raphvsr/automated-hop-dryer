@@ -42,7 +42,6 @@ if (!isset($_SESSION['username'])) {
     </div>
     <div class="section">
       <h3>Visualisation des Données de Séchage</h3>
-      <canvas id="temperatureChart"></canvas>
       <table id="dataTable">
         <thead>
           <tr>
@@ -76,7 +75,7 @@ if (!isset($_SESSION['username'])) {
         </div>
         <div class="varieties-list">
           <p id="varietiesNone">Aucune variétés ajouter</p>
-           <!-- <div class="varieties-badge">
+          <!-- <div class="varieties-badge">
               <p>varietie</p>
               <span class="deleteVariety">&times;</span>
            </div> -->
