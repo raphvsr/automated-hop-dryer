@@ -25,7 +25,7 @@ if (!isset($_SESSION['username'])) {
       <p>Bienvenue, <?php echo $_SESSION['username']; ?>!</p>
       <!-- check if user admin -->
       <?php if ($_SESSION['admin'] == 1): ?>
-        <a href="admin/csv.php"><button id="dashboard">Dashboard</button></a>
+        <a href="admin/csv.php"><button id="dashboard" class="btn">Dashboard</button></a>
       <?php endif; ?>
     </div>
     <div class="section">
@@ -36,8 +36,8 @@ if (!isset($_SESSION['username'])) {
     </div>
     <div class="section">
       <h3>Contrôle du Séchage</h3>
-      <button id="startDrying">Démarrer le Séchage</button>
-      <button id="stopDrying">Arrêter le Séchage</button>
+      <button id="startDrying" class="btn">Démarrer le Séchage</button>
+      <button id="stopDrying" class="btn">Arrêter le Séchage</button>
       <p id="dryingStatus">État : En attente</p>
     </div>
     <div class="section">
@@ -55,8 +55,8 @@ if (!isset($_SESSION['username'])) {
     </div>
     <div class="section">
       <h3>Contrôle du Système</h3>
-      <a href="time_management.php"><button id="timeManagement">Gérer l'heure Système</button></a>
-      <button id="shutdownSystem">Arrêter le Système</button>
+      <a href="time_management.php"><button id="timeManagement" class="btn">Gérer l'heure Système</button></a>
+      <button id="shutdownSystem" class="btn">Arrêter le Système</button>
       <p id="shutdownStatus"></p>
     </div>
   </div>
@@ -70,7 +70,8 @@ if (!isset($_SESSION['username'])) {
           <label for="varieties">Variétés</label>
           <div class="form-field">
             <select id="varietiesSelect" name="varieties"></select>
-            <button id="addVariety" class="btn">Ajouter</button>
+            <button id="addVariety" class="btn" style="margin-bottom: 0;">Ajouter</button>
+            <button id="deleteAllVariety">Supprimer les varietés</button>
           </div>
         </div>
         <div class="varieties-list">

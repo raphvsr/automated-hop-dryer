@@ -1,6 +1,6 @@
 $(document).ready(function () {
   let temperatureChart = null;
-  let timePoints = ['Time 1', 'Time 2', 'Time 3', 'Time 4', 'Time 5', 'Time 6'];
+  let timePoints = ["Time 1", "Time 2", "Time 3", "Time 4", "Time 5", "Time 6"];
   let historicalData = [];
 
   function getTemperatureData() {
@@ -17,8 +17,6 @@ $(document).ready(function () {
       console.log("Error fetching drying data.");
     });
   }
-
-
 
   function updateTable(data) {
     const tableBody = $("#dataTable tbody");
@@ -102,16 +100,20 @@ $(document).ready(function () {
       }
     });
 
-    $(".close, .btn-cancel").on("click", function () {
-      $("#varietiesSelect").val("");
+    $("#deleteAllVariety").on("click", function () {
       $(".varieties-list").empty();
-      $("#userModal").hide();
       $(".varieties-list").append(
         `<p id="varietiesNone">Aucune variété ajoutée</p>`
       );
     });
 
+    $(".close, .btn-cancel").on("click", function () {
+      $("#varietiesSelect").val("");
+      $("#userModal").hide();
+    });
+
     $("#save").on("click", function (e) {
+      $("#userModal").hide();
       $.post("backend/php/api/start_drying.php", {}, function () {
         $("#dryingStatus").text("Status: Drying in progress...");
       }).fail(function () {
@@ -119,6 +121,7 @@ $(document).ready(function () {
       });
     });
   });
+
   $("#stopDrying").click(function () {
     $.post("backend/php/api/stop_drying.php", {}, function () {
       $("#dryingStatus").text("Status: Drying stopped.");
