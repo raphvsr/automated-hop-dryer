@@ -61,6 +61,34 @@ if (!isset($_SESSION['username'])) {
       <p id="shutdownStatus"></p>
     </div>
   </div>
+
+  <div id="userModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle">Sélection des variétés</h2>
+      <div id="userForm">
+        <div class="form-group">
+          <label for="varieties">Variétés</label>
+          <div class="form-field">
+            <select id="varietiesSelect" name="varieties"></select>
+            <button id="addVariety" class="btn">Ajouter</button>
+          </div>
+        </div>
+        <div class="varieties-list">
+          <p id="varietiesNone">Aucune variétés ajouter</p>
+           <!-- <div class="varieties-badge">
+              <p>varietie</p>
+              <span class="deleteVariety">&times;</span>
+           </div> -->
+        </div>
+        <div class="form-actions">
+          <button id="save" class="btn">Démarrer</button>
+          <button id="cancel" class="btn btn-cancel">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="src/js/index.js"></script>
 </body>
 

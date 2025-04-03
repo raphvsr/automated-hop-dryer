@@ -20,32 +20,37 @@ $(document).ready(function () {
     });
   }
   function updateChart(data) {
-    const ctx = document.getElementById('temperatureChart').getContext('2d');
+    const ctx = document.getElementById("temperatureChart").getContext("2d");
     if (temperatureChart) {
       temperatureChart.destroy();
     }
     temperatureChart = new Chart(ctx, {
-      type: 'line',
+      type: "line",
       data: {
-        labels: data.map(entry => entry.time),
-        datasets: [{
-          label: 'Temperature (°C)',
-          data: data.map(entry => entry.temperature),
-          borderColor: 'rgba(75, 192, 192, 1)',
-          fill: false
-        }]
+        labels: data.map((entry) => entry.time),
+        datasets: [
+          {
+            label: "Temperature (°C)",
+            data: data.map((entry) => entry.temperature),
+            borderColor: "rgba(75, 192, 192, 1)",
+            fill: false,
+          },
+        ],
       },
       options: {
         responsive: true,
         scales: {
-          x: { display: true, title: { display: true, text: 'Time' } },
-          y: { display: true, title: { display: true, text: 'Temperature (°C)' } }
-        }
-      }
+          x: { display: true, title: { display: true, text: "Time" } },
+          y: {
+            display: true,
+            title: { display: true, text: "Temperature (°C)" },
+          },
+        },
+      },
     });
   }
   function updateTable(data) {
-    const tableBody = $('#dataTable tbody');
+    const tableBody = $("#dataTable tbody");
     tableBody.empty();
     data.forEach(entry => {
       tableBody.append(`<tr><td>${entry.sensor}</td><td>${entry.temperature}</td></tr>`);
@@ -61,25 +66,19 @@ $(document).ready(function () {
       $('#dryingStatus').text('Error starting drying process.');
     });
   });
-  $('#stopDrying').click(function () {
-    $.post('backend/php/api/stop_drying.php',
-      {  },
-      function () {
-        $('#dryingStatus').text('Status: Drying stopped.');
-      }
-    ).fail(function () {
-      $('#dryingStatus').text('Error stopping drying process.');
+  $("#stopDrying").click(function () {
+    $.post("backend/php/api/stop_drying.php", {}, function () {
+      $("#dryingStatus").text("Status: Drying stopped.");
+    }).fail(function () {
+      $("#dryingStatus").text("Error stopping drying process.");
     });
   });
 
-  $('#shutdownSystem').click(function () {
-    $.post('backend/php/api/shutdown.php',
-      {  },
-      function () {
-        $('#shutdownStatus').text('System is shutting down...');
-      }
-    ).fail(function () {
-      $('#shutdownStatus').text('Error shutting down system.');
+  $("#shutdownSystem").click(function () {
+    $.post("backend/php/api/shutdown.php", {}, function () {
+      $("#shutdownStatus").text("System is shutting down...");
+    }).fail(function () {
+      $("#shutdownStatus").text("Error shutting down system.");
     });
   });
   updateDataVisualization();
