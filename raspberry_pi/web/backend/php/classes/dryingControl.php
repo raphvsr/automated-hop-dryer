@@ -12,7 +12,7 @@ class DryingControl
     {
         $output = [];
         $return_var = 0;
-        exec("sudo python3 -c 'from drying_control import start_drying; start_drying()'", $output, $return_var);
+        exec("sudo python3 " . escapeshellarg($this->pythonScriptPath), $output, $return_var);
         return implode("\n", $output);
     }
 

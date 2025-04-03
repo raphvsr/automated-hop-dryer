@@ -139,7 +139,7 @@ $(document).ready(function () {
       $("#userModal").hide();
       $.post(
         "backend/php/api/start_drying.php",
-        { variety: variety },
+        { variety: JSON.stringify(variety) },
         function (data) {
           const response = JSON.parse(data);
           $("#dryingStatus").text(`Status: ${response.message}`);

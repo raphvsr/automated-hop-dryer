@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $config["max-temperature"] = $min_max_temp;
     $config["min-temperature"] = $max_min_temp;
     $config["drying-time"] = $min_drying_time;
-    file_put_contents('../config/config-temp.json', json_encode($config));
+    file_put_contents('../config/config-drying.json', json_encode($config));
 
     $dryingControl = new DryingControl();
     $response = $dryingControl->startDrying();
