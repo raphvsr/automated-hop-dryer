@@ -1,1 +1,7 @@
 bouton demarrer envoie une requete
+
+package :
+pip install mysql-connector-python
+pip install json
+pip install requests
+pip install RPi.GPIO
