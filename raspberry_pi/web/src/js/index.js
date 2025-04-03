@@ -12,121 +12,13 @@ $(document).ready(function () {
         historicalData.shift();
       }
 
-      updateChart(historicalData);
       updateTable(temperatures);
     }).fail(function () {
       console.log("Error fetching drying data.");
     });
   }
 
-  function updateChart(historicalData) {
-    const ctx = document.getElementById("temperatureChart").getContext("2d");
 
-  
-
-    const sensors = ['sensor 1', 'sensor 2', 'sensor 3', 'sensor 4', 'sensor 5', 'sensor 6'];
-
-    const colors = [
-        'rgb(255, 0, 0)',    
-        'rgb(255, 255, 0)',  
-        'rgb(0, 255, 0)',    
-        'rgb(0, 255, 255)',  
-        'rgb(0, 0, 255)',    
-        'rgb(255, 0, 255)'   
-    ];
-
-    const datasets = sensors.map((sensor, index) => ({
-        label: sensor,
-        data: historicalData.map(timePoint => {
-            const sensorData = timePoint.find(s => s.sensor === sensor);
-            return sensorData ? sensorData.temperature : null;
-        }),
-        borderColor: colors[index],
-        backgroundColor: colors[index],
-        fill: false,
-        tension: 0.3,
-        borderWidth: 3,
-        pointRadius: 5,
-        pointHoverRadius: 8
-    }));
-
-    temperatureChart = new Chart(ctx, {
-        type: "line",
-        data: {
-            labels: timePoints.slice(0, historicalData.length),
-            datasets: datasets,
-        },
-        options: {
-            responsive: true,
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
-            scales: {
-                y: {
-                    beginAtZero: false,
-                    min: 45,
-                    max: 65,
-                    title: {
-                        display: true,
-                        text: 'Temperature (°C)',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    ticks: {
-                        callback: function(value) {
-                            return value + '°C';
-                        },
-                        font: {
-                            size: 12
-                        }
-                    }
-                },
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Time',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    ticks: {
-                        font: {
-                            size: 12
-                        }
-                    }
-                }
-            },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Temperature Readings from Multiple Sensors',
-                    font: {
-                        size: 16,
-                        weight: 'bold'
-                    }
-                },
-                legend: {
-                    position: 'top',
-                    labels: {
-                        usePointStyle: true,
-                        pointStyle: 'line',
-                        padding: 20,
-                        font: {
-                            size: 14
-                        },
-                        boxWidth: 60,
-                        boxHeight: 3
-                    }
-                }
-            }
-        }
-    });
-}
 
   function updateTable(data) {
     const tableBody = $("#dataTable tbody");
@@ -243,5 +135,5 @@ $(document).ready(function () {
     });
   });
   getTemperatureData();
-  setInterval(getTemperatureData, 5000);
+  setInterval(getTemperatureData, 3000);
 });
