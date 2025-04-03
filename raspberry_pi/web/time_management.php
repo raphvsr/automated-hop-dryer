@@ -16,7 +16,10 @@ if (!isset($_SESSION['username'])) {
   </head>
   <body>
     <div class="container">
-      <h1>Gestion de l'heure RTC</h1>
+      <header>
+        <h1>Gestion de l'heure RTC</h1>
+        <button class="btn btn-sync" id="back">Retour</button>
+      </header>
 
       <div class="time-display">
         <h3>Heure actuelle</h3>

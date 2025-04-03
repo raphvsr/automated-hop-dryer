@@ -9,12 +9,12 @@ body {
   padding: 20px;
   box-sizing: border-box;
 }
-#dashboardHeader{
+#dashboardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-button#dashboard{
+button#dashboard {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -25,10 +25,9 @@ button#dashboard{
   margin-left: 10px;
   width: 100px;
 }
-#dashboard a{
+#dashboard a {
   color: #fff;
   text-decoration: none;
-
 }
 .dashboard-container {
   margin: 20px;
@@ -61,7 +60,7 @@ h3 {
   color: #666;
 }
 
-button {
+.btn {
   width: 100%;
   height: 48px;
   padding: 12px;
@@ -74,7 +73,7 @@ button {
   margin-bottom: 10px;
 }
 
-button:hover {
+.btn:hover {
   background-color: #0056b3;
 }
 
@@ -110,7 +109,8 @@ button:hover {
   margin-bottom: 20px;
 }
 
-#dataTable th, #dataTable td {
+#dataTable th,
+#dataTable td {
   padding: 10px;
   border: 1px solid #ddd;
   text-align: left;
@@ -121,10 +121,128 @@ button:hover {
   font-weight: bold;
 }
 
-#dryingStatus, #thresholdStatus, #shutdownStatus {
+#dryingStatus,
+#thresholdStatus,
+#shutdownStatus {
   font-size: 16px;
   color: #555;
   margin-top: 10px;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#deleteAllVariety {
+  height: 48px;
+  padding: 12px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.varieties-list {
+  background-color: #e2e8f0;
+  height: auto;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.varieties-list p {
+  text-align: center;
+}
+
+.varieties-badge {
+  display: inline-flex;
+  height: 20px;
+  padding: 5px;
+  background-color: #0057b3b1;
+  color: white;
+  border-radius: 6px;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.deleteVariety {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* #deleteAllVariety {
+  margin: 0;
+} */
+
+.btn-save {
+  background-color: #38bdf8;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #e2e8f0;
+  color: #1e293b;
 }
 
 @media (max-width: 600px) {
@@ -136,7 +254,8 @@ button:hover {
     font-size: 18px;
   }
 
-  button, #thresholdForm input {
+  button,
+  #thresholdForm input {
     font-size: 14px;
   }
 }

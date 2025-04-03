@@ -11,11 +11,13 @@ def start_drying():
     try:
         GPIO.output(RELAY_PIN, GPIO.HIGH)
         print("Drying started: Burner on")
+        sys.stdout.flush() 
         save_status()
 
     except KeyboardInterrupt:
         GPIO.output(RELAY_PIN, GPIO.LOW)
         print("Drying Stopped: Burner Off")
+        sys.stdout.flush()
         save_status()
         GPIO.cleanup()
 
