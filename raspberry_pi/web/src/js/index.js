@@ -114,7 +114,7 @@ $(document).ready(function () {
     $(document).on("click", ".deleteVariety", function () {
       $(this).parent().remove();
 
-      if ($(".varieties-badge").length === 0) {
+      if ($(".varieties-badge").length === 0 && !$("#varietiesNone").length) {
         $(".varieties-list").append(
           `<p id="varietiesNone">Aucune variété ajoutée</p>`
         );
