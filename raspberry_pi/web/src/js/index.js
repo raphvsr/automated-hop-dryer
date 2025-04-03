@@ -6,10 +6,17 @@ $(document).ready(function () {
       function (data) {
         const temperatures = JSON.parse(data);
         updateChart(temperatures);
-        updateTable(temperatures);
       }
     ).fail(function () {
       console.log('Error fetching drying data.');
+    });
+  }
+  function getTemperatureData() {
+    $.post('backend/php/api/get_temperatures.php', {} , function(data) {
+      const temperatures = JSON.parse(data);
+      updateTable(temperatures);
+    }).fail(function () {
+      console.log('Error fetching temperature data.');
     });
   }
   function updateChart(data) {
@@ -41,7 +48,7 @@ $(document).ready(function () {
     const tableBody = $('#dataTable tbody');
     tableBody.empty();
     data.forEach(entry => {
-      tableBody.append(`<tr><td>${entry.time}</td><td>${entry.temperature}</td></tr>`);
+      tableBody.append(`<tr><td>${entry.sensor}</td><td>${entry.temperature}</td></tr>`);
     });
   }
   $('#startDrying').click(function () {
@@ -76,5 +83,7 @@ $(document).ready(function () {
     });
   });
   updateDataVisualization();
+  getTemperatureData();
   setInterval(updateDataVisualization, 5000);
+  setInterval(getTemperatureData, 5000);
 });
