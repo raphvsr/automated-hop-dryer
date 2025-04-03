@@ -47,7 +47,6 @@ $(document).ready(function () {
 
       select.empty();
       varieties.forEach(function (variety) {
-        console.log(variety);
         if (!variety.id || !variety.name) {
           console.warn("Objet variété invalide:", variety);
           return;

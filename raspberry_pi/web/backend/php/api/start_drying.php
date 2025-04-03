@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 include '../classes/dryingControl.php';
-$config = json_decode(file_get_contents('../config/config-temp.json'), true);
+$config = json_decode(file_get_contents('../config/config-drying.json'), true);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $variety = $_POST["variety"];
