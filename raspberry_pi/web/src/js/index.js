@@ -1,6 +1,6 @@
 $(document).ready(function () {
   let temperatureChart = null;
-  let timePoints = ['Time 1', 'Time 2', 'Time 3', 'Time 4', 'Time 5', 'Time 6'];
+  let timePoints = ["Time 1", "Time 2", "Time 3", "Time 4", "Time 5", "Time 6"];
   let historicalData = [];
 
   function getTemperatureData() {
@@ -17,8 +17,6 @@ $(document).ready(function () {
       console.log("Error fetching drying data.");
     });
   }
-
-
 
   function updateTable(data) {
     const tableBody = $("#dataTable tbody");
@@ -53,7 +51,9 @@ $(document).ready(function () {
           console.warn("Objet variété invalide:", variety);
           return;
         }
-        select.append(`<option value="${variety.id}">${variety.name}</option>`);
+        select.append(
+          `<option value="${variety.id}" data-max-temperature="${variety.max_temperature}" data-min-temperature="${variety.min_temperature}" data-drying-time="${variety.duree_de_sechage}">${variety.name}</option>`
+        );
       });
     });
     $("#userModal").show();
@@ -69,6 +69,11 @@ $(document).ready(function () {
       const selectedOption = $("#varietiesSelect option:selected");
       const selectedVarietyName = selectedOption.text();
       const selectedVarietyId = selectedOption.val();
+      const selectedVarietyMaxTemperature =
+        selectedOption.data("max-temperature");
+      const selectedVarietyMinTemperature =
+        selectedOption.data("min-temperature");
+      const selectedVarietyDryingTime = selectedOption.data("drying-time");
 
       if (!selectedVarietyName || !selectedVarietyId) {
         console.error("Invalid selected variety:", selectedVariety);
@@ -83,7 +88,7 @@ $(document).ready(function () {
       $("#varietiesNone").remove();
 
       const html = `
-            <div class="varieties-badge" id="${selectedVarietyId}">
+            <div class="varieties-badge" id="${selectedVarietyId}" data-max-temperature="${selectedVarietyMaxTemperature}" data-min-temperature="${selectedVarietyMinTemperature}" data-drying-time="${selectedVarietyDryingTime}">
               <p>${selectedVarietyName}</p>
               <span class="deleteVariety">&times;</span>
            </div>
@@ -102,23 +107,49 @@ $(document).ready(function () {
       }
     });
 
-    $(".close, .btn-cancel").on("click", function () {
-      $("#varietiesSelect").val("");
+    $("#deleteAllVariety").on("click", function () {
       $(".varieties-list").empty();
-      $("#userModal").hide();
       $(".varieties-list").append(
         `<p id="varietiesNone">Aucune variété ajoutée</p>`
       );
     });
 
+    $(".close, .btn-cancel").on("click", function () {
+      $("#varietiesSelect").val("");
+      $("#userModal").hide();
+    });
+
     $("#save").on("click", function (e) {
-      $.post("backend/php/api/start_drying.php", {}, function () {
-        $("#dryingStatus").text("Status: Drying in progress...");
-      }).fail(function () {
+      const variety = $(".varieties-badge")
+        .map(function () {
+          const varietyId = $(this).attr("id");
+          const varietyName = $(this).find("p").text();
+          const varietyMaxTemperature = $(this).data("max-temperature");
+          const varietyMinTemperature = $(this).data("min-temperature");
+          const varietyDryingTime = $(this).data("drying-time");
+          return {
+            id: varietyId,
+            name: varietyName,
+            max_temperature: varietyMaxTemperature,
+            min_temperature: varietyMinTemperature,
+            drying_time: varietyDryingTime,
+          };
+        })
+        .get();
+      $("#userModal").hide();
+      $.post(
+        "backend/php/api/start_drying.php",
+        { variety: JSON.stringify(variety) },
+        function (data) {
+          const response = JSON.parse(data);
+          $("#dryingStatus").text(`Status: ${response.message}`);
+        }
+      ).fail(function () {
         $("#dryingStatus").text("Error starting drying process.");
       });
     });
   });
+
   $("#stopDrying").click(function () {
     $.post("backend/php/api/stop_drying.php", {}, function () {
       $("#dryingStatus").text("Status: Drying stopped.");
