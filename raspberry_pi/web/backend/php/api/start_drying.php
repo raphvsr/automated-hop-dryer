@@ -34,18 +34,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
+    $min_drying_time = null;
+    foreach ($varieties as $v) {
+        $current_time = floatval($v["drying_time"]);
+    
+        if ($min_drying_time === null || $current_time < $min_drying_time) {
+            $min_drying_time = $current_time;
+        }
+    }    
+
     $config["max-temperature"] = $min_max_temp;
     $config["min-temperature"] = $max_min_temp;
+    $config["drying-time"] = $min_drying_time;
     file_put_contents('../config/config-temp.json', json_encode($config));
 
     $dryingControl = new DryingControl();
     $response = $dryingControl->startDrying();
 
-    echo json_encode([
-        "status" => "success",
-        "message" => $response,
-        "min_max_temperature" => $min_max_temp,
-        "max_min_temperature" => $max_min_temp
-    ]);
+    if ($response === "Drying started: Burner on") {
+        echo json_encode(["status" => "success", "message" => "Drying started"]);
+    } else {
+        echo json_encode(["status" => "error", "message" => "Failed to start drying"]);
+    }
 }
 ?>

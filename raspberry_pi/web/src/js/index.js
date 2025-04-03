@@ -47,12 +47,13 @@ $(document).ready(function () {
 
       select.empty();
       varieties.forEach(function (variety) {
+        console.log(variety);
         if (!variety.id || !variety.name) {
           console.warn("Objet variété invalide:", variety);
           return;
         }
         select.append(
-          `<option value="${variety.id}" data-max-temperature="${variety.max_temperature}" data-min-temperature="${variety.min_temperature}">${variety.name}</option>`
+          `<option value="${variety.id}" data-max-temperature="${variety.max_temperature}" data-min-temperature="${variety.min_temperature}" data-drying-time="${variety.duree_de_sechage}">${variety.name}</option>`
         );
       });
     });
@@ -73,6 +74,7 @@ $(document).ready(function () {
         selectedOption.data("max-temperature");
       const selectedVarietyMinTemperature =
         selectedOption.data("min-temperature");
+      const selectedVarietyDryingTime = selectedOption.data("drying-time");
 
       if (!selectedVarietyName || !selectedVarietyId) {
         console.error("Invalid selected variety:", selectedVariety);
@@ -87,7 +89,7 @@ $(document).ready(function () {
       $("#varietiesNone").remove();
 
       const html = `
-            <div class="varieties-badge" id="${selectedVarietyId}" data-max-temperature="${selectedVarietyMaxTemperature}" data-min-temperature="${selectedVarietyMinTemperature}">
+            <div class="varieties-badge" id="${selectedVarietyId}" data-max-temperature="${selectedVarietyMaxTemperature}" data-min-temperature="${selectedVarietyMinTemperature}" data-drying-time="${selectedVarietyDryingTime}">
               <p>${selectedVarietyName}</p>
               <span class="deleteVariety">&times;</span>
            </div>
@@ -125,27 +127,23 @@ $(document).ready(function () {
           const varietyName = $(this).find("p").text();
           const varietyMaxTemperature = $(this).data("max-temperature");
           const varietyMinTemperature = $(this).data("min-temperature");
+          const varietyDryingTime = $(this).data("drying-time");
           return {
             id: varietyId,
             name: varietyName,
             max_temperature: varietyMaxTemperature,
             min_temperature: varietyMinTemperature,
+            drying_time: varietyDryingTime,
           };
         })
         .get();
-      console.log(variety);
       $("#userModal").hide();
       $.post(
         "backend/php/api/start_drying.php",
         { variety: variety },
         function (data) {
           const response = JSON.parse(data);
-          console.log(response);
-          if (response.status === "success") {
-            $("#dryingStatus").text("Status: Drying in progress...");
-          } else {
-            $("#dryingStatus").text("Error starting drying process.");
-          }
+          $("#dryingStatus").text(`Status: ${response.message}`);
         }
       ).fail(function () {
         $("#dryingStatus").text("Error starting drying process.");
