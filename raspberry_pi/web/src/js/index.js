@@ -51,7 +51,9 @@ $(document).ready(function () {
           console.warn("Objet variété invalide:", variety);
           return;
         }
-        select.append(`<option value="${variety.id}">${variety.name}</option>`);
+        select.append(
+          `<option value="${variety.id}" data-max-temperature="${variety.max_temperature}" data-min-temperature="${variety.min_temperature}">${variety.name}</option>`
+        );
       });
     });
     $("#userModal").show();
@@ -67,6 +69,10 @@ $(document).ready(function () {
       const selectedOption = $("#varietiesSelect option:selected");
       const selectedVarietyName = selectedOption.text();
       const selectedVarietyId = selectedOption.val();
+      const selectedVarietyMaxTemperature =
+        selectedOption.data("max-temperature");
+      const selectedVarietyMinTemperature =
+        selectedOption.data("min-temperature");
 
       if (!selectedVarietyName || !selectedVarietyId) {
         console.error("Invalid selected variety:", selectedVariety);
@@ -81,7 +87,7 @@ $(document).ready(function () {
       $("#varietiesNone").remove();
 
       const html = `
-            <div class="varieties-badge" id="${selectedVarietyId}">
+            <div class="varieties-badge" id="${selectedVarietyId}" data-max-temperature="${selectedVarietyMaxTemperature}" data-min-temperature="${selectedVarietyMinTemperature}">
               <p>${selectedVarietyName}</p>
               <span class="deleteVariety">&times;</span>
            </div>
@@ -113,10 +119,35 @@ $(document).ready(function () {
     });
 
     $("#save").on("click", function (e) {
+      const variety = $(".varieties-badge")
+        .map(function () {
+          const varietyId = $(this).attr("id");
+          const varietyName = $(this).find("p").text();
+          const varietyMaxTemperature = $(this).data("max-temperature");
+          const varietyMinTemperature = $(this).data("min-temperature");
+          return {
+            id: varietyId,
+            name: varietyName,
+            max_temperature: varietyMaxTemperature,
+            min_temperature: varietyMinTemperature,
+          };
+        })
+        .get();
+      console.log(variety);
       $("#userModal").hide();
-      $.post("backend/php/api/start_drying.php", {}, function () {
-        $("#dryingStatus").text("Status: Drying in progress...");
-      }).fail(function () {
+      $.post(
+        "backend/php/api/start_drying.php",
+        { variety: variety },
+        function (data) {
+          const response = JSON.parse(data);
+          console.log(response);
+          if (response.status === "success") {
+            $("#dryingStatus").text("Status: Drying in progress...");
+          } else {
+            $("#dryingStatus").text("Error starting drying process.");
+          }
+        }
+      ).fail(function () {
         $("#dryingStatus").text("Error starting drying process.");
       });
     });
