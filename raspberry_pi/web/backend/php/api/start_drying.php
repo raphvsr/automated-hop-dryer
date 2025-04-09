@@ -3,9 +3,6 @@ include '../classes/dryingControl.php';
 $file_path = $_SERVER['DOCUMENT_ROOT'] . '/skl-project/raspberry_pi/web/config/config-drying.json';
 
 $config = json_decode(file_get_contents($file_path), true);
-echo $file_path;
-echo "first config";
-print_r($config);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $variety = $_POST["variety"];
 
