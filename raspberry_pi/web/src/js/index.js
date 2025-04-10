@@ -137,6 +137,7 @@ $(document).ready(function () {
         })
         .get();
       $("#userModal").hide();
+
       $.post(
         "backend/php/api/start_drying.php",
         { variety: JSON.stringify(variety) },
@@ -144,7 +145,12 @@ $(document).ready(function () {
           const response = JSON.parse(data);
           $("#dryingStatus").text(`Status: ${response.message}`);
         }
-      ).fail(function () {
+      ).fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("Error details:", {
+          status: jqXHR.status,
+          textStatus: textStatus,
+          errorThrown: errorThrown,
+        });
         $("#dryingStatus").text("Error starting drying process.");
       });
     });

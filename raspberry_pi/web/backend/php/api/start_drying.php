@@ -1,8 +1,8 @@
 <?php
-header('Content-Type: application/json');
 include '../classes/dryingControl.php';
-$config = json_decode(file_get_contents('../config/config-drying.json'), true);
+$file_path = $_SERVER['DOCUMENT_ROOT'] . '/skl-project/raspberry_pi/web/config/config-drying.json';
 
+$config = json_decode(file_get_contents($file_path), true);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $variety = $_POST["variety"];
 
@@ -42,11 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $min_drying_time = $current_time;
         }
     }    
-
+    print_r($config);
     $config["max-temperature"] = $min_max_temp;
     $config["min-temperature"] = $max_min_temp;
     $config["drying-time"] = $min_drying_time;
-    file_put_contents('../config/config-drying.json', json_encode($config));
+    print_r($config);
+    file_put_contents($file_path, json_encode($config));
 
     $dryingControl = new DryingControl();
     $response = $dryingControl->startDrying();
@@ -57,4 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo json_encode(["status" => "error", "message" => "Failed to start drying"]);
     }
 }
+
+echo json_encode(["status" => "error", "message" => "Invalid request method"]);
+exit;
 ?>

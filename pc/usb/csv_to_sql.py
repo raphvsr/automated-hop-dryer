@@ -3,6 +3,7 @@ import mysql.connector
 
 
 def get_csv_data():
+    rows = []
     with open("data.csv") as file:
         for i, line in enumerate(file):
             if i == 0:
@@ -30,7 +31,7 @@ def update_database():
     )
 
 
-    
+
     cursor = db.cursor()
 
     cursor.execute("""
