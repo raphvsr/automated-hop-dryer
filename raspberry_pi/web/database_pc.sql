@@ -47,7 +47,7 @@ CREATE TABLE
 CREATE TABLE
   `burner_status` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `campaigns_id` INT NOT NULL,
+    `campaign_id` INT NOT NULL,
     `status` ENUM ('on', 'off') NOT NULL,
     `changed_at` TIMESTAMP NOT NULL
   );

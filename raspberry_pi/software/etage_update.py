@@ -10,3 +10,4 @@ for key, value in data.items():
 
 with open("etage.json", "w") as f:
     json.dump(data, f, indent=4)
+    
