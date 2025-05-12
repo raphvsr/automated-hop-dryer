@@ -14,9 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
+    if (password_verify($password, $user['password_hash'])) {
       $_SESSION['username'] = $username;
       $_SESSION['admin'] = $user['role'];
       echo "success";
+    } else {
+      echo "Invalid password!";
+    }
   } else {
     echo "User not found!";
   }
