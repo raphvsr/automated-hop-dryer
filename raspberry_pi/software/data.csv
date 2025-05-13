@@ -1,4 +1,4 @@
-date,heure,etage4,etage3,etage2,etage1,temps_bruleur,etat_bruleur
-2025-03-28,08:56:06,,,,,,False
-2025-03-28,08:56:09,,,,,,False
-2025-03-28,08:56:12,,,,,,False
+date,etage4,etage3,etage2,etage1,temps_bruleur,etat_bruleur
+2025-04-03 15:52:33,True,False,False,False,,False
+2025-04-03 15:52:36,True,False,False,False,,False
+2025-04-03 15:52:39,True,False,False,False,,False
