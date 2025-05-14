@@ -2,6 +2,10 @@ import os
 import glob
 import time
 import datetime
+import json
+from raspberry_pi.web.backend.python.drying_control import stop_drying
+import RPi.GPIO as GPIO
+
 
 #these tow lines mount the device:
 os.system('modprobe w1-gpio')
@@ -27,22 +31,47 @@ class DS18B20:
         return temp_c
 
     def read_temp(self):
+        MAX_TEMP = 60
+
         tstamp = datetime.datetime.now()
         for sensor, path in zip(self.sensor_name, self.sensor_path):
             # open sensor file and read data
             with open(path + '/w1_slave','r') as f:
                 valid, temp = f.readlines()
+                
             # check validity of data
             if 'YES' in valid:
                 self.log.append((tstamp, sensor) + self.strip_string(temp))
-                time.sleep(2)
+
+                try:
+                    with open("/skl-project/raspberry_pi/web/config/config-drying.json", "r") as f:
+                        config = json.load(f)
+                        max_temperature = config.get("max-temperature", MAX_TEMP)
+                except Exception as e:
+                    print(f"Error loading config: {e}")
+                    max_temperature = MAX_TEMP
+
+                for t, n, c, f in self.log:
+                    print(f'Sensor: {n}  C={c:,.3f}  DateTime: {t}')
+
+                    if c > max_temperature:
+                        GPIO.setup(4, GPIO.OUT)
+
+                        try:
+                            GPIO.output(4, GPIO.HIGH)
+
+                            time.sleep(300)
+                            GPIO.output(4, GPIO.LOW)
+
+                        finally:
+                            # clean GPIO settings
+                            GPIO.cleanup()
+
+                        stop_drying()
+                        time.sleep(1)
+                        break
             else:
                 time.sleep(0.2)
-
-    def print_temps(self):
-        print('-'*90)
-        for t, n, c, f in self.log:
-            print(f'Sensor: {n}  C={c:,.3f}  DateTime: {t}')
 
     def clear_log(self):
         s.log.clear()
