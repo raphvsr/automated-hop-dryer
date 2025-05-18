@@ -1,13 +1,13 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
-  header('Location: login.php');
-  exit();
-}
-if ($_SESSION['admin'] != 1) {
-  header('Location: index.php');
-  exit();
-}
+// session_start();
+// if (!isset($_SESSION['username'])) {
+//   header('Location: login.php');
+//   exit();
+// }
+// if ($_SESSION['admin'] != 1) {
+//   header('Location: index.php');
+//   exit();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
