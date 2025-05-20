@@ -98,7 +98,7 @@ def update_database(filename):
         port=3306,
         user=NOM_UTILISATEUR_BD,
         password=MOT_DE_PASSE_BD,
-        database="bd_pc"
+        database="test"
     )
 
     cursor = db.cursor()
