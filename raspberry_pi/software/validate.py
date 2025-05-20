@@ -4,7 +4,6 @@ from etage_update import update_etage
 
 LedPin = 17
 BtnPin = 18
-
 Led_status = 1
 
 def setup():
