@@ -42,24 +42,74 @@
       </li>
     </ul>
   </nav>
+  <!-- Interface de filtrage pour le tableau de bord -->
+  <section class="filter-section">
+    <form id="filter-form" class="filter-form">
+      <div class="form-group">
+        <label for="variety-filter">Variété :</label>
+        <select id="variety-filter" name="variety" class="form-control">
+          <option value="">Toutes les variétés</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="start-date">Date de début :</label>
+        <input type="date" id="start-date" name="startDate" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="end-date">Date de fin :</label>
+        <input type="date" id="end-date" name="endDate" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="etage-filter">Étage :</label>
+        <select id="etage-filter" name="etage" class="form-control">
+          <option value="">Tous les étages</option>
+          <option value="1">Étage 1</option>
+          <option value="2">Étage 2</option>
+          <option value="3">Étage 3</option>
+          <option value="4">Étage 4</option>
+        </select>
+      </div>
+      <!-- submit button -->
+      <button type="submit" class="btn btn-primary">Filtrer</button>
+    </form>
+  </section>
 
   <main class="dashboard-content">
     <h1>Tableau de Bord</h1>
+
+    <!-- Conteneur pour les messages -->
+    <div id="message-container"></div>
+
     <section class="graphs">
       <div class="graph-container">
+        <h2>Variété historique séchage 1er chargement</h2>
         <canvas id="chart1"></canvas>
       </div>
       <div class="graph-container">
+        <h2>Variété date N°chargement</h2>
         <canvas id="chart2"></canvas>
       </div>
       <div class="graph-container">
+        <h2>Variété date - tous les paniers</h2>
         <canvas id="chart3"></canvas>
       </div>
       <div class="graph-container">
+        <h2>Durée séchage par panier</h2>
         <canvas id="chart4"></canvas>
       </div>
     </section>
+
+    <!-- Tableau des statistiques -->
+    <section class="statistics">
+      <h2>Statistiques</h2>
+      <div id="statistics-container"></div>
+    </section>
   </main>
+
+
+
+
+
 
   <script src="src/js/dashboard.js"></script>
 
