@@ -30,7 +30,7 @@ $(document).ready(function () {
         temperatures.forEach((entry) => {
           if (entry.temperature > maxAllowedTemperature) {
             alert(
-              `⚠️ Température maximale dépassée !\nCapteur: ${entry.sensor}\nTempérature: ${entry.temperature}°C\nLimite: ${maxAllowedTemperature}°C`
+              `Température maximale dépassée !\nCapteur: ${entry.sensor}\nTempérature: ${entry.temperature}°C\nLimite: ${maxAllowedTemperature}°C`
             );
           }
         });
