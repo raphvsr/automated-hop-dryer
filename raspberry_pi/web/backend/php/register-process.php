@@ -5,8 +5,12 @@ include '../database.php';
 header('Content-Type: application/json');
 
 try {
-  if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['role'])) {
-    throw new Exception('All fields are required');
+  if (empty($_POST['username']) || empty($_POST['password']) || !isset($_POST['role'])) {
+    echo json_encode([
+      'status' => 'error',
+      'message' => 'All fields are required'
+    ]);
+    exit;
   }
   $sql = "INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)";
   $username = $_POST['username'];

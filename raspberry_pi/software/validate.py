@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 import time
 from etage_update import update_etage
 
-LedPin = 17
-BtnPin = 18
+LedPin = 6
+BtnPin = 7
 
 Led_status = 1
 

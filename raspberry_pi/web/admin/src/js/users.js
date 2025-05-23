@@ -41,7 +41,7 @@ $('#save').on('click', function (e) {
     password = null;
   }
 
-  $.post('../backend/php/api/users-update.php',
+  $.post('../backend/php/api/user-edit.php',
     {
       username: username,
       role: role,
