@@ -2,6 +2,18 @@ $(document).ready(function () {
   let temperatureChart = null;
   let timePoints = ["Time 1", "Time 2", "Time 3", "Time 4", "Time 5", "Time 6"];
   let historicalData = [];
+  let maxAllowedTemperature = null;
+
+  function loadConfig() {
+    $.get("backend/php/api/get_config.php", function (data) {
+      const config = JSON.parse(data);
+      if (config["max-temperature"] !== undefined) {
+        maxAllowedTemperature = config["max-temperature"];
+      }
+    }).fail(function () {
+      console.log("Erreur lors du chargement de la configuration.");
+    });
+  }
 
   function getTemperatureData() {
     $.post("backend/php/api/get_temperatures.php", {}, function (data) {
@@ -13,6 +25,16 @@ $(document).ready(function () {
       }
 
       updateTable(temperatures);
+
+      if (maxAllowedTemperature !== null) {
+        temperatures.forEach((entry) => {
+          if (entry.temperature > maxAllowedTemperature) {
+            alert(
+              `Température maximale dépassée !\nCapteur: ${entry.sensor}\nTempérature: ${entry.temperature}°C\nLimite: ${maxAllowedTemperature}°C`
+            );
+          }
+        });
+      }
     }).fail(function () {
       console.log("Error fetching drying data.");
     });
@@ -56,6 +78,7 @@ $(document).ready(function () {
         );
       });
     });
+
     $("#userModal").show();
 
     $("#addVariety").on("click", function () {
@@ -88,10 +111,10 @@ $(document).ready(function () {
       $("#varietiesNone").remove();
 
       const html = `
-            <div class="varieties-badge" id="${selectedVarietyId}" data-max-temperature="${selectedVarietyMaxTemperature}" data-min-temperature="${selectedVarietyMinTemperature}" data-drying-time="${selectedVarietyDryingTime}">
-              <p>${selectedVarietyName}</p>
-              <span class="deleteVariety">&times;</span>
-           </div>
+        <div class="varieties-badge" id="${selectedVarietyId}" data-max-temperature="${selectedVarietyMaxTemperature}" data-min-temperature="${selectedVarietyMinTemperature}" data-drying-time="${selectedVarietyDryingTime}">
+          <p>${selectedVarietyName}</p>
+          <span class="deleteVariety">&times;</span>
+        </div>
       `;
 
       varietyList.append(html);
@@ -171,6 +194,8 @@ $(document).ready(function () {
       $("#shutdownStatus").text("Error shutting down system.");
     });
   });
+
+  loadConfig();
   getTemperatureData();
   setInterval(getTemperatureData, 3000);
 });
