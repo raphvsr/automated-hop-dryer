@@ -1,3 +1,19 @@
+//                file varieties.js               
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-04-01 - Add variety management functionality: implement create, update, and delete APIs with AJAX integration + changed the database - fateh kabbani
+//   raspberry pi/web/admin/src/js/varieties.js | 66 ++++++++++++++++++++++++++++++
+//   1 file changed, 66 insertions(+)
+//
+// ============================================================
+
 function deleteVariety(id) {
   if (confirm('Êtes-vous sûr de vouloir supprimer cette variété ?')) {
     $.post('../backend/php/api/varieties-delete.php', { id: id })

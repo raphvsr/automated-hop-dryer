@@ -1,3 +1,44 @@
+/*               file styles.css                */
+/* ============================================ */
+/*        Original Author: fateh kabbani        */
+/* ============================================ */
+
+/* COMMIT HISTORY: */
+/* ============================================================ */
+/* 2025-04-03 - Enhance UI by adding button styles and new delete functionality for varieties; update CSS for button classes and improve JavaScript for variety management. - Romain Provencel */
+/*   raspberry_pi/web/src/css/styles.css | 19 +++++++++++++++++-- */
+/*   1 file changed, 17 insertions(+), 2 deletions(-) */
+/* */
+/* 2025-04-03 - Add user variety selection modal and implement variety management functionality - Romain Provencel */
+/*   raspberry_pi/web/src/css/styles.css | 118 +++++++++++++++++++++++++++++++++--- */
+/*   1 file changed, 111 insertions(+), 7 deletions(-) */
+/* */
+/* 2025-04-02 - changed folder name removed the space - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-26 - Enhance dashboard functionality and styling; add admin role check and new CSS for improved layout - fateh kabbani */
+/*   raspberry pi/web/src/css/styles.css | 20 ++++++++++++++++++++ */
+/*   1 file changed, 20 insertions(+) */
+/* */
+/* 2025-03-20 - move the file to raspberry pi - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-15 - Enhance drying control interface with real-time data visualization, improved layout, and new temperature configuration options - fateh kabbani */
+/*   web/src/css/styles.css | 91 ++++++++++++++++++++++++++++++++++++++++++-------- */
+/*   1 file changed, 77 insertions(+), 14 deletions(-) */
+/* */
+/* 2025-03-13 - Refactor project structure by moving backend files to a new directory and re-implementing login and registration functionality - Romain Provencel */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-13 - Add initial project structure with login and registration functionality - fateh kabbani */
+/*   src/css/styles.css | 59 ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/*   1 file changed, 59 insertions(+) */
+/* */
+/* ============================================================ */
+
 body {
   display: flex;
   justify-content: center;

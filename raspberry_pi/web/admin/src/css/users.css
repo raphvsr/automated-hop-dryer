@@ -1,3 +1,34 @@
+/*                file users.css                */
+/* ============================================ */
+/*        Original Author: fateh kabbani        */
+/* ============================================ */
+
+/* COMMIT HISTORY: */
+/* ============================================================ */
+/* 2025-05-12 - responsive - Romain Provencel */
+/*   raspberry_pi/web/admin/src/css/users.css | 246 +++++++++++++++++++------------ */
+/*   1 file changed, 152 insertions(+), 94 deletions(-) */
+/* */
+/* 2025-04-02 - changed folder name removed the space - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-30 - Refactor sidebar navigation: extract to a separate component and update links for consistency - fateh kabbani */
+/*   raspberry pi/web/admin/src/css/users.css | 70 ++++++++++++++++++-------------- */
+/*   1 file changed, 39 insertions(+), 31 deletions(-) */
+/* */
+/* 2025-03-29 - Refactor user management: remove admin dashboard, update links, and add new user creation functionality with password generation - fateh kabbani */
+/*   raspberry pi/web/admin/src/css/users.css | 212 ++++++++++++++++++++----------- */
+/*   1 file changed, 140 insertions(+), 72 deletions(-) */
+/* */
+/* 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-29 - Add user account creation page and styling - fateh kabbani */
+/*   raspberry pi/web/src/css/users.css | 104 +++++++++++++++++++++++++++++++++++++ */
+/*   1 file changed, 104 insertions(+) */
+/* */
+/* ============================================================ */
+
 body {
   margin: 0;
   padding: 0 20px;

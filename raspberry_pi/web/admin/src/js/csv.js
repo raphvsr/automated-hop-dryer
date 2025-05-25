@@ -1,3 +1,22 @@
+//                   file csv.js                  
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-28 - Add USB device management and dashboard functionality - fateh kabbani
+//   raspberry pi/web/src/js/csv.js | 39 +++++++++++++++++++++++++++++++++++++++
+//   1 file changed, 39 insertions(+)
+//
+// ============================================================
+
  function updateUsbStatus() {
   fetch('backend/check_usb.php')
     .then(response => response.json())

@@ -1,3 +1,62 @@
+#              file drying_control.py             
+# ================================================
+#        Original Author: Romain Provencel        
+# ================================================
+
+# COMMIT HISTORY:
+# ============================================================
+# 2025-04-09 - Refactor drying control logic to load drying time from configuration; update start_drying.php to remove debug output and enhance drying_control.py to manage drying duration with a timer. Update config.py to define a default drying time. - Romain Provencel
+#   raspberry_pi/web/backend/python/drying_control.py | 27 ++++++++++++++++++++---
+#   1 file changed, 24 insertions(+), 3 deletions(-)
+#
+# 2025-04-03 - fix - Romain Provencel
+#   raspberry_pi/web/backend/python/drying_control.py | 2 ++
+#   1 file changed, 2 insertions(+)
+#
+# 2025-04-02 - changed folder name removed the space - fateh kabbani
+#   1 file changed, 0 insertions(+), 0 deletions(-)
+#
+# 2025-03-28 - . - Romain Provencel
+#   raspberry pi/web/backend/python/drying_control.py | 9 ++++++---
+#   1 file changed, 6 insertions(+), 3 deletions(-)
+#
+# 2025-03-28 - . - Romain Provencel
+#   raspberry pi/web/backend/python/drying_control.py | 1 +
+#   1 file changed, 1 insertion(+)
+#
+# 2025-03-28 - Refactor drying control to import API configuration and update GPIO handling - fateh kabbani
+#   raspberry pi/web/backend/python/drying_control.py | 9 +++++----
+#   1 file changed, 5 insertions(+), 4 deletions(-)
+#
+# 2025-03-28 - Add API for saving drying status and enhance session management - Romain Provencel
+#   raspberry pi/web/backend/python/drying_control.py | 6 +++++-
+#   1 file changed, 5 insertions(+), 1 deletion(-)
+#
+# 2025-03-27 - Implement drying control status retrieval and enhance existing drying methods - Romain Provencel
+#   raspberry pi/web/backend/python/drying_control.py | 5 ++++-
+#   1 file changed, 4 insertions(+), 1 deletion(-)
+#
+# 2025-03-27 - . - Romain Provencel
+#   raspberry pi/web/backend/python/drying_control.py | 3 +--
+#   1 file changed, 1 insertion(+), 2 deletions(-)
+#
+# 2025-03-20 - move the file to raspberry pi - fateh kabbani
+#   1 file changed, 0 insertions(+), 0 deletions(-)
+#
+# 2025-03-14 - settings the time - Romain Provencel
+#   web/backend/python/drying_control.py | 7 +++----
+#   1 file changed, 3 insertions(+), 4 deletions(-)
+#
+# 2025-03-14 - Add GPIO control for drying process - Romain Provencel
+#   web/backend/python/drying_control.py | 23 ++++++++++++++++++++++-
+#   1 file changed, 22 insertions(+), 1 deletion(-)
+#
+# 2025-03-13 - Add drying configuration and control classes with initial database setup + structure - Romain Provencel
+#   web/backend/python/drying_control.py | 1 +
+#   1 file changed, 1 insertion(+)
+#
+# ============================================================
+
 import RPi.GPIO as GPIO
 import requests
 import sys, os

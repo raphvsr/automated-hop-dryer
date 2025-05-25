@@ -1,3 +1,30 @@
+/*                 file csv.css                 */
+/* ============================================ */
+/*        Original Author: fateh kabbani        */
+/* ============================================ */
+
+/* COMMIT HISTORY: */
+/* ============================================================ */
+/* 2025-05-12 - responsive - Romain Provencel */
+/*   raspberry_pi/web/admin/src/css/csv.css | 17 +++++++++++------ */
+/*   1 file changed, 11 insertions(+), 6 deletions(-) */
+/* */
+/* 2025-04-02 - changed folder name removed the space - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-29 -  improve CSV file sorting, display the newest first - fateh kabbani */
+/*   raspberry pi/web/src/css/csv.css | 26 ++++++++++++++++++++++++++ */
+/*   1 file changed, 26 insertions(+) */
+/* */
+/* 2025-03-28 - Add USB device management and dashboard functionality - fateh kabbani */
+/*   raspberry pi/web/src/css/csv.css | 95 ++++++++++++++++++++++++++++++++++++++++ */
+/*   1 file changed, 95 insertions(+) */
+/* */
+/* ============================================================ */
+
 .csv-container {
   display: flex;
   flex-direction: column;

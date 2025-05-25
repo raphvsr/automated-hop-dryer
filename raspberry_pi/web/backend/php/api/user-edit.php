@@ -1,3 +1,20 @@
+//                file user-edit.php              
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   {raspberry pi => raspberry_pi}/web/backend/php/api/user-edit.php | 0
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-04-01 - Add variety management functionality: implement create, update, and delete APIs with AJAX integration + changed the database - fateh kabbani
+//   raspberry pi/web/backend/php/api/user-edit.php | 34 ++++++++++++++++++++++++++
+//   1 file changed, 34 insertions(+)
+//
+// ============================================================
+
 <?php
 include "../../database.php";
 session_start();

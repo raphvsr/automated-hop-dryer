@@ -1,3 +1,86 @@
+//                  file index.js                 
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-05-21 - Update index.js - Poubelle26
+//   raspberry_pi/web/src/js/index.js | 2 +-
+//   1 file changed, 1 insertion(+), 1 deletion(-)
+//
+// 2025-05-20 - feat: Implement CSV import functionality with GUI; add database update and preview features - Raphael Vasseur
+//   raspberry_pi/web/src/js/index.js | 352 +++++++++++++++++++--------------------
+//   1 file changed, 173 insertions(+), 179 deletions(-)
+//
+// 2025-05-20 - Refactor CSV data import and database update functions; add GUI for file selection and improve error handling. - Raphael Vasseur
+//   raspberry_pi/web/src/js/index.js | 339 +++++++++++++++++++++------------------
+//   1 file changed, 185 insertions(+), 154 deletions(-)
+//
+// 2025-04-03 - fix - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 8 +++++++-
+//   1 file changed, 7 insertions(+), 1 deletion(-)
+//
+// 2025-04-03 - fix - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 2 +-
+//   1 file changed, 1 insertion(+), 1 deletion(-)
+//
+// 2025-04-03 - . - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 1 -
+//   1 file changed, 1 deletion(-)
+//
+// 2025-04-03 - Enhance drying process by calculating minimum drying time for selected varieties; update start_drying.php to include drying time in configuration and modify response handling. Update index.js to pass drying time data for selected varieties. - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 16 +++++++---------
+//   1 file changed, 7 insertions(+), 9 deletions(-)
+//
+// 2025-04-03 - Implement variety temperature handling in drying process; update start_drying.php to validate and store temperature data, and enhance index.js to pass selected variety temperatures during drying initiation. - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 41 +++++++++++++++++++++++++++++++++++-----
+//   1 file changed, 36 insertions(+), 5 deletions(-)
+//
+// 2025-04-03 - Enhance UI by adding button styles and new delete functionality for varieties; update CSS for button classes and improve JavaScript for variety management. - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 15 +++++++++------
+//   1 file changed, 9 insertions(+), 6 deletions(-)
+//
+// 2025-04-03 - REMOVED THE CHART + updated the sensor read each 3 seconds - fateh kabbani
+//   raspberry_pi/web/src/js/index.js | 114 ++-------------------------------------
+//   1 file changed, 3 insertions(+), 111 deletions(-)
+//
+// 2025-04-03 - Refactor temperature data fetching and visualization; update get_temperatures.php to return numeric values and enhance index.js for improved charting and table display. - fateh kabbani
+//   raspberry_pi/web/src/js/index.js | 157 ++++++++++++++++++++++++++++++---------
+//   1 file changed, 123 insertions(+), 34 deletions(-)
+//
+// 2025-04-03 - fix - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 2 +-
+//   1 file changed, 1 insertion(+), 1 deletion(-)
+//
+// 2025-04-03 - . - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 118 +++++++++++++++++++++++++++++++--------
+//   1 file changed, 94 insertions(+), 24 deletions(-)
+//
+// 2025-04-03 - Remove get_drying_data.php and update get_temperatures.php to return sensor data with temperature; enhance index.js to fetch and display temperature data in the table. - fateh kabbani
+//   raspberry_pi/web/src/js/index.js | 13 +++++++++++--
+//   1 file changed, 11 insertions(+), 2 deletions(-)
+//
+// 2025-04-03 - Add user variety selection modal and implement variety management functionality - Romain Provencel
+//   raspberry_pi/web/src/js/index.js | 173 ++++++++++++++++++++++++++++-----------
+//   1 file changed, 125 insertions(+), 48 deletions(-)
+//
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-26 - Remove max temperature configuration from web interface and add sensor reading script for DS18B20 temperature sensor - fateh kabbani
+//   raspberry pi/web/src/js/index.js | 13 +------------
+//   1 file changed, 1 insertion(+), 12 deletions(-)
+//
+// 2025-03-20 - move the file to raspberry pi - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-15 - Enhance drying control interface with real-time data visualization, improved layout, and new temperature configuration options - fateh kabbani
+//   web/src/js/index.js | 91 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+//   1 file changed, 91 insertions(+)
+//
+// ============================================================
+
 $(document).ready(function () {
   let temperatureChart = null;
   let timePoints = ["Time 1", "Time 2", "Time 3", "Time 4", "Time 5", "Time 6"];

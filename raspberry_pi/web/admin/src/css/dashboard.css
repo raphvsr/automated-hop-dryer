@@ -1,3 +1,27 @@
+/*              file dashboard.css              */
+/* ============================================ */
+/*        Original Author: fateh kabbani        */
+/* ============================================ */
+
+/* COMMIT HISTORY: */
+/* ============================================================ */
+/* 2025-04-02 - changed folder name removed the space - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani */
+/*   raspberry pi/web/{ => admin}/src/css/dashboard.css | 14 +++++++++++--- */
+/*   1 file changed, 11 insertions(+), 3 deletions(-) */
+/* */
+/* 2025-03-28 - Add USB device management and dashboard functionality - fateh kabbani */
+/*   raspberry pi/web/src/css/dashboard.css | 23 ----------------------- */
+/*   1 file changed, 23 deletions(-) */
+/* */
+/* 2025-03-26 - Enhance dashboard functionality and styling; add admin role check and new CSS for improved layout - fateh kabbani */
+/*   raspberry pi/web/src/css/dashboard.css | 128 +++++++++++++++++++++++++++++++++ */
+/*   1 file changed, 128 insertions(+) */
+/* */
+/* ============================================================ */
+
 /* Basics */
 * {
 	margin: 0;

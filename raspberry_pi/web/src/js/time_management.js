@@ -1,3 +1,39 @@
+//             file time_management.js            
+// ===============================================
+//        Original Author: Romain Provencel       
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - Add time management features: include time management button in index, enhance time_management page layout, and implement back button functionality - Romain Provencel
+//   raspberry_pi/web/src/js/time_management.js | 4 ++++
+//   1 file changed, 4 insertions(+)
+//
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-27 - Add manual time setting feature with input validation and UI enhancements - Romain Provencel
+//   raspberry pi/web/src/js/time_management.js | 58 +++++++++++++++---------------
+//   1 file changed, 30 insertions(+), 28 deletions(-)
+//
+// 2025-03-27 - Enhance manual time update feature with input validation and styling improvements - Romain Provencel
+//   raspberry pi/web/src/js/time_management.js | 13 ++++++++++---
+//   1 file changed, 10 insertions(+), 3 deletions(-)
+//
+// 2025-03-27 - Add manual time update feature and improve time synchronization UI - Romain Provencel
+//   raspberry pi/web/src/js/time_management.js | 35 ++++++++++++++++++++++++------
+//   1 file changed, 28 insertions(+), 7 deletions(-)
+//
+// 2025-03-27 - get time - Romain Provencel
+//   raspberry pi/web/src/js/time_management.js | 15 ++++++++-------
+//   1 file changed, 8 insertions(+), 7 deletions(-)
+//
+// 2025-03-26 - Implement time management feature with RTC synchronization and UI enhancements - Romain Provencel
+//   raspberry pi/web/src/js/time_management.js | 54 ++++++++++++++++++++++++++++++
+//   1 file changed, 54 insertions(+)
+//
+// ============================================================
+
 $(document).ready(function () {
   // Initialisation
   refreshTime();

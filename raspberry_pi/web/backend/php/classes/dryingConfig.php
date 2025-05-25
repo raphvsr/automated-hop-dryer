@@ -1,3 +1,38 @@
+//              file dryingConfig.php             
+// ===============================================
+//        Original Author: Romain Provencel       
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-20 - move the file to raspberry pi - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-15 - Enhance drying control interface with real-time data visualization, improved layout, and new temperature configuration options - fateh kabbani
+//   web/backend/php/classes/dryingConfig.php | 1 -
+//   1 file changed, 1 deletion(-)
+//
+// 2025-03-15 - Refactor drying configuration and control classes for improved error handling and code safety against sql injection - fateh kabbani
+//   web/backend/php/classes/dryingConfig.php | 64 +++++++++++++++++++-------------
+//   1 file changed, 39 insertions(+), 25 deletions(-)
+//
+// 2025-03-13 - drying config - Romain Provencel
+//   web/backend/php/classes/dryingConfig.php | 30 ++++++++++++++++++++++++------
+//   1 file changed, 24 insertions(+), 6 deletions(-)
+//
+// 2025-03-13 - . - Romain Provencel
+//   web/backend/php/classes/dryingConfig.php | 12 ++++--------
+//   1 file changed, 4 insertions(+), 8 deletions(-)
+//
+// 2025-03-13 - Add drying configuration and control classes with initial database setup + structure - Romain Provencel
+//   web/backend/php/classes/dryingConfig.php | 19 +++++++++++++++++++
+//   1 file changed, 19 insertions(+)
+//
+// ============================================================
+
 <?php
 include '../database.php';
 

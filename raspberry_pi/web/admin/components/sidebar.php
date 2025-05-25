@@ -1,3 +1,23 @@
+//                 file sidebar.php               
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-04-01 - Add varieties page and update sidebar navigation: include varieties link and enhance drying duration display (it display hours now) (: - fateh kabbani
+//   raspberry pi/web/admin/components/sidebar.php | 77 +++++++++++++++------------
+//   1 file changed, 43 insertions(+), 34 deletions(-)
+//
+// 2025-03-30 - Refactor sidebar navigation: extract to a separate component and update links for consistency - fateh kabbani
+//   raspberry pi/web/admin/components/sidebar.php | 41 +++++++++++++++++++++++++++
+//   1 file changed, 41 insertions(+)
+//
+// ============================================================
+
 <?php
 function getCurrentPage()
 {

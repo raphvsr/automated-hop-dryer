@@ -1,3 +1,39 @@
+//             file time_management.php           
+// ===============================================
+//        Original Author: Romain Provencel       
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - Add time management features: include time management button in index, enhance time_management page layout, and implement back button functionality - Romain Provencel
+//   raspberry_pi/web/time_management.php | 5 ++++-
+//   1 file changed, 4 insertions(+), 1 deletion(-)
+//
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-28 - Add API for saving drying status and enhance session management - Romain Provencel
+//   raspberry pi/web/time_management.php | 10 +++++-----
+//   1 file changed, 5 insertions(+), 5 deletions(-)
+//
+// 2025-03-27 - Add manual time setting feature with input validation and UI enhancements - Romain Provencel
+//   raspberry pi/web/time_management.php | 16 +++++++++-------
+//   1 file changed, 9 insertions(+), 7 deletions(-)
+//
+// 2025-03-27 - Enhance manual time update feature with input validation and styling improvements - Romain Provencel
+//   raspberry pi/web/time_management.php | 2 +-
+//   1 file changed, 1 insertion(+), 1 deletion(-)
+//
+// 2025-03-27 - Add manual time update feature and improve time synchronization UI - Romain Provencel
+//   raspberry pi/web/time_management.php | 6 ++++++
+//   1 file changed, 6 insertions(+)
+//
+// 2025-03-26 - Implement time management feature with RTC synchronization and UI enhancements - Romain Provencel
+//   raspberry pi/web/time_management.php | 44 ++++++++++++++++++++++++++++++++++++
+//   1 file changed, 44 insertions(+)
+//
+// ============================================================
+
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {

@@ -1,3 +1,26 @@
+//            file drying_campaigns.php           
+// ===============================================
+//        Original Author: Romain Provencel       
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-20 - move the file to raspberry pi - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-20 - Refactor database interactions in sensorData and DryingCampaigns classes for improved error handling and SQL injection protection; add alerts class for managing alert data. - Romain Provencel
+//   web/backend/php/classes/drying_campaigns.php | 11 ++++++++++-
+//   1 file changed, 10 insertions(+), 1 deletion(-)
+//
+// 2025-03-19 - Add DryingCampaigns class for managing drying campaigns and associated hop varieties - Romain Provencel
+//   web/backend/php/classes/drying_campaigns.php | 158 +++++++++++++++++++++++++++
+//   1 file changed, 158 insertions(+)
+//
+// ============================================================
+
 <?php
 include '../database.php';
 

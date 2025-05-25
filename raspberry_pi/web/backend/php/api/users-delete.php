@@ -1,3 +1,20 @@
+//              file users-delete.php             
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   {raspberry pi => raspberry_pi}/web/backend/php/api/users-delete.php | 0
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-31 - Add user deletion functionality: implement AJAX request and backend processing for user removal - fateh kabbani
+//   raspberry pi/web/backend/php/api/users-delete.php | 64 +++++++++++++++++++++++
+//   1 file changed, 64 insertions(+)
+//
+// ============================================================
+
 <?php
 include '../../database.php';
 session_start();

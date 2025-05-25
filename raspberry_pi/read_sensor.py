@@ -1,3 +1,27 @@
+#               file read_sensor.py               
+# ================================================
+#          Original Author: fateh kabbani         
+# ================================================
+
+# COMMIT HISTORY:
+# ============================================================
+# 2025-05-23 - Refactor sensor reading logic in read_sensor.py, including improved logging and temperature handling. Update GPIO pin configuration in validate.py. Change API endpoint in users.js for user updates. Enhance error handling and logging in varieties-create.php and login-process.php, including session and request logging. Modify register-process.php to ensure all fields are validated. Add info.php for PHP configuration display. Create log files for login attempts to aid in debugging. - fateh kabbani
+#   raspberry_pi/read_sensor.py | 59 ++++++++++++++++++++++++---------------------
+#   1 file changed, 32 insertions(+), 27 deletions(-)
+#
+# 2025-05-14 - Enhance CSV data handling and database updates: - Updated CSV structure to include 'variety_name'. - Modified data processing logic in csv_to_sql.py to accommodate new CSV format. - Improved database interaction by adding checks for varieties and campaigns. - Added GPIO control in read_sensor.py to manage drying based on temperature thresholds. - Created txt.txt to outline future enhancements for burner time, variety, and end time. - Raphael Vasseur
+#   raspberry_pi/read_sensor.py | 41 +++++++++++++++++++++++++++++++++++------
+#   1 file changed, 35 insertions(+), 6 deletions(-)
+#
+# 2025-04-02 - changed folder name removed the space - fateh kabbani
+#   1 file changed, 0 insertions(+), 0 deletions(-)
+#
+# 2025-03-26 - Remove max temperature configuration from web interface and add sensor reading script for DS18B20 temperature sensor - fateh kabbani
+#   raspberry pi/read_sensor.py | 56 +++++++++++++++++++++++++++++++++++++++++++++
+#   1 file changed, 56 insertions(+)
+#
+# ============================================================
+
 import os
 import glob
 import time
