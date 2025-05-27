@@ -1,4 +1,4 @@
-//            file get_temperatures.php           
+<!-- //            file get_temperatures.php           
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -31,7 +31,7 @@
 //   web/backend/php/api/get_temperatures.php | 13 +++++++++++++
 //   1 file changed, 13 insertions(+)
 //
-// ============================================================
+// ============================================================ -->
 
 <?php
 // header('Content-Type: application/json');

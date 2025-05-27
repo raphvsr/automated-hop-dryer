@@ -1,4 +1,4 @@
-//              file dryingControl.php            
+<!-- //              file dryingControl.php            
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -43,7 +43,7 @@
 //   web/backend/php/classes/dryingControl.php | 13 +++++++++++++
 //   1 file changed, 13 insertions(+)
 //
-// ============================================================
+// ============================================================ -->
 
 <?php
 class DryingControl

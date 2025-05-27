@@ -1,4 +1,4 @@
-//              file dryingConfig.php             
+<!-- //              file dryingConfig.php             
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -31,7 +31,7 @@
 //   web/backend/php/classes/dryingConfig.php | 19 +++++++++++++++++++
 //   1 file changed, 19 insertions(+)
 //
-// ============================================================
+// ============================================================ -->
 
 <?php
 include '../database.php';

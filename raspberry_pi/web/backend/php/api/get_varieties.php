@@ -1,4 +1,4 @@
-//              file get_varieties.php            
+<!-- //              file get_varieties.php            
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -9,7 +9,7 @@
 //   raspberry_pi/web/backend/php/api/get_varieties.php | 25 ++++++++++++++++++++++
 //   1 file changed, 25 insertions(+)
 //
-// ============================================================
+// ============================================================ -->
 
 <?php
 session_start();

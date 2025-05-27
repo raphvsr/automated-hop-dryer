@@ -1,4 +1,4 @@
-//            file register-process.php           
+<!-- //            file register-process.php           
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -33,7 +33,7 @@
 //   backend/php/register-process.php | 0
 //   1 file changed, 0 insertions(+), 0 deletions(-)
 //
-// ============================================================
+// ============================================================ -->
 
 <?php
 

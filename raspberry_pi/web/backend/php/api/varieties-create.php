@@ -1,4 +1,4 @@
-//            file varieties-create.php           
+<!-- //            file varieties-create.php           
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -17,7 +17,7 @@
 //   .../web/backend/php/api/varieties-create.php       | 46 ++++++++++++++++++++++
 //   1 file changed, 46 insertions(+)
 //
-// ============================================================
+// ============================================================ -->
 
   <?php
   session_start();

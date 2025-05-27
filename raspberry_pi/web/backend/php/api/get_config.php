@@ -1,4 +1,4 @@
-//               file get_config.php              
+<!-- //               file get_config.php              
 // ===============================================
 //         Original Author: Raphael Vasseur       
 // ===============================================
@@ -9,7 +9,7 @@
 //   raspberry_pi/web/backend/php/api/get_config.php | 9 +++++++++
 //   1 file changed, 9 insertions(+)
 //
-// ============================================================
+// ============================================================ -->
 
 <?php
 $configPath = __DIR__ . '/../../../config/config-drying.json';

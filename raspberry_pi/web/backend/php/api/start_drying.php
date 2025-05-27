@@ -1,4 +1,4 @@
-//              file start_drying.php             
+<!-- //              file start_drying.php             
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -58,7 +58,7 @@
 //   web/backend/script/start_drying.php | 1 +
 //   1 file changed, 1 insertion(+)
 //
-// ============================================================
+// ============================================================ -->
 
 <?php
 include '../classes/dryingControl.php';

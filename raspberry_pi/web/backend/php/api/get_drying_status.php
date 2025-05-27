@@ -1,4 +1,4 @@
-//            file get_drying_status.php          
+<!-- //            file get_drying_status.php          
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -34,7 +34,7 @@
 //   web/backend/script/start_drying.php | 1 +
 //   1 file changed, 1 insertion(+)
 //
-// ============================================================
+// ============================================================ -->
 
 <?php
 header('Content-Type: application/json');
