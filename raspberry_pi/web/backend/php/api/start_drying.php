@@ -105,11 +105,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $min_drying_time = $current_time;
         }
     }    
-    print_r($config);
     $config["max-temperature"] = $min_max_temp;
     $config["min-temperature"] = $max_min_temp;
     $config["drying-time"] = $min_drying_time;
-    print_r($config);
     file_put_contents($file_path, json_encode($config));
 
     $dryingControl = new DryingControl();
@@ -120,8 +118,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo json_encode(["status" => "error", "message" => "Failed to start drying"]);
     }
+} else {
+    echo json_encode(["status" => "error", "message" => "Invalid request method"]);
+    exit;
 }
-
-echo json_encode(["status" => "error", "message" => "Invalid request method"]);
-exit;
 ?>
