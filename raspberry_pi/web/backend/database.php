@@ -1,4 +1,5 @@
-<!-- //                file database.php               
+<?php
+//                file database.php               
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -26,9 +27,8 @@
 //   backend/database.php | 13 +++++++++++++
 //   1 file changed, 13 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 $dotenv = parse_ini_file(__DIR__ . '/.env', true);
 $host = $dotenv['DB_HOST'];
 $db = $dotenv['DB_DATABASE'];

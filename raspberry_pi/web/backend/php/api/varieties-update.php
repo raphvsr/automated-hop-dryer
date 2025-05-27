@@ -1,4 +1,5 @@
-<!-- //            file varieties-update.php           
+<?php
+//            file varieties-update.php           
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -13,9 +14,8 @@
 //   .../web/backend/php/api/varieties-update.php       | 45 ++++++++++++++++++++++
 //   1 file changed, 45 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 session_start();
 require_once '../../database.php';
 

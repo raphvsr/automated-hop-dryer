@@ -1,4 +1,5 @@
-<!-- //                file user-edit.php              
+<?php
+//                file user-edit.php              
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -13,9 +14,8 @@
 //   raspberry pi/web/backend/php/api/user-edit.php | 34 ++++++++++++++++++++++++++
 //   1 file changed, 34 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 include "../../database.php";
 session_start();
 $sql = "UPDATE users SET username = ?, password_hash = ?, role = ? WHERE id = ?";

@@ -1,0 +1,140 @@
+[2025-05-27 09:18:29] === New Login Request ===
+[2025-05-27 09:18:29] Request Method: POST
+[2025-05-27 09:18:29] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+[2025-05-27 09:18:29] Remote IP: ::1
+[2025-05-27 09:18:29] Request URI: /skl-project/raspberry_pi/web/backend/php/login-process.php
+[2025-05-27 09:18:29] Session ID: 4tl7hjk8ubttbkdvtkpnhj0ssc
+[2025-05-27 09:18:29] POST Data Received:
+[2025-05-27 09:18:29] Username: admin
+[2025-05-27 09:18:29] Password field: SET (hidden)
+[2025-05-27 09:18:29] All POST fields: username, password
+[2025-05-27 09:18:29] Processing login for username: admin
+[2025-05-27 09:18:29] Query executed. Rows found: 1
+[2025-05-27 09:18:29] User found. Role: 1
+[2025-05-27 09:18:29] Password verification result: TRUE
+[2025-05-27 09:18:29] Login successful! Session data set.
+[2025-05-27 09:18:29] Session username: admin
+[2025-05-27 09:18:29] Session admin: 1
+[2025-05-27 09:18:29] Final session status: Active
+[2025-05-27 09:18:29] === End of Request ===
+
+[2025-05-27 09:18:48] === New Login Request ===
+[2025-05-27 09:18:48] Request Method: POST
+[2025-05-27 09:18:48] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+[2025-05-27 09:18:48] Remote IP: ::1
+[2025-05-27 09:18:48] Request URI: /skl-project/raspberry_pi/web/backend/php/login-process.php
+[2025-05-27 09:18:48] Session ID: 4tl7hjk8ubttbkdvtkpnhj0ssc
+[2025-05-27 09:18:48] POST Data Received:
+[2025-05-27 09:18:48] Username: admin
+[2025-05-27 09:18:48] Password field: SET (hidden)
+[2025-05-27 09:18:48] All POST fields: username, password
+[2025-05-27 09:18:48] Processing login for username: admin
+[2025-05-27 09:18:48] Query executed. Rows found: 1
+[2025-05-27 09:18:48] User found. Role: 1
+[2025-05-27 09:18:48] Password verification result: TRUE
+[2025-05-27 09:18:48] Login successful! Session data set.
+[2025-05-27 09:18:48] Session username: admin
+[2025-05-27 09:18:48] Session admin: 1
+[2025-05-27 09:18:48] Final session status: Active
+[2025-05-27 09:18:48] === End of Request ===
+
+[2025-05-27 09:21:16] === New Login Request ===
+[2025-05-27 09:21:16] Request Method: POST
+[2025-05-27 09:21:16] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+[2025-05-27 09:21:16] Remote IP: ::1
+[2025-05-27 09:21:16] Request URI: /skl-project/raspberry_pi/web/backend/php/login-process.php
+[2025-05-27 09:21:16] Session ID: l9tqfb2slv47ucd151c1oi0deq
+[2025-05-27 09:21:16] POST Data Received:
+[2025-05-27 09:21:16] Username: admin
+[2025-05-27 09:21:16] Password field: SET (hidden)
+[2025-05-27 09:21:16] All POST fields: username, password
+[2025-05-27 09:21:16] Processing login for username: admin
+[2025-05-27 09:21:16] Query executed. Rows found: 1
+[2025-05-27 09:21:16] User found. Role: 1
+[2025-05-27 09:21:16] Password verification result: TRUE
+[2025-05-27 09:21:16] Login successful! Session data set.
+[2025-05-27 09:21:16] Session username: admin
+[2025-05-27 09:21:16] Session admin: 1
+[2025-05-27 09:21:16] Final session status: Active
+[2025-05-27 09:21:16] === End of Request ===
+
+[2025-05-27 09:21:24] === New Login Request ===
+[2025-05-27 09:21:24] Request Method: POST
+[2025-05-27 09:21:24] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+[2025-05-27 09:21:24] Remote IP: ::1
+[2025-05-27 09:21:24] Request URI: /skl-project/raspberry_pi/web/backend/php/login-process.php
+[2025-05-27 09:21:24] Session ID: l9tqfb2slv47ucd151c1oi0deq
+[2025-05-27 09:21:24] POST Data Received:
+[2025-05-27 09:21:25] Username: admin
+[2025-05-27 09:21:25] Password field: SET (hidden)
+[2025-05-27 09:21:25] All POST fields: username, password
+[2025-05-27 09:21:25] Processing login for username: admin
+[2025-05-27 09:21:25] Query executed. Rows found: 1
+[2025-05-27 09:21:25] User found. Role: 1
+[2025-05-27 09:21:25] Password verification result: TRUE
+[2025-05-27 09:21:25] Login successful! Session data set.
+[2025-05-27 09:21:25] Session username: admin
+[2025-05-27 09:21:25] Session admin: 1
+[2025-05-27 09:21:25] Final session status: Active
+[2025-05-27 09:21:25] === End of Request ===
+
+[2025-05-27 09:21:58] === New Login Request ===
+[2025-05-27 09:21:58] Request Method: POST
+[2025-05-27 09:21:58] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+[2025-05-27 09:21:58] Remote IP: ::1
+[2025-05-27 09:21:58] Request URI: /skl-project/raspberry_pi/web/backend/php/login-process.php
+[2025-05-27 09:21:58] Session ID: i175knkpg50gbhggmv093c925n
+[2025-05-27 09:21:58] POST Data Received:
+[2025-05-27 09:21:58] Username: admin
+[2025-05-27 09:21:58] Password field: SET (hidden)
+[2025-05-27 09:21:58] All POST fields: username, password
+[2025-05-27 09:21:58] Processing login for username: admin
+[2025-05-27 09:21:58] Query executed. Rows found: 1
+[2025-05-27 09:21:58] User found. Role: 1
+[2025-05-27 09:21:58] Password verification result: TRUE
+[2025-05-27 09:21:58] Login successful! Session data set.
+[2025-05-27 09:21:58] Session username: admin
+[2025-05-27 09:21:58] Session admin: 1
+[2025-05-27 09:21:58] Final session status: Active
+[2025-05-27 09:21:58] === End of Request ===
+
+[2025-05-27 09:23:33] === New Login Request ===
+[2025-05-27 09:23:33] Request Method: POST
+[2025-05-27 09:23:33] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+[2025-05-27 09:23:33] Remote IP: ::1
+[2025-05-27 09:23:33] Request URI: /skl-project/raspberry_pi/web/backend/php/login-process.php
+[2025-05-27 09:23:33] Session ID: dl097bu8rlim3gfra1em76udc1
+[2025-05-27 09:23:33] POST Data Received:
+[2025-05-27 09:23:33] Username: admin
+[2025-05-27 09:23:33] Password field: SET (hidden)
+[2025-05-27 09:23:33] All POST fields: username, password
+[2025-05-27 09:23:33] Processing login for username: admin
+[2025-05-27 09:23:33] Query executed. Rows found: 1
+[2025-05-27 09:23:33] User found. Role: 1
+[2025-05-27 09:23:33] Password verification result: TRUE
+[2025-05-27 09:23:33] Login successful! Session data set.
+[2025-05-27 09:23:33] Session username: admin
+[2025-05-27 09:23:33] Session admin: 1
+[2025-05-27 09:23:33] Final session status: Active
+[2025-05-27 09:23:33] === End of Request ===
+
+[2025-05-27 09:24:28] === New Login Request ===
+[2025-05-27 09:24:28] Request Method: POST
+[2025-05-27 09:24:28] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+[2025-05-27 09:24:28] Remote IP: ::1
+[2025-05-27 09:24:28] Request URI: /skl-project/raspberry_pi/web/backend/php/login-process.php
+[2025-05-27 09:24:28] Session ID: oce00n4st73mn6i7rrj0f4alfl
+[2025-05-27 09:24:28] POST Data Received:
+[2025-05-27 09:24:28] Username: admin
+[2025-05-27 09:24:28] Password field: SET (hidden)
+[2025-05-27 09:24:28] All POST fields: username, password
+[2025-05-27 09:24:28] Processing login for username: admin
+[2025-05-27 09:24:28] Query executed. Rows found: 1
+[2025-05-27 09:24:28] User found. Role: 1
+[2025-05-27 09:24:28] Password verification result: TRUE
+[2025-05-27 09:24:28] Login successful! Session data set.
+[2025-05-27 09:24:28] Session username: admin
+[2025-05-27 09:24:28] Session admin: 1
+[2025-05-27 09:24:28] Final session status: Active
+[2025-05-27 09:24:28] === End of Request ===
+

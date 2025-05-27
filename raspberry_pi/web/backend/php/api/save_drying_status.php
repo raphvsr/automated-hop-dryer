@@ -1,4 +1,6 @@
-<!-- //           file save_drying_status.php          
+
+<?php
+//           file save_drying_status.php          
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -38,9 +40,8 @@
 //   web/backend/script/start_drying.php | 1 +
 //   1 file changed, 1 insertion(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 header('Content-Type: application/json');
 include './classes/dryingControl.php';
 

@@ -1,4 +1,6 @@
-<!-- //              file start_drying.php             
+
+<?php
+//              file start_drying.php             
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -58,9 +60,8 @@
 //   web/backend/script/start_drying.php | 1 +
 //   1 file changed, 1 insertion(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 include '../classes/dryingControl.php';
 $file_path = $_SERVER['DOCUMENT_ROOT'] . '/skl-project/raspberry_pi/web/config/config-drying.json';
 

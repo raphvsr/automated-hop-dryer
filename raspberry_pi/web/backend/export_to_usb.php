@@ -1,4 +1,5 @@
-<!-- //              file export_to_usb.php            
+<?php
+//              file export_to_usb.php            
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -16,9 +17,8 @@
 //   raspberry pi/web/backend/export_to_usb.php | 31 ++++++++++++++++++++++++++++++
 //   1 file changed, 31 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 header('Content-Type: application/json');
 
 $data = json_decode(file_get_contents('php://input'), true);

@@ -1,4 +1,5 @@
-<!-- //               file sensor_data.php             
+<?php
+//               file sensor_data.php             
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -27,9 +28,8 @@
 //   web/backend/php/classes/sensor_data.php | 144 ++++++++++++++++++++++++++++++++
 //   1 file changed, 144 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 include '../database.php';
 
 class sensorData {

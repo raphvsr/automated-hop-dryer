@@ -1,4 +1,6 @@
-<!-- //                file rtc-sync.php               
+
+<?php
+//                file rtc-sync.php               
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -33,9 +35,8 @@
 //   raspberry pi/web/backend/php/api/rtc-sync.php | 75 +++++++++++++++++++++++++++
 //   1 file changed, 75 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 header('Content-Type: application/json');
 
 // Check if the script is executed as root

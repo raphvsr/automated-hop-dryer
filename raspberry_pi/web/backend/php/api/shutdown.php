@@ -1,4 +1,6 @@
-<!-- //                file shutdown.php               
+
+<?php
+//                file shutdown.php               
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -31,9 +33,8 @@
 //   web/backend/php/api/shutdown.php | 7 +++++++
 //   1 file changed, 7 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   shell_exec('sudo /sbin/shutdown -h now');
 

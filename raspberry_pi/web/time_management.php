@@ -1,4 +1,5 @@
-<!-- //             file time_management.php           
+<?php
+//             file time_management.php           
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -32,9 +33,8 @@
 //   raspberry pi/web/time_management.php | 44 ++++++++++++++++++++++++++++++++++++
 //   1 file changed, 44 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: login.php');

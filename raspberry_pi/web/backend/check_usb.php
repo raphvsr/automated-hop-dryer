@@ -1,4 +1,5 @@
-<!-- //                file check_usb.php              
+<?php
+//                file check_usb.php              
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -12,9 +13,8 @@
 //   raspberry pi/web/backend/check_usb.php | 16 ++++++++++++++++
 //   1 file changed, 16 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 header('Content-Type: application/json');
 
 function getUsbDevices()

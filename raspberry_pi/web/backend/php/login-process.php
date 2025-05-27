@@ -1,4 +1,5 @@
-<!-- //              file login-process.php            
+<?php
+//              file login-process.php            
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -45,9 +46,8 @@
 //   backend/php/login-process.php | 22 ++++++++++++++++++++++
 //   1 file changed, 22 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 session_start();
 include '../database.php';
 

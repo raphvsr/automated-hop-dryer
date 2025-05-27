@@ -1,4 +1,5 @@
-<!-- //            file varieties-delete.php           
+<?php
+//            file varieties-delete.php           
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -13,9 +14,8 @@
 //   .../web/backend/php/api/varieties-delete.php       | 37 ++++++++++++++++++++++
 //   1 file changed, 37 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 session_start();
 require_once '../../database.php';
 

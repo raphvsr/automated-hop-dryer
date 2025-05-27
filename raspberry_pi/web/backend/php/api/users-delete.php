@@ -1,4 +1,5 @@
-<!-- //              file users-delete.php             
+<?php
+//              file users-delete.php             
 // ===============================================
 //          Original Author: fateh kabbani        
 // ===============================================
@@ -13,9 +14,8 @@
 //   raspberry pi/web/backend/php/api/users-delete.php | 64 +++++++++++++++++++++++
 //   1 file changed, 64 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 include '../../database.php';
 session_start();
 

@@ -1,4 +1,5 @@
-<!-- //            file drying_campaigns.php           
+<?php
+//            file drying_campaigns.php           
 // ===============================================
 //        Original Author: Romain Provencel       
 // ===============================================
@@ -19,9 +20,8 @@
 //   web/backend/php/classes/drying_campaigns.php | 158 +++++++++++++++++++++++++++
 //   1 file changed, 158 insertions(+)
 //
-// ============================================================ -->
+// ============================================================
 
-<?php
 include '../database.php';
 
 class DryingCampaigns {

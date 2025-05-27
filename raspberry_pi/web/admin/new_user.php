@@ -1,3 +1,4 @@
+<?php
 //                file new_user.php               
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -28,6 +29,7 @@
 //   1 file changed, 94 insertions(+)
 //
 // ============================================================
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -105,5 +107,4 @@
   <script src="https://kit.fontawesome.com/0e4bc9cea5.js" crossorigin="anonymous"></script>
   <script src="src/js/new_user.js"></script>
 </body>
-
 </html>
