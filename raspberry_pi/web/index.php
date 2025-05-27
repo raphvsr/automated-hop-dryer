@@ -98,9 +98,9 @@ if (!isset($_SESSION['username'])) {
     </div>
     <div class="section">
       <h3>Contrôle du Séchage</h3>
+      <p id="dryingStatus">État : En attente</p>
       <button id="startDrying" class="btn">Démarrer le Séchage</button>
       <button id="stopDrying" class="btn">Arrêter le Séchage</button>
-      <p id="dryingStatus">État : En attente</p>
     </div>
     <div class="section">
       <h3>Visualisation des Données de Séchage</h3>
