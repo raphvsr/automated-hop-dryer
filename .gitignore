@@ -1,3 +1,4 @@
 /raspberry_pi/web/admin/data/*
 .vscode/*
 /raspberry_pi/web/backend/.env
+*.env
