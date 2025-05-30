@@ -1,3 +1,4 @@
+<?php
 //             file time_management.php           
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -34,7 +35,6 @@
 //
 // ============================================================
 
-<?php
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: login.php');
@@ -66,7 +66,7 @@ if (!isset($_SESSION['username'])) {
       </div>
 
       <div class="manual-time">
-        <h3>Mettre à jour l'heure manuellement</h3>
+        <h3>Mettre à jour l'heure manuellement du système et RTC</h3>
         <div class="manual-time-input-container">
           <input type="text" id="manual-time-input" placeholder="JJ-MM-AAAA HH:MM:SS">
           <button class="btn" id="setManualTime">Mettre à jour</button>

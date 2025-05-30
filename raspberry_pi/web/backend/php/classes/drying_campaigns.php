@@ -1,3 +1,4 @@
+<?php
 //            file drying_campaigns.php           
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -21,7 +22,6 @@
 //
 // ============================================================
 
-<?php
 include '../database.php';
 
 class DryingCampaigns {

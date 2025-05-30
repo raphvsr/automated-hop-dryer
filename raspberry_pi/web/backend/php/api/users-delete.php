@@ -1,3 +1,4 @@
+<?php
 //              file users-delete.php             
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -15,7 +16,6 @@
 //
 // ============================================================
 
-<?php
 include '../../database.php';
 session_start();
 

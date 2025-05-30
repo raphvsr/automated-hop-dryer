@@ -1,3 +1,5 @@
+
+<?php
 //            file get_drying_status.php          
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -36,7 +38,6 @@
 //
 // ============================================================
 
-<?php
 header('Content-Type: application/json');
 include '../classes/dryingControl.php';
 

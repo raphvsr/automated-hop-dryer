@@ -1,3 +1,4 @@
+<?php
 //                file database.php               
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -28,7 +29,6 @@
 //
 // ============================================================
 
-<?php
 $dotenv = parse_ini_file(__DIR__ . '/.env', true);
 $host = $dotenv['DB_HOST'];
 $db = $dotenv['DB_DATABASE'];

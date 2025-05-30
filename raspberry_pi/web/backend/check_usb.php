@@ -1,3 +1,4 @@
+<?php
 //                file check_usb.php              
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -14,7 +15,6 @@
 //
 // ============================================================
 
-<?php
 header('Content-Type: application/json');
 
 function getUsbDevices()

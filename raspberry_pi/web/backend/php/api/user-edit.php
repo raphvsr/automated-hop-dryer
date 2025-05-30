@@ -1,3 +1,4 @@
+<?php
 //                file user-edit.php              
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -15,7 +16,6 @@
 //
 // ============================================================
 
-<?php
 include "../../database.php";
 session_start();
 $sql = "UPDATE users SET username = ?, password_hash = ?, role = ? WHERE id = ?";

@@ -1,3 +1,4 @@
+<?php
 //              file dryingControl.php            
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -45,7 +46,6 @@
 //
 // ============================================================
 
-<?php
 class DryingControl
 {
   private $pythonScriptPath;

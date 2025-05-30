@@ -1,3 +1,4 @@
+<?php
 //              file export_to_usb.php            
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -18,7 +19,6 @@
 //
 // ============================================================
 
-<?php
 header('Content-Type: application/json');
 
 $data = json_decode(file_get_contents('php://input'), true);

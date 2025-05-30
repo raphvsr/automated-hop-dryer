@@ -1,3 +1,4 @@
+<?php
 //            file varieties-update.php           
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -15,7 +16,6 @@
 //
 // ============================================================
 
-<?php
 session_start();
 require_once '../../database.php';
 

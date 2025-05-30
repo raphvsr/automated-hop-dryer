@@ -1,3 +1,4 @@
+<?php
 //              file login-process.php            
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -47,7 +48,6 @@
 //
 // ============================================================
 
-<?php
 session_start();
 include '../database.php';
 

@@ -1,3 +1,5 @@
+
+<?php
 //                 file sidebar.php               
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -18,7 +20,6 @@
 //
 // ============================================================
 
-<?php
 function getCurrentPage()
 {
   $currentFile = basename($_SERVER['PHP_SELF']);

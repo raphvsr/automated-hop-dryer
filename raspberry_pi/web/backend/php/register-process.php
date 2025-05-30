@@ -1,3 +1,4 @@
+<?php
 //            file register-process.php           
 // ===============================================
 //          Original Author: fateh kabbani        
@@ -34,8 +35,6 @@
 //   1 file changed, 0 insertions(+), 0 deletions(-)
 //
 // ============================================================
-
-<?php
 
 include '../database.php';
 

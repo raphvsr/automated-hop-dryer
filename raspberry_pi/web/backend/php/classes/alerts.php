@@ -1,3 +1,4 @@
+<?php
 //                 file alerts.php                
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -17,7 +18,6 @@
 //
 // ============================================================
 
-<?php
 include '../database.php';
 
 class alerts {

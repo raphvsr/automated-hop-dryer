@@ -1,3 +1,5 @@
+
+<?php
 //               file get_config.php              
 // ===============================================
 //         Original Author: Raphael Vasseur       
@@ -11,7 +13,6 @@
 //
 // ============================================================
 
-<?php
 $configPath = __DIR__ . '/../../../config/config-drying.json';
 
 if (file_exists($configPath)) {

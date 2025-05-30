@@ -1,3 +1,5 @@
+
+<?php
 //                file rtc-sync.php               
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -34,9 +36,6 @@
 //   1 file changed, 75 insertions(+)
 //
 // ============================================================
-
-<?php
-// api/rtc_sync.php - Web adapted version
 
 header('Content-Type: application/json');
 
@@ -129,6 +128,9 @@ switch ($action) {
         $result = execCommand("sudo date --set=\"$manualTimeFormatted\"");
         
         if ($result['success']) {
+            // Synchronize system time to RTC
+            $syncRtcResult = execCommand("sudo hwclock -w");
+
             echo json_encode([
                 'success' => true,
                 'message' => 'Manual time set successfully',

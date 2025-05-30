@@ -1,3 +1,4 @@
+<?php
 //               file sensor_data.php             
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -29,7 +30,6 @@
 //
 // ============================================================
 
-<?php
 include '../database.php';
 
 class sensorData {

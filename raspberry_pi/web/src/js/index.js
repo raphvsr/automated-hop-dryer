@@ -1,6 +1,6 @@
-//                  file index.js                 
+//                  file index.js
 // ===============================================
-//          Original Author: fateh kabbani        
+//          Original Author: fateh kabbani
 // ===============================================
 
 // COMMIT HISTORY:

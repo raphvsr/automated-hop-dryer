@@ -1,3 +1,5 @@
+
+<?php
 //              file get_varieties.php            
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -11,7 +13,6 @@
 //
 // ============================================================
 
-<?php
 session_start();
 require_once '../../database.php';
 

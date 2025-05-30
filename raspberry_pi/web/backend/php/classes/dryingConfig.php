@@ -1,3 +1,4 @@
+<?php
 //              file dryingConfig.php             
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -33,7 +34,6 @@
 //
 // ============================================================
 
-<?php
 include '../database.php';
 
 class DryingConfig

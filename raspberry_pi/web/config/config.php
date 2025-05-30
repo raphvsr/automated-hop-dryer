@@ -1,3 +1,4 @@
+<?php
 //                 file config.php                
 // ===============================================
 //        Original Author: Romain Provencel       
@@ -29,6 +30,5 @@
 //
 // ============================================================
 
-<?php
 define('API', "http://localhost:80/skl-project/raspberry%20pi/web/backend/api");
 ?>
