@@ -3,6 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // window.dashboardManager = new DashboardManager();
   console.log('Dashboard initialized');
 });
+// chart 1
+const timeLabels = [
+
+];
+
+const dateLabels = [
+  '01/01/2000', '01/01/2002', '01/01/2004', '01/01/2006', '01/01/2008',
+  '01/01/2010', '01/01/2012', '01/01/2014', '01/01/2016', '01/01/2018',
+  '01/01/2020', '01/01/2022', '01/01/2024'
+];
+
 // let variety = fetch('getVariety');
 fetch('backend/getVariety.php', {
   method: 'POST',

@@ -2,3 +2,4 @@
 .vscode/*
 /raspberry_pi/web/backend/.env
 *.env
+select.md
