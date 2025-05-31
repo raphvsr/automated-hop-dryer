@@ -14,9 +14,7 @@ try {
   $etage = isset($_GET['etage']) ? $_GET['etage'] : null;
   $response = ['status' => 'success', 'data' => []];
   switch ($chartType) {
-    case 'historique':
-      $response['data'] = getHistoricalData($conn, $variety, $startDate, $endDate, $etage);
-      break;
+
 
     case 'historique_1er_chargement':
       $response['data'] = getFirstChargment($conn, $variety, $startDate, $endDate, $etage, $campaignId);
@@ -34,7 +32,8 @@ try {
       break;
 
     default:
-      $response['data'] = getHistoricalData($conn, $variety, $startDate, $endDate, $etage);
+      $response['data'] = getStatistics($conn, $variety);
+      break;
   }
 
   echo json_encode($response);
@@ -175,54 +174,6 @@ function getFirstChargment($conn, $variety, $startDate, $endDate, $etage, $campa
       'error' => 'Database error: ' . $e->getMessage()
     );
   }
-}
-// "Variété historique séchage 1er chargement"
-// Simplified function for debugging
-
-
-function getHistoricalData($conn, $variety = null, $startDate = null, $endDate = null, $etage = null, $campaignId = null)
-{
-  $sql = "
-      select * from etages e
-      INNER JOIN drying_cycles dc ON dc.id = e.cycle_id
-      WHERE 1=1
-    ";
-
-  $params = [];
-  $types = "";
-  if ($etage) {
-    $sql .= " AND e.floor_number = ?";
-    $params[] = $etage;
-    $types = "s";
-  }
-
-  if ($campaignId) {
-    $sql .= " AND dc.campaign_id = ?";
-    $params[] = $campaignId;
-    $types = "i";
-  }
-
-
-  if ($variety) {
-    $sql .= " AND e.variety_name = ?";
-    $params[] = $variety;
-    $types .= "s";
-  }
-
-  if ($startDate) {
-    $sql .= " AND dc.cycle_date >= ?";
-    $params[] = $startDate;
-    $types .= "s";
-  }
-
-  if ($endDate) {
-    $sql .= " AND dc.cycle_date <= ?";
-    $params[] = $endDate;
-    $types .= "s";
-  }
-
-  $sql .= " AND cycle_status = 'completed' ORDER BY  dc.cycle_date";
-  return executeQuery($conn, $sql, $params, $types);
 }
 
 
