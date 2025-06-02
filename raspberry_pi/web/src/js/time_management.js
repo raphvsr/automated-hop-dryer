@@ -1,7 +1,9 @@
-//             file time_management.js            
+//             file time_management.js
 // ===============================================
-//        Original Author: Romain Provencel       
+//        Original Author: Romain Provencel
 // ===============================================
+
+const { act } = require("react");
 
 // COMMIT HISTORY:
 // ============================================================
@@ -72,7 +74,7 @@ $(document).ready(function () {
 
   // Fonctions
   function refreshTime() {
-    $.get("api/rtc_sync.php?action=get_time")
+    $.post("backend/php/api/rtc_sync.php", { action: "get_times" })
       .done(updateTimeDisplay)
       .fail(showError);
   }
@@ -93,7 +95,10 @@ $(document).ready(function () {
       return;
     }
 
-    $.post(`api/rtc_sync.php?action=${action}`, postData)
+    $.post("backend/php/api/rtc_sync.php", {
+      action: action,
+      datetime: postData.datetime,
+    })
       .done(function (data) {
         if (data.error) showError(data);
         else {
