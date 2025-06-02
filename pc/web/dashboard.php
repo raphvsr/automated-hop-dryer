@@ -70,7 +70,6 @@
         </select>
       </div>
       <!-- submit button -->
-      <button type="submit" class="btn btn-primary">Filtrer</button>
     </form>
   </section>
 
@@ -89,14 +88,7 @@
         <h2>Variété date N°chargement</h2>
         <canvas id="chart2"></canvas>
       </div>
-      <div class="graph-container">
-        <h2>Variété date - tous les paniers</h2>
-        <canvas id="chart3"></canvas>
-      </div>
-      <div class="graph-container">
-        <h2>Durée séchage par panier</h2>
-        <canvas id="chart4"></canvas>
-      </div>
+
     </section>
 
     <!-- Tableau des statistiques -->

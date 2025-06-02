@@ -1,6 +1,6 @@
 <?php
 
-$dotenv = parse_ini_file('C:\xampp\htdocs\skl-project\raspberry_pi\web\backend\.env', true);
+$dotenv = parse_ini_file('C:\xampp\htdocs\skl-project\pc\.env', true);
 $host = $dotenv['DB_HOST'];
 $db = $dotenv['DB_DATABASE_PC'];
 $user = $dotenv['DB_USERNAME'];
