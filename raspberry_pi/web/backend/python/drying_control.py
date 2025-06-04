@@ -1,6 +1,6 @@
-#              file drying_control.py             
+#              file drying_control.py
 # ================================================
-#        Original Author: Romain Provencel        
+#        Original Author: Romain Provencel
 # ================================================
 
 # COMMIT HISTORY:
@@ -56,54 +56,63 @@
 #   1 file changed, 1 insertion(+)
 #
 # ============================================================
-
 import RPi.GPIO as GPIO
+import time
+import json
 import requests
 import sys, os
-import json
-import time
 from threading import Timer
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../software')))
+
+from etage_update import update_etage
+
+# === CONFIG ===
+BtnPin = 7
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../config")))
 from config import API, RELAY_PIN, DEFAULT_DRYING_TIME
 
 GPIO.setmode(GPIO.BCM)
+
+# === Setup Buttons and Relays ===
+GPIO.setup(BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(RELAY_PIN, GPIO.OUT)
 
 CONFIG_PATH = "/skl-project/raspberry_pi/web/config/config-drying.json"
 
+# === Drying Logic ===
 def load_drying_config():
     try:
         with open(CONFIG_PATH) as f:
             config = json.load(f)
             return config.get("drying-time", DEFAULT_DRYING_TIME)
     except Exception as e:
-        print(f"Error loading config: {e}")
+        print(f"Erreur lors du chargement de la configuration : {e}")
         return DEFAULT_DRYING_TIME
 
 def start_drying():
     try:
         GPIO.output(RELAY_PIN, GPIO.HIGH)
-        print("Drying started: Burner on")
+        print("Séchage en cours : Brûleur allumé")
         sys.stdout.flush()
         save_status()
-        
+
         drying_time_minutes = load_drying_config()
-        
         drying_time_seconds = drying_time_minutes * 60
+
         stop_timer = Timer(drying_time_seconds, stop_drying)
         stop_timer.start()
-        
+
     except KeyboardInterrupt:
         GPIO.output(RELAY_PIN, GPIO.LOW)
-        print("Drying Stopped: Burner Off")
+        print("Séchage arrêté : Brûleur éteint")
         sys.stdout.flush()
         save_status()
         GPIO.cleanup()
 
 def stop_drying():
     GPIO.output(RELAY_PIN, GPIO.LOW)
-    print("Drying Stopped: Burner Off")
+    print("Séchage arrêté : Brûleur éteint")
     save_status()
 
 def get_status():
@@ -111,4 +120,34 @@ def get_status():
 
 def save_status():
     status = get_status()
-    requests.post(API + '/get_drying_status', json={'status': status})
+    try:
+        requests.post(API + '/get_drying_status', json={'status': status})
+    except Exception as e:
+        print(f"Erreur lors de l'envoi du statut : {e}")
+
+# === Callback for Button Press ===
+def button_pressed(channel):
+    print("Bouton pressé!")
+    update_etage()
+
+# === Main Program ===
+def main():
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "start":
+            start_drying()
+        elif sys.argv[1] == "stop":
+            stop_drying()
+        else:
+            print("Commande inconnue")
+            try:
+                print("Système prêt. En attente d'entrée...")
+                GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=button_pressed, bouncetime=200)
+                while True:
+                    time.sleep(1)
+            except KeyboardInterrupt:
+                print("Sortie...")
+            finally:
+                GPIO.cleanup()
+
+if __name__ == '__main__':
+    main()

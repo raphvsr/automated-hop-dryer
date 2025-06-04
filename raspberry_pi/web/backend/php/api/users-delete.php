@@ -1,7 +1,7 @@
 <?php
-//              file users-delete.php             
+//              file users-delete.php
 // ===============================================
-//          Original Author: fateh kabbani        
+//          Original Author: fateh kabbani
 // ===============================================
 
 // COMMIT HISTORY:
@@ -40,11 +40,11 @@ $currentUser = $result->fetch_assoc();
 
 
 $currentUserId = $currentUser['id'];
-
+// translate to french
 if ($currentUserId == $idToDelete) {
   echo json_encode([
     'status' => 'error',
-    'message' => 'You cannot delete yourself'
+    'message' => 'Vous ne pouvez pas supprimer votre propre compte'
   ]);
   http_response_code(403);
   exit;
@@ -59,20 +59,20 @@ try {
   if ($stmt->affected_rows > 0) {
     echo json_encode([
       'status' => 'success',
-      'message' => 'User deleted successfully'
+      'message' => 'Utilisateur supprimé avec succès'
     ]);
     http_response_code(200);
   } else {
     echo json_encode([
       'status' => 'error',
-      'message' => 'No user was deleted'
+      'message' => 'Aucun utilisateur n\'a été supprimé'
     ]);
     http_response_code(404);
   }
 } catch (Exception $e) {
   echo json_encode([
     'status' => 'error',
-    'message' => 'Failed to delete user'
+    'message' => 'Échec de la suppression de l\'utilisateur'
   ]);
   http_response_code(500);
 } finally {

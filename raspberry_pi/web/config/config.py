@@ -1,6 +1,6 @@
-#                  file config.py                 
+#                  file config.py
 # ================================================
-#        Original Author: Romain Provencel        
+#        Original Author: Romain Provencel
 # ================================================
 
 # COMMIT HISTORY:
@@ -40,8 +40,6 @@
 #
 # ============================================================
 
-API = 'http://localhost:80/skl-project/raspberry%20pi/web/backend/api'
-RELAY_PIN = 17
+API = 'http://localhost:80/skl-project/raspberry_pi/web/backend/php/api'
+RELAY_PIN = 63
 DEFAULT_DRYING_TIME = 540
-
-

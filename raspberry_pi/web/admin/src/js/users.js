@@ -1,6 +1,6 @@
-//                  file users.js                 
+//                  file users.js
 // ===============================================
-//          Original Author: fateh kabbani        
+//          Original Author: fateh kabbani
 // ===============================================
 
 // COMMIT HISTORY:
@@ -28,13 +28,13 @@ function deleteUser(id) {
       .done(function (response) {
         const data = JSON.parse(response);
         if (data.status === 'success') {
-          $('#user-' + id).remove();
+          $('#user-' + id).remove(); // ex: user-1
         } else {
           alert(data.message);
         }
       })
       .fail(function () {
-        alert('Erreur lors de la requête AJAX.');
+        alert('Erreur, l\'utilisateur n\'a pas été supprimé.');
       });
   }
 }

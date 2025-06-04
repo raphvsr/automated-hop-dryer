@@ -88,20 +88,22 @@ function getPerformanceMetrics($conn, $variety = null)
 {
   $stats = [];
 
-  // Performance comparison across campaigns
+  // Performance comparison across campaigns - REFACTORED without c.total_cycles
   $performanceSql = "
         SELECT
             c.id as campaign_id,
             c.start_date,
             c.end_date,
-            c.total_cycles as campaign_total_cycles,
             e.variety_name,
             COUNT(DISTINCT dc.id) as actual_cycles,
             ROUND(AVG(dc.total_cycle_minutes / 60.0), 2) as avg_cycle_duration_hours,
             ROUND(AVG(dc.total_burner_minutes / 60.0), 2) as avg_burner_duration_hours,
             ROUND(MIN(dc.total_cycle_minutes / 60.0), 2) as min_cycle_duration_hours,
             ROUND(MAX(dc.total_cycle_minutes / 60.0), 2) as max_cycle_duration_hours,
-            ROUND(STDDEV(dc.total_cycle_minutes / 60.0), 2) as cycle_duration_stddev
+            ROUND(STDDEV(dc.total_cycle_minutes / 60.0), 2) as cycle_duration_stddev,
+            -- Additional calculated metrics to replace c.total_cycles
+            DATEDIFF(c.end_date, c.start_date) as campaign_duration_days,
+            ROUND(COUNT(DISTINCT dc.id) / NULLIF(DATEDIFF(c.end_date, c.start_date), 0), 2) as cycles_per_day
         FROM campaigns c
         JOIN drying_cycles dc ON dc.campaign_id = c.id
         JOIN etages e ON e.cycle_id = dc.id
@@ -109,12 +111,12 @@ function getPerformanceMetrics($conn, $variety = null)
 
   if ($variety) {
     $performanceSql .= " AND e.variety_name = ?";
-    $performanceSql .= " GROUP BY c.id, c.start_date, c.end_date, c.total_cycles, e.variety_name";
+    $performanceSql .= " GROUP BY c.id, c.start_date, c.end_date, e.variety_name";
     $performanceSql .= " ORDER BY c.start_date DESC";
     $stmt = $conn->prepare($performanceSql);
     $stmt->bind_param('s', $variety);
   } else {
-    $performanceSql .= " GROUP BY c.id, c.start_date, c.end_date, c.total_cycles, e.variety_name";
+    $performanceSql .= " GROUP BY c.id, c.start_date, c.end_date, e.variety_name";
     $performanceSql .= " ORDER BY c.start_date DESC, e.variety_name";
     $stmt = $conn->prepare($performanceSql);
   }
@@ -224,20 +226,31 @@ function getStatistics($conn, $variety = null)
   $result = $stmt->get_result();
   $stats['floor_stats'] = $result->fetch_assoc();
 
-  // Get campaign statistics
+  // Get campaign statistics - REFACTORED without c.total_cycles
   $campaignSql = "
     SELECT
       COUNT(DISTINCT c.id) as total_campaigns,
       MIN(c.start_date) as first_campaign,
       MAX(c.end_date) as last_campaign,
-      ROUND(AVG(c.total_cycles), 2) as avg_cycles_per_campaign
+      ROUND(AVG(campaign_cycles.cycle_count), 2) as avg_cycles_per_campaign
     FROM campaigns c
-    JOIN drying_cycles dc ON dc.campaign_id = c.id
-    JOIN etages e ON e.cycle_id = dc.id
-    WHERE 1=1";
+    JOIN (
+      SELECT
+        dc.campaign_id,
+        COUNT(DISTINCT dc.id) as cycle_count
+      FROM drying_cycles dc
+      JOIN etages e ON e.cycle_id = dc.id
+      WHERE 1=1";
 
   if ($variety) {
     $campaignSql .= " AND e.variety_name = ?";
+  }
+
+  $campaignSql .= "
+      GROUP BY dc.campaign_id
+    ) campaign_cycles ON campaign_cycles.campaign_id = c.id";
+
+  if ($variety) {
     $stmt = $conn->prepare($campaignSql);
     $stmt->bind_param('s', $variety);
   } else {
@@ -329,50 +342,7 @@ function getStatistics($conn, $variety = null)
 
   return $stats;
 }
-function renderSummaryCards($stats, $selectedVariety)
-{
-  $totalRecords = array_sum($stats['basic']['table_counts']);
-  $dryingCycles = $stats['basic']['table_counts']['Drying Cycles'] ?? 0;
-  $campaigns = $stats['basic']['table_counts']['Campaigns'] ?? 0;
-  $floorRecords = $stats['basic']['table_counts']['Etages'] ?? 0;
-  $burnerStates = $stats['basic']['table_counts']['Burner States'] ?? 0;
 
-  echo '<div class="summary-cards">';
-
-  if ($selectedVariety) {
-    echo '<div class="summary-card">
-            <h4>Total Records for ' . htmlspecialchars($selectedVariety) . '</h4>
-            <div class="value">' . $totalRecords . '</div>
-          </div>';
-  } else {
-    echo '<div class="summary-card">
-            <h4>Total Records</h4>
-            <div class="value">' . $totalRecords . '</div>
-          </div>';
-  }
-
-  echo '<div class="summary-card">
-          <h4>Drying Cycles</h4>
-          <div class="value">' . $dryingCycles . '</div>
-        </div>
-        <div class="summary-card">
-          <h4>Campaigns</h4>
-          <div class="value">' . $campaigns . '</div>
-        </div>
-        <div class="summary-card">
-          <h4>Floor Records</h4>
-          <div class="value">' . $floorRecords . '</div>
-        </div>';
-
-  if ($burnerStates > 0) {
-    echo '<div class="summary-card">
-            <h4>Burner State Records</h4>
-            <div class="value">' . $burnerStates . '</div>
-          </div>';
-  }
-
-  echo '</div>';
-}
 
 function getQualityMetrics($conn, $variety = null)
 {
@@ -389,9 +359,10 @@ function getQualityMetrics($conn, $variety = null)
             ROUND(STDDEV(dc.total_burner_minutes * 100.0 / dc.total_cycle_minutes), 2) as efficiency_consistency,
             CASE
                 WHEN STDDEV(dc.total_cycle_minutes / 60.0) < 1 THEN 'Excellent'
-                WHEN STDDEV(dc.total_cycle_minutes / 60.0) < 2 THEN 'Good'
-                WHEN STDDEV(dc.total_cycle_minutes / 60.0) < 3 THEN 'Fair'
-                ELSE 'Needs Improvement'
+                WHEN STDDEV(dc.total_cycle_minutes / 60.0) < 2 THEN 'Bien'
+                WHEN STDDEV(dc.total_cycle_minutes / 60.0) < 3 THEN 'équitable'
+                WHEN STDDEV(dc.total_cycle_minutes / 60.0) < 4 THEN 'Passable'
+                ELSE 'Besoin d\'Amélioration'
             END as consistency_rating
         FROM drying_cycles dc
         JOIN etages e ON e.cycle_id = dc.id
@@ -550,6 +521,19 @@ $varieties = getAllVarieties($conn);
 </head>
 
 <body>
+  <!-- Navigation Bar -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <span>🌿 système de séchage du houblon</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="advancedState.php" class="active">Advanced Statistics</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="container">
     <div class="header">
       <h1>🌿 Tableau de Bord des Statistiques de Séchage du Houblon</h1>
@@ -733,8 +717,7 @@ $varieties = getAllVarieties($conn);
             <th>Variété</th>
             <th>Date de Début</th>
             <th>Date de Fin</th>
-            <th>Cycles Planifiés</th>
-            <th>Cycles Réels</th>
+            <th>Cycles</th>
             <th>Durée Moyenne des Cycles (h)</th>
             <th>Durée Moyenne du Brûleur (h)</th>
             <th>Écart-Type de Durée</th>
@@ -747,7 +730,6 @@ $varieties = getAllVarieties($conn);
               <td><strong><?= htmlspecialchars($performance['variety_name']) ?></strong></td>
               <td><?= $performance['start_date'] ?></td>
               <td><?= $performance['end_date'] ?></td>
-              <td><?= $performance['campaign_total_cycles'] ?></td>
               <td><?= $performance['actual_cycles'] ?></td>
               <td><?= $performance['avg_cycle_duration_hours'] ?></td>
               <td><?= $performance['avg_burner_duration_hours'] ?></td>

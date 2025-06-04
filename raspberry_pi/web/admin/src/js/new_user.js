@@ -1,6 +1,6 @@
-//                 file new_user.js               
+//                 file new_user.js
 // ===============================================
-//          Original Author: fateh kabbani        
+//          Original Author: fateh kabbani
 // ===============================================
 
 // COMMIT HISTORY:
@@ -21,7 +21,7 @@
 //   1 file changed, 32 insertions(+)
 //
 // ============================================================
-
+//  translate to french
 function generatePassword() {
   let length = 12;
   let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#";
@@ -36,7 +36,7 @@ $('#generatePassword').click(function () {
   $('#password').val(generatePassword());
   $('#confirm-password').val($('#password').val());
   navigator.clipboard.writeText($('#password').val()).then(function () {
-    alert('Password copied to clipboard');
+    alert('Mot de passe généré et copié dans le presse-papiers');
   }, function (err) {
     console.error('Could not copy text: ', err);
   });
@@ -57,19 +57,19 @@ $('.toggle-password').click(function () {
 
 $('#new_user').click(function (e) {
   e.preventDefault();
-  
+
   const username = $('#username').val().trim();
   const password = $('#password').val();
   const confirmPassword = $('#confirm-password').val();
   const role = $('#role').val();
 
   if (!username || !password || !confirmPassword || !role) {
-    alert('All fields must be filled!');
+    alert('Tous les champs doivent être remplis !');
     return;
   }
 
   if (password !== confirmPassword) {
-    alert('Passwords do not match!');
+    alert('Les mots de passe ne correspondent pas !');
     return;
   }
 
@@ -79,12 +79,9 @@ $('#new_user').click(function (e) {
     role: role
   };
 
-  $.ajax({
-    url: '../backend/php/register-process.php',
-    method: 'POST',
-    data: formData,
-    dataType: 'json',
-    success: function(response) {
+  $.post(
+    '../backend/php/register-process.php',
+    formData, (response) => {
       if (response.status === 'success') {
         alert(response.message);
         $('#username').val('');
@@ -96,15 +93,16 @@ $('#new_user').click(function (e) {
         alert('Error: ' + response.message);
       }
     },
-    error: function(xhr, status, error) {
-      let errorMessage = 'An error occurred while creating the user.';
-      try {
-        const response = JSON.parse(xhr.responseText);
-        errorMessage = response.message || errorMessage;
-      } catch (e) {
-        console.error('Error parsing response:', e);
-      }
-      alert(errorMessage);
+    'json'
+  )
+  .fail(function(xhr, status, error) {
+    let errorMessage = 'An error occurred while creating the user.';
+    try {
+      const response = JSON.parse(xhr.responseText);
+      errorMessage = response.message || errorMessage;
+    } catch (e) {
+      console.error('Error parsing response:', e);
     }
+    alert(errorMessage);
   });
 });

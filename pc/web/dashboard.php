@@ -22,28 +22,23 @@
 </head>
 
 <body>
-  <nav class="sidebar-navigation">
-    <ul>
-      <li class="active">
-        <i class="fa fa-home"></i>
-        <span class="tooltip">Accueil</span>
-      </li>
-      <li>
-        <i class="fa fa-file-o"></i>
-        <span class="tooltip">Csv</span>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <span class="tooltip">Utilisateur</span>
-      </li>
-      <li>
-        <i class="fa fa-sliders"></i>
-        <span class="tooltip">Paramètres</span>
-      </li>
-    </ul>
+
+  <!-- Navigation Bar -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <span>🌿 système de séchage du houblon</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.php" class="active">Dashboard</a></li>
+        <li><a href="advancedState.php">Advanced Statistics</a></li>
+      </ul>
+    </div>
   </nav>
+
   <!-- Interface de filtrage pour le tableau de bord -->
   <section class="filter-section">
+    <h1>Tableau de Bord</h1>
     <form id="filter-form" class="filter-form">
       <div class="form-group">
         <label for="variety-filter">Variété :</label>
@@ -74,7 +69,6 @@
   </section>
 
   <main class="dashboard-content">
-    <h1>Tableau de Bord</h1>
 
     <!-- Conteneur pour les messages -->
     <div id="message-container"></div>

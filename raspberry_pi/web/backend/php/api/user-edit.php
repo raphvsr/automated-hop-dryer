@@ -1,7 +1,7 @@
 <?php
-//                file user-edit.php              
+//                file user-edit.php
 // ===============================================
-//          Original Author: fateh kabbani        
+//          Original Author: fateh kabbani
 // ===============================================
 
 // COMMIT HISTORY:
@@ -18,6 +18,15 @@
 
 include "../../database.php";
 session_start();
+// translate to french
+if (!$_SESSION['logged_in'] || $_SESSION['role'] !== 1) {
+  echo json_encode([
+    'status' => 'error',
+    'message' => 'Accès non autorisé'
+  ]);
+  http_response_code(403);
+  exit;
+}
 $sql = "UPDATE users SET username = ?, password_hash = ?, role = ? WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $username = $_POST['username'];
@@ -31,20 +40,20 @@ try {
   if ($stmt->affected_rows > 0) {
     echo json_encode([
       'status' => 'success',
-      'message' => 'User updated successfully'
+      'message' => 'Utilisateur mis à jour avec succès'
     ]);
     http_response_code(200);
   } else {
     echo json_encode([
       'status' => 'error',
-      'message' => 'No user was updated'
+      'message' => 'Erreur lors de la mise à jour de l\'utilisateur ou aucun changement effectué'
     ]);
     http_response_code(404);
   }
 } catch (Exception $e) {
   echo json_encode([
     'status' => 'error',
-    'message' => 'Failed to update user'
+    'message' => 'Échec de la mise à jour de l\'utilisateur'
   ]);
   http_response_code(500);
   exit;

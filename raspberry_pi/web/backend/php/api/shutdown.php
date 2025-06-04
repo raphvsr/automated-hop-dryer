@@ -1,8 +1,8 @@
 
 <?php
-//                file shutdown.php               
+//                file shutdown.php
 // ===============================================
-//        Original Author: Romain Provencel       
+//        Original Author: Romain Provencel
 // ===============================================
 
 // COMMIT HISTORY:
@@ -38,6 +38,6 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   shell_exec('sudo /sbin/shutdown -h now');
 
-  echo "The Raspberry Pi is going to shut down...";
+  echo "Le Raspberry Pi va s'éteindre...";
 }
 ?>
