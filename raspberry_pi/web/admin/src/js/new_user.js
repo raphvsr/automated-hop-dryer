@@ -1,3 +1,27 @@
+//                 file new_user.js               
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-04-01 - Add variety management functionality: implement create, update, and delete APIs with AJAX integration + changed the database - fateh kabbani
+//   raspberry pi/web/admin/src/js/new_user.js | 30 ++++++++++++++++++++----------
+//   1 file changed, 20 insertions(+), 10 deletions(-)
+//
+// 2025-03-30 - Add user creation functionality: implement form validation, AJAX submission, and backend processing - fateh kabbani
+//   raspberry pi/web/admin/src/js/new_user.js | 44 +++++++++++++++++++++++++++++++
+//   1 file changed, 44 insertions(+)
+//
+// 2025-03-29 - Refactor user management: remove admin dashboard, update links, and add new user creation functionality with password generation - fateh kabbani
+//   raspberry pi/web/admin/src/js/new_user.js | 32 +++++++++++++++++++++++++++++++
+//   1 file changed, 32 insertions(+)
+//
+// ============================================================
+
 function generatePassword() {
   let length = 12;
   let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#";

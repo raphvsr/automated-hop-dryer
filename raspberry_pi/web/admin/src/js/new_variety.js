@@ -1,3 +1,19 @@
+//               file new_variety.js              
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-04-01 - Add variety management functionality: implement create, update, and delete APIs with AJAX integration + changed the database - fateh kabbani
+//   raspberry pi/web/admin/src/js/new_variety.js | 24 ++++++++++++++++++++++++
+//   1 file changed, 24 insertions(+)
+//
+// ============================================================
+
 $('#newVarietyForm').on('submit', function (e) {
     e.preventDefault();
 

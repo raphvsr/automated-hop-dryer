@@ -1,4 +1,35 @@
 <?php
+//               file sensor_data.php             
+// ===============================================
+//        Original Author: Romain Provencel       
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-27 - . - Romain Provencel
+//   raspberry pi/web/backend/php/classes/sensor_data.php | 2 +-
+//   1 file changed, 1 insertion(+), 1 deletion(-)
+//
+// 2025-03-27 - Refactor sensor data queries to remove humidity field and optimize SQL statements - fateh kabbani
+//   .../web/backend/php/classes/sensor_data.php        | 33 ++++++++--------------
+//   1 file changed, 12 insertions(+), 21 deletions(-)
+//
+// 2025-03-20 - move the file to raspberry pi - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-20 - Refactor database interactions in sensorData and DryingCampaigns classes for improved error handling and SQL injection protection; add alerts class for managing alert data. - Romain Provencel
+//   web/backend/php/classes/sensor_data.php | 56 +++++++++++++++++++++++----------
+//   1 file changed, 39 insertions(+), 17 deletions(-)
+//
+// 2025-03-20 - Add sensorData class for managing sensor data retrieval, addition, update, and deletion - Romain Provencel
+//   web/backend/php/classes/sensor_data.php | 144 ++++++++++++++++++++++++++++++++
+//   1 file changed, 144 insertions(+)
+//
+// ============================================================
+
 include '../database.php';
 
 class sensorData {

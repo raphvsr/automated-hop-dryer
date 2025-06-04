@@ -1,4 +1,21 @@
+
 <?php
+//               file new_variety.php             
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-04-01 - Add variety management functionality: implement create, update, and delete APIs with AJAX integration + changed the database - fateh kabbani
+//   raspberry pi/web/admin/new_variety.php | 63 ++++++++++++++++++++++++++++++++++
+//   1 file changed, 63 insertions(+)
+//
+// ============================================================
+
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: ../../login.php');

@@ -1,3 +1,30 @@
+#                file sturcture.md                
+# ================================================
+#        Original Author: Romain Provencel        
+# ================================================
+
+# COMMIT HISTORY:
+# ============================================================
+# 2025-04-02 - changed folder name removed the space - fateh kabbani
+#   1 file changed, 0 insertions(+), 0 deletions(-)
+#
+# 2025-03-26 - Implement time management feature with RTC synchronization and UI enhancements - Romain Provencel
+#   raspberry pi/web/sturcture.md | 1 -
+#   1 file changed, 1 deletion(-)
+#
+# 2025-03-20 - move the file to raspberry pi - fateh kabbani
+#   1 file changed, 0 insertions(+), 0 deletions(-)
+#
+# 2025-03-13 - . - Romain Provencel
+#   web/sturcture.md | 6 ++++++
+#   1 file changed, 6 insertions(+)
+#
+# 2025-03-13 - Add drying configuration and control classes with initial database setup + structure - Romain Provencel
+#   web/sturcture.md | 41 +++++++++++++++++++++++++++++++++++++++++
+#   1 file changed, 41 insertions(+)
+#
+# ============================================================
+
 web:sechoir-houblon/
 │
 ├── backend/ # Code backend (PHP, Python, etc.)

@@ -1,4 +1,37 @@
+
 <?php
+//                  file users.php                
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-04-01 - Implement user editing functionality: add modal for editing user details and AJAX request for updates - fateh kabbani
+//   raspberry pi/web/admin/users.php | 42 ++++++++++++++++++++--------------------
+//   1 file changed, 21 insertions(+), 21 deletions(-)
+//
+// 2025-03-31 - Add user deletion functionality: implement AJAX request and backend processing for user removal - fateh kabbani
+//   raspberry pi/web/admin/users.php | 34 ++++++++++++++++++----------------
+//   1 file changed, 18 insertions(+), 16 deletions(-)
+//
+// 2025-03-30 - Refactor sidebar navigation: extract to a separate component and update links for consistency - fateh kabbani
+//   raspberry pi/web/admin/users.php | 35 +++--------------------------------
+//   1 file changed, 3 insertions(+), 32 deletions(-)
+//
+// 2025-03-29 - Refactor user management: remove admin dashboard, update links, and add new user creation functionality with password generation - fateh kabbani
+//   raspberry pi/web/admin/users.php | 112 +++++++++++++++++++++++++++++++++++++--
+//   1 file changed, 107 insertions(+), 5 deletions(-)
+//
+// 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani
+//   raspberry pi/web/admin/users.php | 44 ++++++++++++++++++++++++++++++++++++++++
+//   1 file changed, 44 insertions(+)
+//
+// ============================================================
+
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: ../../login.php');

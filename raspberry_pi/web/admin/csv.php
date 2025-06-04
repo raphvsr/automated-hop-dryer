@@ -1,4 +1,33 @@
+
 <?php
+//                   file csv.php                 
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-30 - Refactor sidebar navigation: extract to a separate component and update links for consistency - fateh kabbani
+//   raspberry pi/web/admin/csv.php | 29 +----------------------------
+//   1 file changed, 1 insertion(+), 28 deletions(-)
+//
+// 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani
+//   raspberry pi/web/{ => admin}/csv.php | 2 +-
+//   1 file changed, 1 insertion(+), 1 deletion(-)
+//
+// 2025-03-29 -  improve CSV file sorting, display the newest first - fateh kabbani
+//   raspberry pi/web/csv.php | 14 +++++++++++++-
+//   1 file changed, 13 insertions(+), 1 deletion(-)
+//
+// 2025-03-28 - Add USB device management and dashboard functionality - fateh kabbani
+//   raspberry pi/web/csv.php | 123 +++++++++++++++++++++++++++++++++++++++++++++++
+//   1 file changed, 123 insertions(+)
+//
+// ============================================================
+
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: login.php');

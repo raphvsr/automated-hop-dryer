@@ -1,5 +1,41 @@
+
 <?php
-// api/rtc_sync.php - Web adapted version
+//                file rtc-sync.php               
+// ===============================================
+//        Original Author: Romain Provencel       
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   {raspberry pi => raspberry_pi}/web/backend/php/api/rtc-sync.php | 0
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-27 - Add manual time setting feature with input validation and UI enhancements - Romain Provencel
+//   raspberry pi/web/backend/php/api/rtc-sync.php | 45 +++++++++++++++++++++++++--
+//   1 file changed, 42 insertions(+), 3 deletions(-)
+//
+// 2025-03-27 - Add manual time update feature and improve time synchronization UI - Romain Provencel
+//   raspberry pi/web/backend/php/api/rtc-sync.php | 3 +--
+//   1 file changed, 1 insertion(+), 2 deletions(-)
+//
+// 2025-03-27 - . - Romain Provencel
+//   raspberry pi/web/backend/php/api/rtc-sync.php | 2 +-
+//   1 file changed, 1 insertion(+), 1 deletion(-)
+//
+// 2025-03-27 - get time - Romain Provencel
+//   raspberry pi/web/backend/php/api/rtc-sync.php | 9 ++++++++-
+//   1 file changed, 8 insertions(+), 1 deletion(-)
+//
+// 2025-03-26 - Implement time management feature with RTC synchronization and UI enhancements - Romain Provencel
+//   raspberry pi/web/backend/php/api/rtc-sync.php | 6 ++++++
+//   1 file changed, 6 insertions(+)
+//
+// 2025-03-26 - Remove obsolete GPIO and time settings scripts; add new RTC synchronization API for improved time management. - Romain Provencel
+//   raspberry pi/web/backend/php/api/rtc-sync.php | 75 +++++++++++++++++++++++++++
+//   1 file changed, 75 insertions(+)
+//
+// ============================================================
 
 header('Content-Type: application/json');
 
@@ -92,6 +128,9 @@ switch ($action) {
         $result = execCommand("sudo date --set=\"$manualTimeFormatted\"");
         
         if ($result['success']) {
+            // Synchronize system time to RTC
+            $syncRtcResult = execCommand("sudo hwclock -w");
+
             echo json_encode([
                 'success' => true,
                 'message' => 'Manual time set successfully',

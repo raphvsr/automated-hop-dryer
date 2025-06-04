@@ -1,4 +1,18 @@
+
 <?php
+//              file get_varieties.php            
+// ===============================================
+//        Original Author: Romain Provencel       
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-03 - Add user variety selection modal and implement variety management functionality - Romain Provencel
+//   raspberry_pi/web/backend/php/api/get_varieties.php | 25 ++++++++++++++++++++++
+//   1 file changed, 25 insertions(+)
+//
+// ============================================================
+
 session_start();
 require_once '../../database.php';
 

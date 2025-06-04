@@ -1,3 +1,36 @@
+<?php
+//                file new_user.php               
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-30 - Add user creation functionality: implement form validation, AJAX submission, and backend processing - fateh kabbani
+//   raspberry pi/web/admin/new_user.php | 12 ++++++------
+//   1 file changed, 6 insertions(+), 6 deletions(-)
+//
+// 2025-03-30 - Refactor sidebar navigation: extract to a separate component and update links for consistency - fateh kabbani
+//   raspberry pi/web/admin/new_user.php | 30 ++----------------------------
+//   1 file changed, 2 insertions(+), 28 deletions(-)
+//
+// 2025-03-29 - Refactor user management: remove admin dashboard, update links, and add new user creation functionality with password generation - fateh kabbani
+//   raspberry pi/web/admin/new_user.php | 40 +++++++++++++++++++++++--------------
+//   1 file changed, 25 insertions(+), 15 deletions(-)
+//
+// 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-29 - Add user account creation page and styling - fateh kabbani
+//   raspberry pi/web/users.php | 94 ++++++++++++++++++++++++++++++++++++++++++++++
+//   1 file changed, 94 insertions(+)
+//
+// ============================================================
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,5 +107,4 @@
   <script src="https://kit.fontawesome.com/0e4bc9cea5.js" crossorigin="anonymous"></script>
   <script src="src/js/new_user.js"></script>
 </body>
-
 </html>

@@ -1,4 +1,21 @@
 <?php
+//            file varieties-delete.php           
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   {raspberry pi => raspberry_pi}/web/backend/php/api/varieties-delete.php | 0
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-04-01 - Add variety management functionality: implement create, update, and delete APIs with AJAX integration + changed the database - fateh kabbani
+//   .../web/backend/php/api/varieties-delete.php       | 37 ++++++++++++++++++++++
+//   1 file changed, 37 insertions(+)
+//
+// ============================================================
+
 session_start();
 require_once '../../database.php';
 

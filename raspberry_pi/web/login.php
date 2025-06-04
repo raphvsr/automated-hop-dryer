@@ -1,4 +1,30 @@
 <?php
+//                  file login.php                
+// ===============================================
+//          Original Author: fateh kabbani        
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-20 - move the file to raspberry pi - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-16 - Add login page styles - fateh kabbani
+//   web/login.php | 1 -
+//   1 file changed, 1 deletion(-)
+//
+// 2025-03-13 - Refactor project structure by moving backend files to a new directory and re-implementing login and registration functionality - Romain Provencel
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-13 - Add initial project structure with login and registration functionality - fateh kabbani
+//   login.php | 34 ++++++++++++++++++++++++++++++++++
+//   1 file changed, 34 insertions(+)
+//
+// ============================================================
+
 // check session
 session_start();
 if (isset($_SESSION['username'])) {

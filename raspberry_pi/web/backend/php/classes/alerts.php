@@ -1,4 +1,23 @@
 <?php
+//                 file alerts.php                
+// ===============================================
+//        Original Author: Romain Provencel       
+// ===============================================
+
+// COMMIT HISTORY:
+// ============================================================
+// 2025-04-02 - changed folder name removed the space - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-20 - move the file to raspberry pi - fateh kabbani
+//   1 file changed, 0 insertions(+), 0 deletions(-)
+//
+// 2025-03-20 - Refactor database interactions in sensorData and DryingCampaigns classes for improved error handling and SQL injection protection; add alerts class for managing alert data. - Romain Provencel
+//   web/backend/php/classes/alerts.php | 173 +++++++++++++++++++++++++++++++++++++
+//   1 file changed, 173 insertions(+)
+//
+// ============================================================
+
 include '../database.php';
 
 class alerts {

@@ -1,3 +1,30 @@
+/*              file new_user.css               */
+/* ============================================ */
+/*        Original Author: fateh kabbani        */
+/* ============================================ */
+
+/* COMMIT HISTORY: */
+/* ============================================================ */
+/* 2025-05-12 - responsive - Romain Provencel */
+/*   raspberry_pi/web/admin/src/css/new_user.css | 74 +++++++++++++++++++++-------- */
+/*   1 file changed, 54 insertions(+), 20 deletions(-) */
+/* */
+/* 2025-04-02 - changed folder name removed the space - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-29 - Refactor user management: remove admin dashboard, update links, and add new user creation functionality with password generation - fateh kabbani */
+/*   .../web/admin/src/css/{users.css => new_user.css}  | 38 ++++++++++++++++++++-- */
+/*   1 file changed, 35 insertions(+), 3 deletions(-) */
+/* */
+/* 2025-03-29 - Refactor admin dashboard and user management: move files to admin directory and update CSS/JS - fateh kabbani */
+/*   1 file changed, 0 insertions(+), 0 deletions(-) */
+/* */
+/* 2025-03-29 - Add user account creation page and styling - fateh kabbani */
+/*   raspberry pi/web/src/css/users.css | 104 +++++++++++++++++++++++++++++++++++++ */
+/*   1 file changed, 104 insertions(+) */
+/* */
+/* ============================================================ */
+
 body {
   margin: 0;
   padding: 0 20px;
