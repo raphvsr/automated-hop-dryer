@@ -65,6 +65,7 @@ from threading import Timer
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../software')))
 
 from etage_update import update_etage
+from raspberry_pi.software.main import start_monitoring
 
 # === CONFIG ===
 BtnPin = 7
@@ -98,6 +99,7 @@ def start_drying():
         save_status()
 
         drying_time_minutes = load_drying_config()
+
         drying_time_seconds = drying_time_minutes * 60
 
         stop_timer = Timer(drying_time_seconds, stop_drying)
