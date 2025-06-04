@@ -72,8 +72,10 @@ def load_etage_data():
         return False * 4
 
 
-init_csv()
 
-while True:
-    load_etage_data()
-    time.sleep(3)
+
+def start_monitoring():
+    init_csv()
+    while True:
+        load_etage_data()
+        time.sleep(3)

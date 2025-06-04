@@ -4,6 +4,8 @@ import sys, os
 import json
 import time
 from threading import Timer
+from raspberry_pi.software.main import start_monitoring
+
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../config")))
 from config import API, RELAY_PIN, DEFAULT_DRYING_TIME
@@ -28,13 +30,14 @@ def start_drying():
         print("Drying started: Burner on")
         sys.stdout.flush()
         save_status()
-        
+
         drying_time_minutes = load_drying_config()
-        
+        start_monitoring()
+
         drying_time_seconds = drying_time_minutes * 60
         stop_timer = Timer(drying_time_seconds, stop_drying)
         stop_timer.start()
-        
+
     except KeyboardInterrupt:
         GPIO.output(RELAY_PIN, GPIO.LOW)
         print("Drying Stopped: Burner Off")
