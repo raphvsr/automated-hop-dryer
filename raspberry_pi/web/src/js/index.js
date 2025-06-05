@@ -224,41 +224,41 @@ $(document).ready(function () {
       $("#varietiesSelect").val("");
       $("#userModal").hide();
     });
+  });
 
-    $("#save").on("click", function (e) {
-      const variety = $(".varieties-badge")
-        .map(function () {
-          const varietyId = $(this).attr("id");
-          const varietyName = $(this).find("p").text();
-          const varietyMaxTemperature = $(this).data("max-temperature");
-          const varietyMinTemperature = $(this).data("min-temperature");
-          const varietyDryingTime = $(this).data("drying-time");
-          return {
-            id: varietyId,
-            name: varietyName,
-            max_temperature: varietyMaxTemperature,
-            min_temperature: varietyMinTemperature,
-            drying_time: varietyDryingTime,
-          };
-        })
-        .get();
-      $("#userModal").hide();
+  $("#save").on("click", function (e) {
+    const variety = $(".varieties-badge")
+      .map(function () {
+        const varietyId = $(this).attr("id");
+        const varietyName = $(this).find("p").text();
+        const varietyMaxTemperature = $(this).data("max-temperature");
+        const varietyMinTemperature = $(this).data("min-temperature");
+        const varietyDryingTime = $(this).data("drying-time");
+        return {
+          id: varietyId,
+          name: varietyName,
+          max_temperature: varietyMaxTemperature,
+          min_temperature: varietyMinTemperature,
+          drying_time: varietyDryingTime,
+        };
+      })
+      .get();
+    $("#userModal").hide();
 
-      $.post(
-        "backend/php/api/start_drying.php",
-        { variety: JSON.stringify(variety) },
-        function (data) {
-          const response = JSON.parse(data);
-          $("#dryingStatus").text(`Status: ${response.message}`);
-        }
-      ).fail(function (jqXHR, textStatus, errorThrown) {
-        console.log("Error details:", {
-          status: jqXHR.status,
-          textStatus: textStatus,
-          errorThrown: errorThrown,
-        });
-        $("#dryingStatus").text("Error starting drying process.");
+    $.post(
+      "backend/php/api/start_drying.php",
+      { variety: JSON.stringify(variety) },
+      function (data) {
+        const response = JSON.parse(data);
+        $("#dryingStatus").text(`Status: ${response.message}`);
+      }
+    ).fail(function (jqXHR, textStatus, errorThrown) {
+      console.log("Error details:", {
+        status: jqXHR.status,
+        textStatus: textStatus,
+        errorThrown: errorThrown,
       });
+      $("#dryingStatus").text("Error starting drying process.");
     });
   });
 
