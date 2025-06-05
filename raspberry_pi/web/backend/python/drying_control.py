@@ -141,6 +141,7 @@ def main():
             stop_drying()
         else:
             print("Commande inconnue")
+    else:
             try:
                 print("Système prêt. En attente d'entrée...")
                 GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=button_pressed, bouncetime=200)
