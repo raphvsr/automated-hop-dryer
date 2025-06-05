@@ -1,7 +1,7 @@
 <?php
-//              file dryingControl.php            
+//              file dryingControl.php
 // ===============================================
-//        Original Author: Romain Provencel       
+//        Original Author: Romain Provencel
 // ===============================================
 
 // COMMIT HISTORY:
@@ -67,7 +67,7 @@ class DryingControl
   {
     $output = [];
     $return_var = 0;
-    exec("sudo python3 -c 'from drying_control import stop_drying; stop_drying()'", $output, $return_var);
+    exec("sudo python3 /chemain_deprojey/drying_control.py stop'", $output, $return_var);
     return implode("\n", $output);
   }
 

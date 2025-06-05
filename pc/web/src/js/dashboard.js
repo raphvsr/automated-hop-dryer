@@ -3,17 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // window.dashboardManager = new DashboardManager();
   console.log('Dashboard initialized');
 });
-// chart 1
-const timeLabels = [
-
-];
-
-const dateLabels = [
-  '01/01/2000', '01/01/2002', '01/01/2004', '01/01/2006', '01/01/2008',
-  '01/01/2010', '01/01/2012', '01/01/2014', '01/01/2016', '01/01/2018',
-  '01/01/2020', '01/01/2022', '01/01/2024'
-];
-
 // let variety = fetch('getVariety');
 fetch('backend/getVariety.php', {
   method: 'POST',
@@ -41,6 +30,19 @@ fetch('backend/getVariety.php', {
   console.error('Fetch error:', error);
 });
 
+// chart 1
+const timeLabels = [
+  '10:00:00', '10:30:00', '11:00:00', '11:30:00', '12:00:00',
+  '12:30:00', '13:00:00', '13:30:00', '14:00:00', '14:30:00',
+  '15:00:00', '15:30:00', '16:00:00', '16:30:00', '17:00:00',
+  '17:30:00', '18:00:00', '18:30:00', '19:00:00'
+];
+
+const dateLabels = [
+  '01/01/2000', '01/01/2002', '01/01/2004', '01/01/2006', '01/01/2008',
+  '01/01/2010', '01/01/2012', '01/01/2014', '01/01/2016', '01/01/2018',
+  '01/01/2020', '01/01/2022', '01/01/2024'
+];
 
 const chart1 = document.getElementById('chart1').getContext('2d');
 const chart1Visual = new Chart(chart1, {
@@ -140,7 +142,6 @@ const chart1Visual = new Chart(chart1, {
         }
     }
 });
-;
 
 // Function to get all filter values
 function getFilterValues() {
@@ -445,7 +446,7 @@ function buildStepArray(timeLabels, etageChanges) {
     return result;
 }
 
-async function fetchData(chartType = 'graph_timeline', params = {}) {
+async function fetchData(chartType = 'historique', params = {}) {
   try {
     const queryParams = new URLSearchParams();
     queryParams.append('chart_type', chartType);

@@ -1,7 +1,7 @@
 <?php
-//            file register-process.php           
+//            file register-process.php
 // ===============================================
-//          Original Author: fateh kabbani        
+//          Original Author: fateh kabbani
 // ===============================================
 
 // COMMIT HISTORY:
@@ -44,7 +44,7 @@ try {
   if (empty($_POST['username']) || empty($_POST['password']) || !isset($_POST['role'])) {
     echo json_encode([
       'status' => 'error',
-      'message' => 'All fields are required'
+      'message' => 'tout les champs sont obligatoires'
     ]);
     exit;
   }
@@ -58,17 +58,17 @@ try {
   $stmt->bind_param("sss", $username, $password_hash, $role);
 
   if (!$stmt->execute()) {
-    throw new Exception('Failed to create user');
+    throw new Exception('Échec de la création de l\'utilisateur: ');
   }
 
   if ($stmt->affected_rows > 0) {
     echo json_encode([
       'status' => 'success',
-      'message' => 'User created successfully'
+      'message' => 'Utilisateur créé avec succès',
     ]);
     http_response_code(200);
   } else {
-    throw new Exception('No user was created');
+    throw new Exception('Aucun utilisateur n\'a été créé');
   }
 
 } catch (Exception $e) {
@@ -76,7 +76,7 @@ try {
   $code = 500;
 
   if ($e->getCode() == 1062) {
-    $message = 'Username already exists';
+    $message = 'Le nom d\'utilisateur existe déjà';
     $code = 409;
   } else {
     $message = $e->getMessage();

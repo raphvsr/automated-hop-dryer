@@ -1,8 +1,7 @@
-
 <?php
-//                   file csv.php                 
+//                   file csv.php
 // ===============================================
-//          Original Author: fateh kabbani        
+//          Original Author: fateh kabbani
 // ===============================================
 
 // COMMIT HISTORY:
@@ -75,7 +74,6 @@ if (isset($_POST['download']) && !empty($_POST['file'])) {
   <title>Gestion des Données CSV - Contrôle du Séchage</title>
   <link rel="stylesheet" href="src/css/styles.css">
   <link rel="stylesheet" href="src/css/dashboard.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="src/css/csv.css">
 </head>

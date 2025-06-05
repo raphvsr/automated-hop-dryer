@@ -14,8 +14,6 @@ try {
   $etage = isset($_GET['etage']) ? $_GET['etage'] : null;
   $response = ['status' => 'success', 'data' => []];
   switch ($chartType) {
-
-
     case 'historique_1er_chargement':
       $response['data'] = getFirstChargment($conn, $variety, $startDate, $endDate, $etage, $campaignId);
       break;
@@ -54,15 +52,8 @@ function getFirstChargment($conn, $variety, $startDate, $endDate, $etage, $campa
   $sql = "SELECT
         dc.campaign_id,
         dc.cycle_date,
-        dc.cycle_start_time,
-        dc.cycle_end_time,
         ROUND(AVG(dc.total_cycle_minutes) / 60.0, 2) AS total_cycle_hours,
-        ROUND(AVG(dc.total_burner_minutes) / 60.0, 2) AS total_burner_hours,
-        ROUND(SUM(e.floor_duration_min) / 60.0, 2) AS total_floor_duration_hours,
-        ROUND(SUM(CAST(e.floor_burner_duration_min AS UNSIGNED)) / 60.0, 2) AS total_floor_burner_hours,
-        e.variety_name as variety_name,
-        COUNT(e.floor_number) AS total_etages,
-        GROUP_CONCAT(e.floor_number ORDER BY e.floor_number) AS floor_numbers
+        ROUND(AVG(dc.total_burner_minutes) / 60.0, 2) AS total_burner_hours
     FROM drying_cycles dc
     JOIN etages e ON e.cycle_id = dc.id
     WHERE dc.cycle_status IS NOT NULL";
@@ -89,10 +80,6 @@ function getFirstChargment($conn, $variety, $startDate, $endDate, $etage, $campa
     $params[] = $endDate;
     $paramTypes .= 's';
   }
-
-
-
-
 
   // Add the subquery to get only the first cycle with the specified variety for each campaign
   $sql .= " AND dc.id = (
@@ -125,7 +112,7 @@ function getFirstChargment($conn, $variety, $startDate, $endDate, $etage, $campa
   $sql .= " ORDER BY dc2.cycle_date ASC, dc2.cycle_start_time ASC
         LIMIT 1
     )
-    GROUP BY dc.campaign_id, dc.cycle_date, dc.cycle_start_time, dc.cycle_end_time, e.variety_name
+    GROUP BY dc.campaign_id, dc.cycle_date
     HAVING COUNT(e.floor_number) = 4
     ORDER BY dc.campaign_id, dc.cycle_date";
 
@@ -139,33 +126,23 @@ function getFirstChargment($conn, $variety, $startDate, $endDate, $etage, $campa
     $stmt->execute();
     $result = $stmt->get_result();
 
-    $data = array();
     $labels = array();
     $dryingDuration = array();
     $burnerDuration = array();
-    $floorDuration = array();
 
     while ($row = $result->fetch_assoc()) {
-      // Format the label with floor information
       $label = date('d/m/y', strtotime($row['cycle_date'])) . ' - C' . $row['campaign_id'];
-
 
       $labels[] = $label;
       $dryingDuration[] = (float) $row['total_cycle_hours'];
       $burnerDuration[] = (float) $row['total_burner_hours'];
-      $floorDuration[] = (float) $row['total_floor_duration_hours'];
-
-      // Store full row data for additional processing if needed
-      $data[] = $row;
     }
 
     return array(
       'success' => true,
       'labels' => $labels,
       'dryingDuration' => $dryingDuration,
-      'burnerDuration' => $burnerDuration,
-      'floorDuration' => $floorDuration,
-      'rawData' => $data
+      'burnerDuration' => $burnerDuration
     );
 
   } catch (Exception $e) {
@@ -175,7 +152,6 @@ function getFirstChargment($conn, $variety, $startDate, $endDate, $etage, $campa
     );
   }
 }
-
 
 
 
@@ -204,11 +180,7 @@ function graphTimeLine($conn, $variety, $startDate = null, $endDate = null, $eta
     $types .= "s";
   }
 
-  if ($etage) {
-    $floorSql .= " AND e.floor_number = ?";
-    $params[] = $etage;
-    $types .= "s";
-  }
+
 
   $floorSql .= ")
     SELECT
@@ -222,11 +194,7 @@ function graphTimeLine($conn, $variety, $startDate = null, $endDate = null, $eta
   $params[] = $variety;
   $types .= "s";
 
-  if ($etage) {
-    $floorSql .= " AND e.floor_number = ?";
-    $params[] = $etage;
-    $types .= "s";
-  }
+
 
   $floorSql .= " ORDER BY timestamp";
 
@@ -255,11 +223,7 @@ function graphTimeLine($conn, $variety, $startDate = null, $endDate = null, $eta
     $types .= "s";
   }
 
-  if ($etage) {
-    $burnerSql .= " AND e.floor_number = ?";
-    $params[] = $etage;
-    $types .= "s";
-  }
+
 
   $burnerSql .= " AND bs.cycle_id = (
       SELECT MAX(dc.id)
@@ -283,11 +247,7 @@ function graphTimeLine($conn, $variety, $startDate = null, $endDate = null, $eta
     $types .= "s";
   }
 
-  if ($etage) {
-    $burnerSql .= " AND e.floor_number = ?";
-    $params[] = $etage;
-    $types .= "s";
-  }
+
 
   $burnerSql .= ")";
 
@@ -408,20 +368,31 @@ function getStatistics($conn, $variety = null)
   $result = $stmt->get_result();
   $stats['floor_stats'] = $result->fetch_assoc();
 
-  // Get campaign statistics
+  // Get campaign statistics - REFACTORED without c.total_cycles
   $campaignSql = "
     SELECT
       COUNT(DISTINCT c.id) as total_campaigns,
       MIN(c.start_date) as first_campaign,
       MAX(c.end_date) as last_campaign,
-      ROUND(AVG(c.total_cycles), 2) as avg_cycles_per_campaign
+      ROUND(AVG(campaign_cycles.cycle_count), 2) as avg_cycles_per_campaign
     FROM campaigns c
-    JOIN drying_cycles dc ON dc.campaign_id = c.id
-    JOIN etages e ON e.cycle_id = dc.id
-    WHERE 1=1";
+    JOIN (
+      SELECT
+        dc.campaign_id,
+        COUNT(DISTINCT dc.id) as cycle_count
+      FROM drying_cycles dc
+      JOIN etages e ON e.cycle_id = dc.id
+      WHERE 1=1";
 
   if ($variety) {
     $campaignSql .= " AND e.variety_name = ?";
+  }
+
+  $campaignSql .= "
+      GROUP BY dc.campaign_id
+    ) campaign_cycles ON campaign_cycles.campaign_id = c.id";
+
+  if ($variety) {
     $stmt = $conn->prepare($campaignSql);
     $stmt->bind_param('s', $variety);
   } else {
@@ -432,27 +403,79 @@ function getStatistics($conn, $variety = null)
   $result = $stmt->get_result();
   $stats['campaign_stats'] = $result->fetch_assoc();
 
-  // Get table record counts
-  $tableCountSql = "
-    SELECT
-      'Campaigns' as table_name,
-      COUNT(*) as record_count
-    FROM
-      campaigns
-    UNION ALL
-    SELECT
-      'Drying Cycles' as table_name,
-      COUNT(*) as record_count
-    FROM
-      drying_cycles
-    UNION ALL
-    SELECT
-      'Etages' as table_name,
-      COUNT(*) as record_count
-    FROM
-      etages  ";
+  // Get table record counts (FIXED - now filters by variety)
+  if ($variety) {
+    // Filtered counts for specific variety
+    $tableCountSql = "
+      SELECT
+        'Campaigns' as table_name,
+        COUNT(DISTINCT c.id) as record_count
+      FROM campaigns c
+      JOIN drying_cycles dc ON dc.campaign_id = c.id
+      JOIN etages e ON e.cycle_id = dc.id
+      WHERE e.variety_name = ?
 
-  $result = $conn->query($tableCountSql);
+      UNION ALL
+
+      SELECT
+        'Drying Cycles' as table_name,
+        COUNT(DISTINCT dc.id) as record_count
+      FROM drying_cycles dc
+      JOIN etages e ON e.cycle_id = dc.id
+      WHERE e.variety_name = ?
+
+      UNION ALL
+
+      SELECT
+        'Etages' as table_name,
+        COUNT(*) as record_count
+      FROM etages
+      WHERE variety_name = ?
+
+      UNION ALL
+
+      SELECT
+        'Burner States' as table_name,
+        COUNT(DISTINCT bs.id) as record_count
+      FROM burner_states bs
+      JOIN drying_cycles dc ON dc.id = bs.cycle_id
+      JOIN etages e ON e.cycle_id = dc.id
+      WHERE e.variety_name = ?";
+
+    $stmt = $conn->prepare($tableCountSql);
+    $stmt->bind_param('ssss', $variety, $variety, $variety, $variety);
+    $stmt->execute();
+    $result = $stmt->get_result();
+  } else {
+    // Total counts for all varieties
+    $tableCountSql = "
+      SELECT
+        'Campaigns' as table_name,
+        COUNT(*) as record_count
+      FROM
+        campaigns
+      UNION ALL
+      SELECT
+        'Drying Cycles' as table_name,
+        COUNT(*) as record_count
+      FROM
+        drying_cycles
+      UNION ALL
+      SELECT
+        'Etages' as table_name,
+        COUNT(*) as record_count
+      FROM
+        etages
+      UNION ALL
+      SELECT
+        'Burner States' as table_name,
+        COUNT(*) as record_count
+      FROM
+        burner_states";
+
+    $result = $conn->query($tableCountSql);
+  }
+
   $tableCounts = [];
   while ($row = $result->fetch_assoc()) {
     $tableCounts[$row['table_name']] = $row['record_count'];
