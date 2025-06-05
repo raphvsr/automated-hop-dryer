@@ -18,8 +18,7 @@
 
 include "../../database.php";
 session_start();
-// translate to french
-if (!$_SESSION['logged_in'] || $_SESSION['role'] !== 1) {
+if (!$_SESSION['username'] || $_SESSION['admin'] !== 1) {
   echo json_encode([
     'status' => 'error',
     'message' => 'Accès non autorisé'
